@@ -1,0 +1,37 @@
+.applicant-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.applicant-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.applicant-card h2 {
+  margin-top: 0;
+}
+
+.applicant-card p {
+  margin: 8px 0;
+}
+
+.applicant-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.applicant-card a:hover {
+  text-decoration: underline;
+}
+
+.missing {
+  color: red;
+  font-weight: bold;
+}

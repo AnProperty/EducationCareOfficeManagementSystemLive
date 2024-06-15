@@ -1,0 +1,20 @@
+.btn {
+    width: 200px !important;
+    color: white !important;
+}
+.btn2 {
+    background: rgb(64, 236, 6) !important;
+}
+.btn3 {
+    background: rgb(37, 129, 250) !important;
+}
+.btn4 {
+    background: rgb(235, 200, 27) !important;
+
+}
+a{
+    text-decoration: none !important;
+}
+.forDownloadLabel label{
+    width: 140px;
+}

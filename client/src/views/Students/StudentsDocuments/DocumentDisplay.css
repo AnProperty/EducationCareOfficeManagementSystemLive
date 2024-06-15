@@ -1,0 +1,24 @@
+
+.studentsDocuments img{
+  width: 20rem;
+  height: 15rem;
+}
+
+
+.showDocuments section img {
+  max-width: 150px;
+  margin: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.doc-label {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.doc-status {
+  color: red;
+  font-weight: bold;
+}

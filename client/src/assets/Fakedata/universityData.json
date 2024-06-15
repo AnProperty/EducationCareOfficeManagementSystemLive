@@ -1,0 +1,590 @@
+[
+  {
+    "name": "Harvard University",
+    "country": "USA",
+    "location": "Cambridge, Massachusetts",
+    "courses": [
+      "Computer Science",
+      "Business Administration",
+      "Law"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "$50,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Oxford",
+    "country": "UK",
+    "location": "Oxford, England",
+    "courses": [
+      "Medicine",
+      "Economics",
+      "Engineering"
+    ],
+    "intakes": [
+      "Spring",
+      "Summer"
+    ],
+    "semesterFee": "£40,000",
+    "coursePeriod": "5 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Copenhagen",
+    "country": "Denmark",
+    "location": "Copenhagen",
+    "courses": [
+      "Architecture",
+      "Biotechnology",
+      "History"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "DKK 70,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Sydney",
+    "country": "Australia",
+    "location": "Sydney, New South Wales",
+    "courses": [
+      "Design",
+      "Science",
+      "Communication"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "AU$45,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Toronto",
+    "country": "Canada",
+    "location": "Toronto, Ontario",
+    "courses": [
+      "Art",
+      "Engineering",
+      "Political Science"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "$35,000",
+    "coursePeriod": "4 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Malta",
+    "country": "Malta",
+    "location": "Msida",
+    "courses": [
+      "Hospitality Management",
+      "Information Technology",
+      "Finance"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "€25,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "American University in Dubai",
+    "country": "UAE",
+    "location": "Dubai",
+    "courses": [
+      "Business Administration",
+      "Computer Engineering",
+      "Architecture"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "AED 150,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Auckland",
+    "country": "New Zealand",
+    "location": "Auckland",
+    "courses": [
+      "Education",
+      "Visual Arts",
+      "Nursing"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "NZ$30,000",
+    "coursePeriod": "3 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "Technical University of Denmark",
+    "country": "Denmark",
+    "location": "Kongens Lyngby",
+    "courses": [
+      "Chemical Engineering",
+      "Computer Science",
+      "Physics"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "DKK 60,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Melbourne",
+    "country": "Australia",
+    "location": "Melbourne, Victoria",
+    "courses": [
+      "Medicine",
+      "Architecture",
+      "Business"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "AU$48,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "McGill University",
+    "country": "Canada",
+    "location": "Montreal, Quebec",
+    "courses": [
+      "Biology",
+      "History",
+      "Computer Engineering"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "$40,000",
+    "coursePeriod": "4 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Malta",
+    "country": "Malta",
+    "location": "Msida",
+    "courses": [
+      "Hospitality Management",
+      "Information Technology",
+      "Finance"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "€25,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Cambridge",
+    "country": "UK",
+    "location": "Cambridge, England",
+    "courses": [
+      "Law",
+      "Economics",
+      "Chemistry"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "£45,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Auckland",
+    "country": "New Zealand",
+    "location": "Auckland",
+    "courses": [
+      "Education",
+      "Visual Arts",
+      "Nursing"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "NZ$30,000",
+    "coursePeriod": "3 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "ETH Zurich",
+    "country": "Switzerland",
+    "location": "Zurich",
+    "courses": [
+      "Computer Science",
+      "Engineering",
+      "Mathematics"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "CHF 20,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Sydney",
+    "country": "Australia",
+    "location": "Sydney, New South Wales",
+    "courses": [
+      "Design",
+      "Science",
+      "Communication"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "AU$45,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of British Columbia",
+    "country": "Canada",
+    "location": "Vancouver, British Columbia",
+    "courses": [
+      "Psychology",
+      "Sociology",
+      "Physics"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "$38,000",
+    "coursePeriod": "4 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Oxford",
+    "country": "UK",
+    "location": "Oxford",
+    "courses": [
+      "Medicine",
+      "Economics",
+      "Engineering"
+    ],
+    "intakes": [
+      "Spring",
+      "Summer"
+    ],
+    "semesterFee": "£40,000",
+    "coursePeriod": "5 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Copenhagen",
+    "country": "Denmark",
+    "location": "Copenhagen",
+    "courses": [
+      "Architecture",
+      "Biotechnology",
+      "History"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "DKK 70,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Sydney",
+    "country": "Australia",
+    "location": "Sydney",
+    "courses": [
+      "Design",
+      "Science",
+      "Communication"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "AU$45,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Toronto",
+    "country": "Canada",
+    "location": "Toronto",
+    "courses": [
+      "Art",
+      "Engineering",
+      "Political Science"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "$35,000",
+    "coursePeriod": "4 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Malta",
+    "country": "Malta",
+    "location": "Valletta",
+    "courses": [
+      "Hospitality Management",
+      "Information Technology",
+      "Finance"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "€25,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "American University in Dubai",
+    "country": "UAE",
+    "location": "Dubai",
+    "courses": [
+      "Business Administration",
+      "Computer Engineering",
+      "Architecture"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "AED 150,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Auckland",
+    "country": "New Zealand",
+    "location": "Auckland",
+    "courses": [
+      "Education",
+      "Visual Arts",
+      "Nursing"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "NZ$30,000",
+    "coursePeriod": "3 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "Stanford University",
+    "country": "USA",
+    "location": "Stanford",
+    "courses": [
+      "Computer Engineering",
+      "Psychology",
+      "History"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "$48,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University College London",
+    "country": "UK",
+    "location": "London",
+    "courses": [
+      "Law",
+      "Medicine",
+      "Economics"
+    ],
+    "intakes": [
+      "Spring",
+      "Summer"
+    ],
+    "semesterFee": "£42,000",
+    "coursePeriod": "5 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "Copenhagen Business School",
+    "country": "Denmark",
+    "location": "Copenhagen",
+    "courses": [
+      "Business Administration",
+      "International Business",
+      "Finance"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "DKK 65,000",
+    "coursePeriod": "3 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Melbourne",
+    "country": "Australia",
+    "location": "Melbourne",
+    "courses": [
+      "Engineering",
+      "Arts",
+      "Music"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "AU$42,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of British Columbia",
+    "country": "Canada",
+    "location": "Vancouver",
+    "courses": [
+      "Science",
+      "Business",
+      "Computer Science"
+    ],
+    "intakes": [
+      "Fall",
+      "Winter"
+    ],
+    "semesterFee": "$38,000",
+    "coursePeriod": "4 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "University of Malta",
+    "country": "Malta",
+    "location": "Valletta",
+    "courses": [
+      "Information Technology",
+      "Tourism Studies",
+      "Accounting"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "€28,000",
+    "coursePeriod": "3 years",
+    "scholarship": "NA"
+  },
+  {
+    "name": "American University of Beirut",
+    "country": "Lebanon",
+    "location": "Beirut",
+    "courses": [
+      "Medical Sciences",
+      "Engineering",
+      "Political Science"
+    ],
+    "intakes": [
+      "Fall"
+    ],
+    "semesterFee": "$40,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Auckland",
+    "country": "New Zealand",
+    "location": "Auckland",
+    "courses": [
+      "Education",
+      "Visual Arts",
+      "Nursing"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "NZ$30,000",
+    "coursePeriod": "3 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "Massachusetts Institute of Technology",
+    "country": "USA",
+    "location": "Cambridge",
+    "courses": [
+      "Computer Science",
+      "Engineering",
+      "Physics"
+    ],
+    "intakes": [
+      "Fall",
+      "Spring"
+    ],
+    "semesterFee": "$52,000",
+    "coursePeriod": "4 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of Edinburgh",
+    "country": "UK",
+    "location": "Edinburgh",
+    "courses": [
+      "History",
+      "Medicine",
+      "Social Sciences"
+    ],
+    "intakes": [
+      "Spring",
+      "Summer"
+    ],
+    "semesterFee": "£38,000",
+    "coursePeriod": "5 years",
+    "scholarship": "Available"
+  },
+  {
+    "name": "University of LOL",
+    "country": "UK",
+    "location": "Edinburgh",
+    "courses": [
+      "Civil Engineering",
+      "Medicine",
+      "Social Sciences"
+    ],
+    "intakes": [
+      "Spring",
+      "Summer"
+    ],
+    "semesterFee": "£38,000",
+    "coursePeriod": "5 years",
+    "scholarship": "Available"
+  }
+]

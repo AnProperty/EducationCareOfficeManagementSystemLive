@@ -1,0 +1,168 @@
+.drawer{
+    display: flex;
+    margin: 20px 0 40px;
+    justify-content: center;
+  }
+  .drawerItem{
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+  }
+  .drawerItem::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #ff004f !important;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+  }
+  .drawerItem.active-link::after{
+  width: 50%;
+  }
+  
+  .drawer-content{
+    display: none;
+  }
+  .drawer-content.active-drawer{
+    display: block;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .about-header {
+    margin: 3% 0%;
+    display: flex;
+  }
+  
+  .responsive {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  .about-top {
+    display: flex;
+    display: flex;
+    justify-content: space-around;
+  
+  }
+  
+  /* Define the animation */
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+  
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Apply the animation to the div */
+  
+  
+  
+  .left {
+    animation: slideInLeft 1s forwards;
+  }
+  
+  .right {
+    animation: slideInRight 1s forwards;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  .slideDown {
+    animation: slideIn 1s ease-in-out forwards;
+  }
+  .slideLeft {
+    animation: slideIn 1s ease-in-out backwards;
+  }
+  
+  
+  
+  
+  i {
+    animation: wiggle 2s linear infinite;
+  }
+  
+  /* Keyframes */
+  @keyframes wiggle {
+    0%, 7% {
+      transform: rotateZ(0);
+    }
+    15% {
+      transform: rotateZ(-15deg);
+    }
+    20% {
+      transform: rotateZ(10deg);
+    }
+    25% {
+      transform: rotateZ(-10deg);
+    }
+    30% {
+      transform: rotateZ(6deg);
+    }
+    35% {
+      transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+      transform: rotateZ(0);
+    }
+  }
+  
+  
+  @media only screen and (max-width: 600px) {
+    .drawerItem {
+      margin-right: 24px;
+      font-size: 15px;
+      font-weight: 400;
+      cursor: pointer;
+      position: relative;
+    }
+  }
+ 
+  
+  
+  .forBG {
+    color: #f3f3f3e8 !important;
+  }
