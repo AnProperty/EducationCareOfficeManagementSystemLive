@@ -6,8 +6,8 @@ const app = require("./app");
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("Database connection established"))
 .catch(() => console.log("Database connection failed"));
 
-const port = 4002;
+const port = 5004;
 
 app.listen(port, () => {
-  console.log(`App is running at port 4002`);
+  console.log(`App is running at port ${port}`);
 });
