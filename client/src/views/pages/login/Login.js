@@ -20,6 +20,8 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
+import Swal from 'sweetalert2'
+
 const Login = () => {
   const [logCredential, setLogCredential] = useState({
     email: '',
@@ -44,9 +46,17 @@ const Login = () => {
     console.log("hello", logCredential);
     await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, logCredential)
       .then(function (response) {
-
         const user = response?.data?.data[0];
         console.log("response", user);
+        if(user===undefined){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Wrong Login information',
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        }
         localStorage.setItem('user', JSON.stringify(user))
         setUser(response?.data?.data[0])
         if (response?.data?.data[0].role === "Counselor") {

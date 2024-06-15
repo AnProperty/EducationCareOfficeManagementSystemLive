@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom'
 
 const DocumentsUploadsForm = () => {
   const { studentId, counselorId } = useParams()
-
+  const [loading, setLoading] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [documents, setDocuments] = useState({
     sscCertificate: '',
     sscTranscript: '',
@@ -54,6 +55,8 @@ const DocumentsUploadsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    setLoading(true)
+
     // Object.keys(documents).map((item) => Data.append({item} , documents[item]))
 
     const Data = new FormData()
@@ -96,11 +99,13 @@ const DocumentsUploadsForm = () => {
             showConfirmButton: false,
             timer: 1500,
           })
+          setIsSubmitted(true)
         } else {
           alert(result.data.Error)
         }
       })
       .catch((err) => console.log(err))
+      .finally(setLoading(false))
   }
   return (
     <div className="form-upload-container">
@@ -297,6 +302,9 @@ const DocumentsUploadsForm = () => {
           <button type="submit" className="btn btn2">
             {' '}
             Submit{' '}
+          </button>
+          <button type="submit" className="btn btn-primary w-100" disabled={isSubmitted}>
+            {loading ? 'Submitting.....' : 'Submit'}
           </button>
         </section>
       </form>

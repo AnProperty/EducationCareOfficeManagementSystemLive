@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import SuperAdminServices from '../../../components/httpservices/superAdminServices/SuperAdminServices';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const CreateEmployee = () => {
 
@@ -61,6 +62,13 @@ const CreateEmployee = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log(res.data)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Employee Created Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       navigate('/super-admin/employee/employee-list')
     } catch (error) {
       console.log(error)

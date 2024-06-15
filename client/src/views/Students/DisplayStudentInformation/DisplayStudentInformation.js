@@ -99,7 +99,7 @@ const DisplayStudentInformation = () => {
                         <div className="modal-header">
                             <h5 className="modal-title">Advice to Students</h5>
                             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close">
-
+                                
                             </button>
                         </div>
                         <div className="modal-body">

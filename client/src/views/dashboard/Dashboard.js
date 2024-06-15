@@ -55,12 +55,12 @@ const Dashboard = () => {
   const OneDayAgo = async () => {
     const previousDate = await getPreviousDate(filteringDate)
     setFilteringDate(previousDate)
-    console.log(previousDate) // Outputs: "2024-06-09"
+    console.log(previousDate) 
   }
   const OneDayNext = async () => {
     const previousDate = await getNextDate(filteringDate)
     setFilteringDate(previousDate)
-    console.log(previousDate) // Outputs: "2024-06-09"
+    console.log(previousDate) 
   }
 
   return (

@@ -11,7 +11,7 @@ const AssignVisaTeamWithAllDocuments = () => {
   const [universityDocs, setUniversityDocs] = useState(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const { universityName, subject, country, intake, b2b, link } = state.item
+  const { universityName, subject, country, intake,b2b,link } = state.item
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_BASE_URL}/applicant/get-uploaded-documents/${studentId}/${country}/${universityName}/${subject}/${intake}`,
