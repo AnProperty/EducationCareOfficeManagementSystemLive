@@ -40,7 +40,7 @@ router
 
 router
   .route(
-    "/get-uploaded-documents/:studentId/:country/:universityName/:subject/:intake"
+    "/get-uploaded-documents/:studentId/:country/:universityName/:subject/:intake/:studentObjectId"
   )
   .patch(
     upload.fields([

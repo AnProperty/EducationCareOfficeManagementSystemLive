@@ -1,5 +1,6 @@
+const CreateStudent = require("../../model/CreateStudent.model");
 const 
-{createStudentServices, GetAllStudentListServices,getStudentById}
+{createStudentServices, GetAllStudentListServices,GetAStudentByEmailAndNameServices}
  = require("../../services/receptionistServices/receptionistServices");
 
 exports.CreateStudentController = async (req, res, next) => {
@@ -37,24 +38,32 @@ exports.GetAllStudentListController = async (req, res, next) => {
         })
     }
 };
-exports.GetAStudentByIdController = async (req, res, next) => {
+exports.GetAStudentByNameAndEmailController = async (req, res, next) => {
     try {
-
-        const query=req.params;
-        console.log('queryyyyy',query)
-        const student = await getStudentById(query);
-        console.log("studentttttttttttt",student);
+        
+        const student = await GetAStudentByEmailAndNameServices(req.params);
         res.status(200).json({
             status: "success",
-            message: "Get A Students  successfully",
+            message: "Get a student successfully",
             data: student
         })
     } catch (error) {
         res.status(400).json({
             status: "Fail",
-            message: "Can't get Employee List",
+            message: "Can't get a student",
             error: error,
             
         })
     }
+};
+//------------------------??
+exports.GetLastStudentIdController = async (req, res, next) => {
+    try {
+        console.log('hittttttttttttttttttt')
+        const lastStudent = await CreateStudent.findOne().sort({ createdAt: -1 }).exec();
+        console.log(lastStudent.studentId)
+        res.json({ lastStudentId: lastStudent ? lastStudent.studentId : null });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
 };

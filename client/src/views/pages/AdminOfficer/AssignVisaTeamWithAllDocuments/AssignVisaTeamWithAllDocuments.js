@@ -95,12 +95,12 @@ const AssignVisaTeamWithAllDocuments = () => {
     })
 
     if (
-      !universityDocs?.offerLetter &&
-      !universityDocs?.swiftCopy &&
-      !universityDocs?.universityPaymentRecept &&
-      !universityDocs?.loa &&
-      !universityDocs?.dol &&
-      !universityDocs?.pal
+      !(universityDocs?.offerLetter) &&
+      !(universityDocs?.swiftCopy) &&
+      !(universityDocs?.universityPaymentRecept) &&
+      !(universityDocs?.loa) &&
+      !(universityDocs?.dol) &&
+      !(universityDocs?.pal)
     ) {
       axios
         .post(
@@ -123,18 +123,41 @@ const AssignVisaTeamWithAllDocuments = () => {
             alert(result.data.Error)
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: `${err}`,
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        })
     } else {
       axios
         .patch(
-          `${process.env.REACT_APP_API_BASE_URL}/applicant/get-uploaded-documents/${studentId}/${country}/${universityName}/${subject}/${intake}`,
+          `${process.env.REACT_APP_API_BASE_URL}/applicant/get-uploaded-documents/${studentId}/${country}/${universityName}/${subject}/${intake}/${state.studentObjectId}`,
           Data,
           { headers: { 'Content-Type': 'multipart/form-data' } },
         )
         .then((result) => {
           console.log('resulttttttttttttttt  :', result)
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Docs Upload Successful',
+            showConfirmButton: false,
+            timer: 1500,
+          })
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `Docs Upload Successful`,
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        })
     }
   }
   return (

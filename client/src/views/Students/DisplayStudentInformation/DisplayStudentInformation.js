@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import logo from '../../../assets/images/logo.png';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,7 +11,7 @@ const DisplayStudentInformation = () => {
     console.log(state);
     const { studentId, counselorId } = useParams()
     console.log(studentId, counselorId);
-    const link = `http://localhost:3000/file-upload/${studentId}/${counselorId}`
+    const link = `http://antgec.com/file-upload/${studentId}/${counselorId}`
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

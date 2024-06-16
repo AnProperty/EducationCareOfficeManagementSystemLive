@@ -155,10 +155,11 @@ exports.getUploadedDocuments = async (req, res, next) => {
   }
 };
 exports.universityDocUpdateController = async (req, res, next) => {
-  console.log("uffffffffffffffAhhhhh", req.params);
-  console.log("AHHHHHHHHHHHHHHHHHHHHHHHH:",req.files)
+  // console.log("uffffffffffffffAhhhhh", req.params);
+  // console.log("AHHHHHHHHHHHHHHHHHHHHHHHH:",req.files);
+  console.log("bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyy:",req.body)
   try {
-    const request = await universityDocumentUpdateService(req.params,req.files);
+    const request = await universityDocumentUpdateService(req.params,req.files,req.body);
     res.status(200).json({
       status: "success",
       message: "Applied University Updated successfully",

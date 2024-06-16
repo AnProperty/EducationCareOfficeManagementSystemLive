@@ -4,7 +4,7 @@ const CreateStudent = require("../../model/CreateStudent.model");
 exports.createStudentServices = async (studentInfo) => {
   console.log(studentInfo)
   const registeredInfo = await CreateStudent.create(studentInfo);
-
+  
   await CreateEmployee.updateOne(
     {
       _id: registeredInfo.counselor.id,
@@ -15,7 +15,7 @@ exports.createStudentServices = async (studentInfo) => {
       },
     }
   );
-
+  
   return registeredInfo;
 };
 
@@ -27,8 +27,11 @@ exports.GetAllStudentListServices = async () => {
 
 
 
-exports.getStudentById = async (query) => {
+exports.GetAStudentByEmailAndNameServices = async (query) => {
+  console.log('queryyyyyyyyyyyyyyyy:',query);
   const student = await CreateStudent.find(query);
-  console.log("studentttttttttttt", student)
+
+  console.log(student)
+
   return student;
 };

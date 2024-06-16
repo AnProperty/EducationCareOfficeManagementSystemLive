@@ -124,33 +124,41 @@ exports.getUploadedDocumentsService = async (query) => {
   return uploadedDocuments;
   
 };
-exports.universityDocumentUpdateService = async (query,files) => {
+exports.universityDocumentUpdateService = async (query,files,body) => {
   
-
+  const stdObj=query.studentObjectId;
+  await CreateEmployee.updateOne(
+    {
+      employee_id: body.visaTeamId,
+    },
+    {
+      $addToSet: {
+        students: stdObj
+      },
+    }
+  );
+  delete query.studentObjectId;
   const existingDocument= await UniversityDocsModel.find(query)
 
   const uploadedFiles = await cloudinaryService.uploadUniResFiles(files,query.universityName,query.country);
 
-  console.log('uploadedFiles:',uploadedFiles)
 
-  console.log('existingDocumentttttttttt:',existingDocument)
-
-  console.log(files)
   Object.keys(uploadedFiles).forEach((key) => {
     if (uploadedFiles[key]) {
       existingDocument[0].set(key, uploadedFiles[key]);
     }
   });
+  body.visaTeamId && existingDocument[0].set('visaTeamId',body.visaTeamId)
+  body.visaTeamName && existingDocument[0].set('visaTeamName',body.visaTeamName)
 
   const doc={...existingDocument[0]}
 
-  const lol =await UniversityDocsModel.updateOne(
+
+  await UniversityDocsModel.updateOne(
     query,
     {
       $set:doc
     }
   );
 
-  console.log('existingDocumenttttttttttafteradding:',lol)
-  
 };

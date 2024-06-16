@@ -1,6 +1,6 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
 import { cibGoogle, cibFacebook, cibLinkedin, cibTwitter } from '@coreui/icons'
-
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import TodaysStudents from '../Students/TodaysStudents/TodaysStudents'
 import DownloadFromSuperAdmin from '../../components/DownloadLeads/DownloadFromSuperAdmin'
