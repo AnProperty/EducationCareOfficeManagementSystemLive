@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...env }
 
   return {
-    base: '/admin-officer/',
+    base: './',
     build: {
       outDir: 'build',
     },
