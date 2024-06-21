@@ -20,13 +20,21 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.anpropertybd.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 app.use("/uploads", express.static("./uploads"));
 
 
-app.use('/api/v1/super-admin',superAdminRoute)
+app.use('/api/v1/super-admin', superAdminRoute)
 app.use("/api/v1/applicant/upload-all-university-document", ApplicantRouteForUploadAllDocuments);
 app.use("/api/v1/applicant", ApplicantRoute);
-app.use("/api/v1/student",StudentRoute);
+app.use("/api/v1/student", StudentRoute);
 app.use("/api/v1/receptionist", receptionistRoute);
 app.use("/api/v1/login", logInRoute);
 app.use("/api/v1/counselor", CounselorRoute);
