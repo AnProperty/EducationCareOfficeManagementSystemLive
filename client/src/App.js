@@ -182,9 +182,9 @@ const App = () => {
 
           <Route>
 
-            <Route path="/super-admin" element={<DefaultLayout />}>
+            <Route path="/" element={<DefaultLayout />}>
 
-              <Route path="/super-admin/dashboard"
+              <Route path="/dashboard"
                 element={<SuperAdminPrivet><Dashboard /></SuperAdminPrivet>}
               />
 
