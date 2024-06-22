@@ -9,19 +9,19 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...env }
 
   return {
-    base: './',
+    base: '/', // Use absolute path to ensure assets are correctly resolved
     build: {
-      outDir: 'dist', // Changed 'build' to 'dist'
+      outDir: 'dist', // Output directory for build files
     },
     css: {
       postcss: {
         plugins: [
-          autoprefixer({}), // add options if needed
+          autoprefixer({}), // Add options if needed
         ],
       },
     },
     define: {
-      // vitejs does not support process.env so we have to redefine it
+      // Vite does not support process.env so we have to redefine it
       'process.env': process.env,
     },
     esbuild: {
