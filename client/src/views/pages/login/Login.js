@@ -63,7 +63,7 @@ const Login = () => {
           navigate('/counselor/dashboard')
         }
         if (response?.data?.data[0].role === "Super Admin") {
-          navigate('/dashboard')
+          navigate('/super-admin/dashboard')
         }
         if (response?.data?.data[0].role === "admin Officer") {
           navigate('/admin-officer/dashboard')
