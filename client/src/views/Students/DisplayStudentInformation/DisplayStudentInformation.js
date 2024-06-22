@@ -16,23 +16,41 @@ const DisplayStudentInformation = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const copyToClipboard = () => {
+        const urlToCopy = `http://antgec.com/file-upload/${studentId}/${counselorId}`;
 
-
-        navigator.clipboard
-            .writeText(`http://antgec.com/file-upload/${studentId}/${counselorId}`)
-            .then(() => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Link copied to clipboard!",
-                    showConfirmButton: false,
-                    timer: 1500
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard
+                .writeText(urlToCopy)
+                .then(() => {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Link copied to clipboard!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
-            })
-            .catch((err) => {
-                console.error('Failed to copy the link: ', err)
-            })
-    }
+                .catch((err) => {
+                    console.error('Failed to copy the link: ', err);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Failed to copy the link",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                });
+        } else {
+            console.error('Clipboard API not available');
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Clipboard API not available",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    };
 
     const [studentDocuments, setStudentDocuments] = useState([])
     useEffect(() => {
