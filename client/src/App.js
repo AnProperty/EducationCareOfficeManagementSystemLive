@@ -92,7 +92,7 @@ const App = () => {
           <Route exact path={`/file-upload/:studentId/:counselorId`} name="file-upload" element={<DocumentsUploadsForm />} />
 
           <Route>
-            <Route path="/admin-officer" element={<AdminOfficerLayout />}>
+            <Route path="/" element={<AdminOfficerLayout />}>
               <Route path="/admin-officer/dashboard"
                 element={<AdminOfficerPrivet> <AdminOfficerDashBoard /> </AdminOfficerPrivet>}
               />
@@ -112,7 +112,7 @@ const App = () => {
             </Route>
           </Route>
           <Route>
-            <Route path="/visa-process" element={<VisaTeamLayOut />}>
+            <Route path="/" element={<VisaTeamLayOut />}>
               <Route path="/visa-process/dashboard"
                 element={<VisaTeamPrivet> <VisaTeamDashBoard /> </VisaTeamPrivet>}
               />
@@ -141,7 +141,7 @@ const App = () => {
             </Route>
           </Route>
           <Route>
-            <Route path="/counselor" element={<CounselorLayout />}>
+            <Route path="/" element={<CounselorLayout />}>
               <Route path="/counselor/dashboard"
                 element={<CounselorPrivet> <CounselorHomePage /> </CounselorPrivet>}
               />
@@ -159,7 +159,7 @@ const App = () => {
             </Route>
           </Route>
           <Route>
-            <Route path="/receptionist" element={<ReceptionistLayout />}>
+            <Route path="/" element={<ReceptionistLayout />}>
               <Route path="/receptionist/dashboard"
                 element={<ReceptionistPrivet><Receptionist /></ReceptionistPrivet>}
               />
