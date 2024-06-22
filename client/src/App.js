@@ -46,12 +46,11 @@ const ReceptionistLayout = React.lazy(() => import('./layout/ReceptionistLayout'
 
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const LandingPage = React.lazy(() => import('./views/LandingPage/LandingPage'))
 const AdminOfficerDashBoard = React.lazy(() => import('./views/pages/AdminOfficer/AdminOfficerDashBoard/AdminOfficerDashBoard'))
-const Works = React.lazy(() => import('./views/pages/AdminOfficer/Works/Works'));
+
 
 
 
@@ -86,13 +85,12 @@ const App = () => {
           <Route exact path="/" name="Landing Page" element={<LandingPage />} />
           <Route exact path="/homepage" name="Landing Page" element={<LandingPage />} />
           <Route exact path="/login" name="Login Page" element={<Login />} />
-          <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
           <Route path="/*" name="Page 500" element={<Page500 />} />
           <Route exact path={`/file-upload/:studentId/:counselorId`} name="file-upload" element={<DocumentsUploadsForm />} />
 
           <Route>
-            <Route path="/" element={<AdminOfficerLayout />}>
+            <Route path="/admin-officer" element={<AdminOfficerLayout />}>
               <Route path="/admin-officer/dashboard"
                 element={<AdminOfficerPrivet> <AdminOfficerDashBoard /> </AdminOfficerPrivet>}
               />
@@ -112,7 +110,7 @@ const App = () => {
             </Route>
           </Route>
           <Route>
-            <Route path="/" element={<VisaTeamLayOut />}>
+            <Route path="/visa-process" element={<VisaTeamLayOut />}>
               <Route path="/visa-process/dashboard"
                 element={<VisaTeamPrivet> <VisaTeamDashBoard /> </VisaTeamPrivet>}
               />
@@ -125,23 +123,12 @@ const App = () => {
               <Route path="/visa-process/all-university-documents/:studentId/:counselorId/:applicantId"
                 element={<VisaTeamPrivet><NessecaryStudentDocuments /></VisaTeamPrivet>}
               />
-              {/* <Route path="/admin-officer/student-details/:studentId/:counselorId"
-                element={<AdminOfficerPrivet><DisplayStudentInformation /></AdminOfficerPrivet>}
-              />
-              <Route path="/admin-officer/student-documents/:studentId/:counselorId"
-                element={<AdminOfficerPrivet><StudentsDocuments /></AdminOfficerPrivet>}
-              />
-              <Route path="/admin-officer/update-application-status/:studentId/:counselorId/:applicantId"
-                element={<AdminOfficerPrivet><ApplicationForm /></AdminOfficerPrivet>}
-              />
-              <Route path="/admin-officer/assign-visa-team/:studentId/:counselorId/:applicantId"
-                element={<AdminOfficerPrivet><AssignVisaTeamWithAllDocuments /></AdminOfficerPrivet>}
-              /> */}
+              
 
             </Route>
           </Route>
           <Route>
-            <Route path="/" element={<CounselorLayout />}>
+            <Route path="/counselor" element={<CounselorLayout />}>
               <Route path="/counselor/dashboard"
                 element={<CounselorPrivet> <CounselorHomePage /> </CounselorPrivet>}
               />
@@ -159,7 +146,7 @@ const App = () => {
             </Route>
           </Route>
           <Route>
-            <Route path="/" element={<ReceptionistLayout />}>
+            <Route path="/receptionist" element={<ReceptionistLayout />}>
               <Route path="/receptionist/dashboard"
                 element={<ReceptionistPrivet><Receptionist /></ReceptionistPrivet>}
               />
@@ -169,12 +156,7 @@ const App = () => {
               <Route path="/receptionist/student/student-list"
                 element={<ReceptionistPrivet><StudentList /></ReceptionistPrivet>}
               />
-              {/* <Route path="/counselor/student-details/:studentId/:counselorId"
-                element={<CounselorPrivet><DisplayStudentInformation /></CounselorPrivet>}
-              />
-              <Route path="/counselor/student-documents/:studentId/:counselorId"
-                element={<CounselorPrivet><StudentsDocuments /></CounselorPrivet>}
-              /> */}
+              
             </Route>
           </Route>
 
@@ -182,9 +164,9 @@ const App = () => {
 
           <Route>
 
-            <Route path="/" element={<DefaultLayout />}>
+            <Route path="/super-admin" element={<DefaultLayout />}>
 
-              <Route path="/dashboard"
+              <Route path="/super-admin/dashboard"
                 element={<SuperAdminPrivet><Dashboard /></SuperAdminPrivet>}
               />
 
@@ -244,7 +226,6 @@ const App = () => {
           </Route>
 
 
-          {/* <Route path="*" name="Error" element={<Page404 />} /> */}
         </Routes>
 
       </Suspense>
