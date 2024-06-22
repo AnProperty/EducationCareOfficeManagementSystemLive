@@ -11,7 +11,6 @@ const DisplayStudentInformation = () => {
     console.log(state);
     const { studentId, counselorId } = useParams()
     console.log(studentId, counselorId);
-    const link = `http://antgec.com/file-upload/${studentId}/${counselorId}`
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,7 +19,7 @@ const DisplayStudentInformation = () => {
 
 
         navigator.clipboard
-            .writeText(link)
+            .writeText(`http://antgec.com/file-upload/${studentId}/${counselorId}`)
             .then(() => {
                 Swal.fire({
                     position: "top-end",
