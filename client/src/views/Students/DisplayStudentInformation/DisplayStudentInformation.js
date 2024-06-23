@@ -16,7 +16,7 @@ const DisplayStudentInformation = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const copyToClipboard = () => {
-        const urlToCopy = `http://antgec.com/file-upload/${studentId}/${counselorId}`;
+        const urlToCopy = `https://antgec.com/file-upload/${studentId}/${counselorId}`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard
