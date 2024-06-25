@@ -304,7 +304,7 @@ const CreateEmployee = () => {
           </div>
           <div className="col-12 mb-3">
             <label className="form-label" for="resume">
-              ADD Resume
+              ADD NID
             </label>
             <input
               type="file"
