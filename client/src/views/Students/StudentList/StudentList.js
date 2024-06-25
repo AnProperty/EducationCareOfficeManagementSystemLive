@@ -20,7 +20,7 @@ import DownloadFromSuperAdmin from '../../../components/DownloadLeads/DownloadFr
 const StudentList = () => {
     const [studentList, setStudentList] = useState([])
 
-
+    const user = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-student-list`)
@@ -88,8 +88,13 @@ const StudentList = () => {
                                     <div>{item.status}</div>
                                 </CTableDataCell>
                                 <CTableDataCell >
-                                    <Link to={`/super-admin/student-details/${item.studentId}/${item.counselor.employee_id
-                                        }`} state={{ item: item }}><button className="btn  btn-info bg-danger">More Info</button></Link>
+                                    {
+                                        user.role === 'receptionist' ? <Link to={`/receptionist/student-details/${item.studentId}/${item.counselor.employee_id
+                                        }`} state={{ item: item }}><button className="btn  btn-info bg-danger">More Info</button></Link> :
+                                            <Link to={`/super-admin/student-details/${item.studentId}/${item.counselor.employee_id
+                                                }`} state={{ item: item }}><button className="btn  btn-info bg-danger">More Info</button></Link>
+                                    }
+
                                 </CTableDataCell>
                             </CTableRow>
                         )
