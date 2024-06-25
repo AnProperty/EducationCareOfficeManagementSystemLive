@@ -15,12 +15,14 @@ const CreateStudent = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-employee-list`)
       .then((res) => res.json())
       .then((data) => {
+        
         let counselorList = data.data.filter((item) => item.role === 'Counselor')
         setCounselors(counselorList);
       });
     fetch(`${process.env.REACT_APP_API_BASE_URL}/receptionist/last-student-id`)
       .then((res) => res.json())
       .then((data) => {
+        console.log("lollllllllllllllll", data);
         const lastId = data.lastStudentId
         const idNumber = parseInt(lastId) + 1
         setNewStudentId(`${idNumber}`)
@@ -148,7 +150,7 @@ const CreateStudent = () => {
           showConfirmButton: false,
           timer: 1500,
         })
-        navigate('/super-admin/student/student-list')
+        navigate('/receptionist/student/student-list')
       }
     } catch (err) {
       console.error(err)
