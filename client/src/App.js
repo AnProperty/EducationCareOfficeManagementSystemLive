@@ -150,6 +150,9 @@ const App = () => {
               <Route path="/receptionist/dashboard"
                 element={<ReceptionistPrivet><Receptionist /></ReceptionistPrivet>}
               />
+              <Route path="/receptionist/student-details/:studentId/:counselorId"
+                element={<ReceptionistPrivet><DisplayStudentInformation /></ReceptionistPrivet>}
+              />
               <Route path="/receptionist/student/create-student"
                 element={<ReceptionistPrivet><CreateStudent /></ReceptionistPrivet>}
               />
