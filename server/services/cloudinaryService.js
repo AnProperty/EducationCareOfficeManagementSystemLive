@@ -5,9 +5,9 @@ const axios = require("axios");
 const fs = require("fs");
 
 cloudinary.config({
-  cloud_name: "de8brt7e5",
-  api_key: "417745992325818",
-  api_secret: "lEwXokWxQh8ZR9QLIXUirl3xwrk",
+  cloud_name: "dpiajpy2u",
+  api_key: "616264455239939",
+  api_secret: "QQjIGJRZUxjqZFqoSWKNugAtTCE",
 });
 
 exports.uploadEmployeeFiles = async (files, folderName) => {
