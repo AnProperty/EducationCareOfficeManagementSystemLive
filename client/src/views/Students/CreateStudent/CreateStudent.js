@@ -15,7 +15,7 @@ const CreateStudent = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-employee-list`)
       .then((res) => res.json())
       .then((data) => {
-        
+
         let counselorList = data.data.filter((item) => item.role === 'Counselor')
         setCounselors(counselorList);
       });
@@ -422,20 +422,7 @@ const CreateStudent = () => {
 
               <div className="form-group">
                 <label htmlFor="overall">Overall Score</label>
-                <select id="overall" name="overall" onChange={handleChange}>
-                  <option value="chooseone">- Choose One -</option>
-                  <option value="4">4</option>
-                  <option value="4.5">4.5</option>
-                  <option value="5">5</option>
-                  <option value="5.5">5.5</option>
-                  <option value="6">6</option>
-                  <option value="6.5">6.5</option>
-                  <option value="7">7</option>
-                  <option value="7.5">7.5</option>
-                  <option value="8">8</option>
-                  <option value="8.5">8.5</option>
-                  <option value="9">9</option>
-                </select>
+                <input type="text" id="overall" name="overall" onChange={handleChange} />
               </div>
             </div>
             <div className="form-row">
@@ -452,71 +439,19 @@ const CreateStudent = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="reading">Reading</label>
-                  <select id="reading" name="reading" onChange={handleChange}>
-                    <option value="chooseone">- Choose One -</option>
-                    <option value="4">4</option>
-                    <option value="4.5">4.5</option>
-                    <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                  </select>
+                  <input type="text" id="reading" name="reading" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="writing">Writing</label>
-                  <select id="writing" name="writing" onChange={handleChange}>
-                    <option value="chooseone">- Choose One -</option>
-                    <option value="4">4</option>
-                    <option value="4.5">4.5</option>
-                    <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                  </select>
+                  <input type="text" id="writing" name="writing" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="listening">Listening</label>
-                  <select id="listening" name="listening" onChange={handleChange}>
-                    <option value="chooseone">- Choose One -</option>
-                    <option value="4">4</option>
-                    <option value="4.5">4.5</option>
-                    <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                  </select>
+                  <input type="text" id="listening" name="listening" onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="specking">Specking</label>
-                  <select id="specking" name="specking" onChange={handleChange}>
-                    <option value="chooseone">- Choose One -</option>
-                    <option value="4">4</option>
-                    <option value="4.5">4.5</option>
-                    <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                  </select>
+                  <label htmlFor="speaking">Specking</label>
+                  <input type="text" id="specking" name="specking" onChange={handleChange} />
                 </div>
               </div>
             </div>
