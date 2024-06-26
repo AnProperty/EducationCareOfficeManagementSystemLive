@@ -10,6 +10,7 @@ const CreateStudent = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [newStudentId, setNewStudentId] = useState('')
+  const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-employee-list`)
@@ -150,7 +151,11 @@ const CreateStudent = () => {
           showConfirmButton: false,
           timer: 1500,
         })
-        navigate('/receptionist/student/student-list')
+        if (user.role === "receptionist") {
+          navigate('/receptionist/student/student-list')
+        } else {
+          navigate('/super-admin/student/student-list')
+        }
       }
     } catch (err) {
       console.error(err)
