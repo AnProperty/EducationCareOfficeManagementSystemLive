@@ -3,7 +3,6 @@ const axios = require("axios");
 
 const StudentDetailsModel = require("../../model/StudentDetails.model");
 const {
-  getStudentsByStatusServices,
   generateExcelFile,
 } = require("../../services/UtilitiesServices/utilitiesServices");
 const UniversityDocsModel = require("../../model/UnivarsityDocsForVisa.model");
@@ -76,7 +75,6 @@ exports.downloadStudentDocumentController = async (req, res) => {
 
     fileUrls = fileUrls.filter((url) => url !== undefined);
 
-    //console.log("file urlsssssssssssssssssssssssss", fileUrls);
 
     const zip = new JSZip();
 
@@ -199,6 +197,19 @@ exports.downloadData = async (req, res) => {
     console.log("data", data);
     const buffer = generateExcelFile(data);
 
+    res.setHeader('Content-Disposition', 'attachment; filename=data.xlsx');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.send(buffer);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+exports.downloadDateData = async (req, res) => {
+  try {
+
+    const data = req.body
+
+    const buffer = generateExcelFile(data);
     res.setHeader('Content-Disposition', 'attachment; filename=data.xlsx');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.send(buffer);
