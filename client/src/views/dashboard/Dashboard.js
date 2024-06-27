@@ -1,20 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
-import { cibGoogle, cibFacebook, cibLinkedin, cibTwitter } from '@coreui/icons'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import TodaysStudents from '../Students/TodaysStudents/TodaysStudents'
-import DownloadFromSuperAdmin from '../../components/DownloadLeads/DownloadFromSuperAdmin'
+import axios from 'axios'
 
 const Dashboard = () => {
   const lol = new Date()
   const date = lol.toISOString().split('T')[0]
   const [filteringDate, setFilteringDate] = useState(date)
-  const progressGroupExample3 = [
-    { title: 'Facebook', icon: cibGoogle, percent: 56, value: '191,235' },
-    { title: 'Facebook', icon: cibFacebook, percent: 15, value: '51,223' },
-    { title: 'Twitter', icon: cibTwitter, percent: 11, value: '37,564' },
-    { title: 'LinkedIn', icon: cibLinkedin, percent: 8, value: '27,319' },
-  ]
+
 
   const [students, setStudents] = useState([])
 
@@ -55,12 +49,27 @@ const Dashboard = () => {
   const OneDayAgo = async () => {
     const previousDate = await getPreviousDate(filteringDate)
     setFilteringDate(previousDate)
-    console.log(previousDate) 
+    console.log(previousDate)
   }
   const OneDayNext = async () => {
     const previousDate = await getNextDate(filteringDate)
     setFilteringDate(previousDate)
-    console.log(previousDate) 
+    console.log(previousDate)
+  }
+
+  const handleSpecificDateDownload = async () => {
+    const body = studentsCreatedToday;
+    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/utilities/download-specific-date`, body, {
+      responseType: 'blob',
+    })
+    console.log(response);
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'data.xlsx'); // Specify the file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   return (
@@ -78,15 +87,15 @@ const Dashboard = () => {
       <br></br>
 
       <section>
-        <h3 className="text-center mb-5"> Students Arrived on {date} </h3>
+        <h3 className="text-center mb-5"> Students Arrived on {filteringDate} </h3>
         <TodaysStudents students={studentsCreatedToday} />
-        <div>
-          <DownloadFromSuperAdmin />
-        </div>
       </section>
       <section className="d-flex align-content-between justify-content-center my-4">
         <button className="btn btn3" onClick={OneDayAgo}>
           Pre
+        </button>
+        <button className="btn btn4" onClick={handleSpecificDateDownload}>
+          Download
         </button>
         <button
           className="btn2 btn"
@@ -96,6 +105,7 @@ const Dashboard = () => {
           Next
         </button>
       </section>
+
     </section>
   )
 }
