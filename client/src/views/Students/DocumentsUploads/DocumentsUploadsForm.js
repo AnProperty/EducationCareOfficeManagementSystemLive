@@ -299,11 +299,7 @@ const DocumentsUploadsForm = () => {
           </div>
         </div>
         <section className="my-1 d-flex justify-content-around">
-          <button type="submit" className="btn btn2">
-            {' '}
-            Submit{' '}
-          </button>
-          <button type="submit" className="btn btn-primary w-100" disabled={isSubmitted}>
+          <button type="submit" className="btn btn2 w-50" disabled={isSubmitted}>
             {loading ? 'Submitting.....' : 'Submit'}
           </button>
         </section>
