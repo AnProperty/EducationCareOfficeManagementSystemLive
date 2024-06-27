@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   downloadStudentDocumentController,
-  downloadUniDocsController,downloadData
+  downloadUniDocsController, downloadData, downloadDateData
 } = require("../../controller/UtilitiesController/UtilitiesController");
 
 router
