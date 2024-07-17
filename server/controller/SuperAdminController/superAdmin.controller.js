@@ -12,6 +12,7 @@ const {
 } = require("../../services/superAdminServices/superAdmin.services");
 const { downloadFullFolder } = require("../../services/cloudinaryService");
 const CreateEmployee = require("../../model/CreateEmployee.model");
+const CreateStudent = require("../../model/CreateStudent.model");
 
 
 exports.GetAllEmployeeListController = async (req, res, next) => {
@@ -67,15 +68,15 @@ exports.GetAllCommissionListController = async (req, res, next) => {
 exports.CreateEmployeeController = async (req, res, next) => {
   try {
     const employeeData = req.body;
-    const files= req.files;
-    const newEmployee = await addEmployee(employeeData,files)
+    const files = req.files;
+    const newEmployee = await addEmployee(employeeData, files)
     res.status(200).json({
       status: "success",
       message: "Employee Registration completed successfully",
       data: newEmployee,
     });
   } catch (error) {
-    res.status(400).json({error:error.message});
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -118,6 +119,44 @@ exports.DownloadEmployeeFiles = async (req, res) => {
   } catch (error) {
     console.error('Error downloading employee files:', error);
     res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.filterLeadsController = async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
+    console.log(req.params);
+
+    const query = {};
+    if (startDate && endDate) {
+      query.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      };
+    } else if (startDate) {
+      query.createdAt = {
+        $gte: new Date(startDate)
+      };
+    } else if (endDate) {
+      query.createdAt = {
+        $lte: new Date(endDate)
+      };
+    }
+    console.log("object", query);
+    const data = await CreateStudent.find({
+      $and: [
+        { createdAt: query.createdAt },
+        req.params,
+      ],
+
+    }).lean();
+    console.log("Filtereddddddddddddddddd", data);
+
+
+
+    res.send(data);
+  } catch (error) {
+    res.status(500).send(error);
   }
 };
 
