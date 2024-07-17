@@ -15,7 +15,6 @@ import {
 } from '@coreui/icons'
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import DownloadFromSuperAdmin from '../../../components/DownloadLeads/DownloadFromSuperAdmin';
 import axios from 'axios';
 
 const StudentList = () => {
