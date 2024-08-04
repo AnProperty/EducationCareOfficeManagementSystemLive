@@ -35,6 +35,8 @@ import VisaTeamPrivet from './PrivetRoute/VisaTeamPrivet'
 import NessecaryStudentDocuments from './views/pages/VisaTeam/NessecaryStudentDocuments/NessecaryStudentDocuments'
 import UniversityList from './views/University/UniversityList/UniversityList'
 import Commission from './views/B2B/Commission/Commission'
+import StudentListFromWeb from './views/pages/Counselor/StudentListFromWeb/StudentListFromWeb'
+import WebStudentsDetailsPage from './views/pages/Counselor/WebStudentsDetailsPage/WebStudentsDetailsPage'
 
 
 
@@ -123,7 +125,7 @@ const App = () => {
               <Route path="/visa-process/all-university-documents/:studentId/:counselorId/:applicantId"
                 element={<VisaTeamPrivet><NessecaryStudentDocuments /></VisaTeamPrivet>}
               />
-              
+
 
             </Route>
           </Route>
@@ -143,6 +145,12 @@ const App = () => {
                   <UniversityList />
                 </CounselorPrivet>}
               />
+              <Route path="/counselor/web-students"
+                element={<StudentListFromWeb />}
+              />
+              <Route path="/counselor/web-student-details/:studentId"
+                element={<WebStudentsDetailsPage />}
+              />
             </Route>
           </Route>
           <Route>
@@ -159,7 +167,7 @@ const App = () => {
               <Route path="/receptionist/student/student-list"
                 element={<ReceptionistPrivet><StudentList /></ReceptionistPrivet>}
               />
-              
+
             </Route>
           </Route>
 

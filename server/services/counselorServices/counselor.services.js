@@ -50,10 +50,10 @@ exports.makeAdvicesServices = async (query, body) => {
   console.log("query", query);
   console.log("lyuiyiytu", body);
 
-  const lol =await CreateStudent.updateOne(
+  const lol = await CreateStudent.updateOne(
     {
       $and: [
-        { 'studentId' : query.studentId },
+        { 'studentId': query.studentId },
         { 'counselor.employee_id': query.counselorId },
       ],
     },
@@ -64,7 +64,7 @@ exports.makeAdvicesServices = async (query, body) => {
     }
   );
 
-console.log(lol)
+  console.log(lol)
   const stdInfo = await CreateStudent.find({
     $and: [
       { 'studentId': query.studentId },
