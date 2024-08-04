@@ -51,8 +51,9 @@ const DownloadFromSuperAdmin = () => {
                 <select id="status" name='status' onChange={handleStatus} >
                     <option value="follow-up">Follow-Up</option>
                     <option value="enrolled">Enrolled</option>
+                    <option value="application-processing">Application-processing</option>
+                    <option value="visa-processing">Visa-processing</option>
                     <option value="success">Success</option>
-                    <option value="visa-processing">visa-processing</option>
                     <option value="rejected">Rejected</option>
 
                 </select>
