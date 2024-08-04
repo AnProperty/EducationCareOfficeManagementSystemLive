@@ -68,7 +68,7 @@ const DisplayStudentInformation = () => {
         getStudentDetails();
         const fetchData = async () => {
             try {
-                fetch(`http://localhost:8080/user/application-list/${studentId}`)
+                fetch(`https://api.gecare.co.uk/user/application-list/${studentId}`)
                     .then((res) => res.json())
                     .then((data) => setCounselorStudentCourses(data.data))
             } catch (err) {

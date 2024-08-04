@@ -16,7 +16,7 @@ const WebStudentsDetailsPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                fetch(`http://localhost:8080/user/application-list/${item?.userId}`)
+                fetch(`https://api.gecare.co.uk/user/application-list/${item?.userId}`)
                     .then((res) => res.json())
                     .then((data) => setCounselorStudentCourses(data.data))
             } catch (err) {
@@ -25,7 +25,7 @@ const WebStudentsDetailsPage = () => {
         }
         fetchData();
         const FetchEmployees = async () => {
-            fetch(`http://localhost:5004/api/v1/super-admin/get-employee-list`)
+            fetch(`https://api.antgec.com/api/v1/super-admin/get-employee-list`)
                 .then((res) => res.json())
                 .then((data) => {
 
@@ -128,7 +128,7 @@ const WebStudentsDetailsPage = () => {
         try {
 
             const res = await fetch(
-                `http://localhost:5004/api/v1/receptionist/student/${item.general.name}/${item.general.phone}`
+                `https://api.antgec.com/api/v1/receptionist/student/${item.general.name}/${item.general.phone}`
             );
             const data = await res.json();
             if (data.data.length > 0) {
@@ -142,7 +142,7 @@ const WebStudentsDetailsPage = () => {
                 })
                 return;
             } else {
-                const response = await fetch(`http://localhost:5004/api/v1/receptionist/add-student`, {
+                const response = await fetch(`https://api.antgec.com/api/v1/receptionist/add-student`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData),

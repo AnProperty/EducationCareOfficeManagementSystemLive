@@ -17,7 +17,7 @@ const WebStudentDetails = () => {
     const [counselorStudent, setCounselorStudent] = useState([]);
     const counselor = JSON.parse(localStorage.getItem('user'))
     useEffect(() => {
-        fetch(`http://localhost:8080/admin/counselor-student-profile-list/${counselor.employee_id}`)
+        fetch(`https://api.gecare.co.uk/admin/counselor-student-profile-list/${counselor.employee_id}`)
             .then((res) => res.json())
             .then((data) => setCounselorStudent(data))
     }, [])
