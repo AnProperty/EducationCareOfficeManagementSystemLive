@@ -27,7 +27,7 @@ exports.GetAllCommissionListServices = async () => {
 };
 
 exports.addEmployee = async (employeeData, files) => {
-  const uploadedFiles = await cloudinaryService.uploadEmployeeFiles(files, employeeData.name);
+  const uploadedFiles = await cloudinaryService.uploadEmployeeFiles(files, employeeData.name.trimEnd());
 
   const newEmployee = new CreateEmployee({
     ...employeeData,
