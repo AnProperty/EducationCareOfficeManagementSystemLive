@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import EnrolledCoursesDetails from '../../pages/Counselor/WebStudentsDetailsPage/EnrolledCoursesDetails';
 
 const DisplayStudentInformation = () => {
     let { state } = useLocation()
@@ -12,7 +13,7 @@ const DisplayStudentInformation = () => {
     const { studentId, counselorId } = useParams()
     console.log(studentId, counselorId);
     const [show, setShow] = useState(false);
-
+    const [counselorStudentCourses, setCounselorStudentCourses] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const copyToClipboard = () => {
@@ -54,14 +55,27 @@ const DisplayStudentInformation = () => {
 
     const [studentDocuments, setStudentDocuments] = useState([])
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/student/${studentId}/${counselorId}`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log('okkkkkkkkkk', data)
-                const obj = data.data
-                console.log(obj)
-                setStudentDocuments(obj)
-            })
+        const getStudentDetails = async () => {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/student/${studentId}/${counselorId}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log('okkkkkkkkkk', data)
+                    const obj = data.data
+                    console.log(obj)
+                    setStudentDocuments(obj)
+                })
+        }
+        getStudentDetails();
+        const fetchData = async () => {
+            try {
+                fetch(`https://api.gecare.co.uk/user/application-list/${studentId}`)
+                    .then((res) => res.json())
+                    .then((data) => data && setCounselorStudentCourses(data.data))
+            } catch (err) {
+                console.error("Error fetching profile info:", err);
+            }
+        }
+        fetchData();
     }, [])
     const user = JSON.parse(localStorage.getItem("user"))
 
@@ -117,7 +131,7 @@ const DisplayStudentInformation = () => {
                         <div className="modal-header">
                             <h5 className="modal-title">Advice to Students</h5>
                             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close">
-                                
+
                             </button>
                         </div>
                         <div className="modal-body">
@@ -236,6 +250,12 @@ const DisplayStudentInformation = () => {
                 <div>
 
                 </div>
+
+                <section>
+                    {counselorStudentCourses && <EnrolledCoursesDetails counselorStudentCourses={counselorStudentCourses} />}
+                </section>
+
+
                 <div>
                     <div className='d-flex justify-content-around border border-dark mb-3'>
                         <p>
@@ -258,6 +278,7 @@ const DisplayStudentInformation = () => {
                     <MyModal show={show} handleClose={handleClose} studentId={studentId} counselorId={counselorId} setAd={setAd} />
                 </div>
             </section>
+
 
             <section className="d-flex justify-content-between">
                 <button onClick={copyToClipboard} className='btn btn3'>Generate and Copy Link</button>
