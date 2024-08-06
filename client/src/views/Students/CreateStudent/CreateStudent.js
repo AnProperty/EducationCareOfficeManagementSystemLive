@@ -9,7 +9,7 @@ const CreateStudent = () => {
   const [counselors, setCounselors] = useState([])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [newStudentId, setNewStudentId] = useState('')
+  const [newStudentId, setNewStudentId] = useState(null)
   const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
   useEffect(() => {
@@ -23,11 +23,7 @@ const CreateStudent = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/receptionist/last-student-id`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("lollllllllllllllll", data);
-        const lastId = data.lastStudentId
-        const idNumber = parseInt(lastId) + 1
-        setNewStudentId(`${idNumber}`)
-        //console.log(data)
+        setNewStudentId(data.data + 1)
       })
       .catch((err) => console.error('Error fetching last student ID:', err))
   }, [])

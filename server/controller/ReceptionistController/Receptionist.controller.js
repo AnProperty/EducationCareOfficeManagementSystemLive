@@ -60,9 +60,8 @@ exports.GetAStudentByNameAndEmailController = async (req, res, next) => {
 exports.GetLastStudentIdController = async (req, res, next) => {
     try {
         console.log('hittttttttttttttttttt')
-        const lastStudent = await CreateStudent.findOne().sort({ createdAt: -1 }).exec();
-        console.log(lastStudent.studentId)
-        res.json({ lastStudentId: lastStudent ? lastStudent.studentId : null });
+        const total = await CreateStudent.countDocuments({});
+        res.json({ data:total});
       } catch (error) {
         res.status(500).json({ error: error.message });
       }
