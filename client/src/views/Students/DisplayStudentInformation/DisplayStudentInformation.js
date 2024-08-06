@@ -70,7 +70,7 @@ const DisplayStudentInformation = () => {
             try {
                 fetch(`https://api.gecare.co.uk/user/application-list/${studentId}`)
                     .then((res) => res.json())
-                    .then((data) => setCounselorStudentCourses(data.data))
+                    .then((data) => data && setCounselorStudentCourses(data.data))
             } catch (err) {
                 console.error("Error fetching profile info:", err);
             }
@@ -252,7 +252,7 @@ const DisplayStudentInformation = () => {
                 </div>
 
                 <section>
-                    <EnrolledCoursesDetails counselorStudentCourses={counselorStudentCourses} />
+                    {counselorStudentCourses && <EnrolledCoursesDetails counselorStudentCourses={counselorStudentCourses} />}
                 </section>
 
 
