@@ -23,46 +23,45 @@ const EmployeeList = () => {
       .then((res) => res.json())
       .then((data) => setEmployees(data.data))
   }, [])
-  const filteredArray = employees.filter(item => item.employee_id !== "1")
+  // const filteredArray = employees.filter(item => item.employee_id !== "1")
   return (
     <>
-      <CTable align="middle" className="mb-0 border" hover responsive>
+      <CTable className="mb-0 border" hover responsive>
         <CTableHead className="text-nowrap">
           <CTableRow>
             <CTableHeaderCell className="bg-body-tertiary text-center">
               <CIcon icon={cilPeople} />
+              {
+                console.log(employees)
+              }
             </CTableHeaderCell>
-            <CTableHeaderCell className="bg-body-tertiary text-center">User</CTableHeaderCell>
-            <CTableHeaderCell className="bg-body-tertiary text-center">Role</CTableHeaderCell>
-            <CTableHeaderCell className="bg-body-tertiary text-center">Contact Number</CTableHeaderCell>
-            <CTableHeaderCell className="bg-body-tertiary text-center">Employee ID</CTableHeaderCell>
-            <CTableHeaderCell className="bg-body-tertiary text-center">More info</CTableHeaderCell>
+            <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
+            <CTableHeaderCell className="bg-body-tertiary">Contact Number</CTableHeaderCell>
+            <CTableHeaderCell className="bg-body-tertiary">Employee ID</CTableHeaderCell>
+            <CTableHeaderCell className="bg-body-tertiary">More info</CTableHeaderCell>
           </CTableRow>
         </CTableHead>
         <CTableBody>
 
-          {filteredArray.map((item, index) => {
+          {employees.map((item, index) => {
             return (
               <CTableRow v-for="item in tableItems" key={index}>
-                <CTableDataCell className="text-center">
+                <CTableDataCell className="text-center me-2">
                   <img
                     src={item.profilePic}
                     className="avater"
                   ></img>
                 </CTableDataCell>
-                <CTableDataCell className="text-center">
+                <CTableDataCell>
                   <div>{item.name}</div>
                 </CTableDataCell>
-                <CTableDataCell className="text-center">
-                  <div>{item.role}</div>
-                </CTableDataCell>
-                <CTableDataCell className="text-center">
+                <CTableDataCell>
                   <div>{item.phone}</div>
                 </CTableDataCell>
-                <CTableDataCell className="text-center">
+                <CTableDataCell>
                   <div>{item.employee_id}</div>
                 </CTableDataCell>
-                <CTableDataCell className="text-center">
+                <CTableDataCell>
                   <Link to={`/super-admin/employee/${item.employee_id}`} state={{ item: item }}><button className="btn btn3">More Info</button></Link>
                 </CTableDataCell>
               </CTableRow>

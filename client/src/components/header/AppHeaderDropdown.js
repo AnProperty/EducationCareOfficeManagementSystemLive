@@ -31,7 +31,10 @@ const AppHeaderDropdown = () => {
     localStorage.removeItem("user")
     navigate('/login')
   }
+
+
   const user = JSON.parse(localStorage.getItem("user"))
+  
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0 pe-0" caret={false}>

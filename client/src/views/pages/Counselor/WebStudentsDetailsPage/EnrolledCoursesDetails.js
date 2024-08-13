@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EnrolledCoursesDetails = ({counselorStudentCourses}) => {
+const EnrolledCoursesDetails = ({ counselorStudentCourses }) => {
     return (
         <div>
             <div className="container mt-4">

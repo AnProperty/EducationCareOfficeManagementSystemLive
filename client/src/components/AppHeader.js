@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CContainer,
@@ -34,12 +34,50 @@ const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
+  const [role, setRole] = useState([])
+
   useEffect(() => {
     document.addEventListener('scroll', () => {
       headerRef.current &&
         headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
     })
+
+    // Fetch user role
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user?.email) {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/role/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setRole(data.data))
+        .catch((error) => console.error('Error fetching role:', error))
+    }
   }, [])
+
+  const navigate = useNavigate()
+
+  const handleDashboard = (event) => {
+    const selectedRole = role.find((item) => item.role === event.target.value)
+
+    if (selectedRole) {
+      localStorage.removeItem("user")
+      localStorage.setItem("user", JSON.stringify(selectedRole))
+
+      if (selectedRole.role === 'admin Officer') {
+        navigate('/admin-officer/dashboard')
+      }
+      if (selectedRole.role === 'Counselor') {
+        navigate('/counselor/dashboard')
+      }
+      if (selectedRole.role === "Super Admin") {
+        navigate('/super-admin/dashboard')
+      }
+      if (selectedRole.role === "receptionist") {
+        navigate('/receptionist/dashboard')
+      }
+      if (selectedRole.role === "Admin Office Visa Section") {
+        navigate('/visa-process/dashboard')
+      }
+    }
+  }
 
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
@@ -51,35 +89,27 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex">
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
           <CNavItem>
-            <CNavLink to="/dashboard" as={NavLink}>
-              Dashboard
-            </CNavLink>
+            <div className='d-flex align-items-center'>
+              <label className='me-2'>Role: </label>
+              <select onChange={handleDashboard}>
+                <option value="" disabled selected>Select your role</option>
+                {role.map((item) => (
+                  <option key={item.role} value={item.role}>
+                    {item.role}
+                  </option>
+                ))}
+              </select>
+            </div>
           </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
-          </CNavItem>
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
         </CHeaderNav>
-        <CHeaderNav className="ms-auto">
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
-          </CNavItem>
-        </CHeaderNav>
+
         <CHeaderNav>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
@@ -124,13 +154,15 @@ const AppHeader = () => {
               </CDropdownItem>
             </CDropdownMenu>
           </CDropdown>
+
+
+
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      
     </CHeader>
   )
 }

@@ -10,9 +10,24 @@ const cloudinaryService = require('../cloudinaryService')
 // };
 
 exports.GetAllEmployeeListServices = async () => {
-  const employeesInfo = await CreateEmployee.find({});
-  return employeesInfo;
+  const employeesInfo = await CreateEmployee.find({}).select("-students");
+
+  // Create a Map to store unique emails and their corresponding objects
+  const uniqueEmailMap = new Map();
+
+  employeesInfo.forEach(employee => {
+    // Check if the email already exists in the map
+    if (!uniqueEmailMap.has(employee.email)) {
+      uniqueEmailMap.set(employee.email, employee);
+    }
+  });
+
+  // Convert the Map values to an array
+  const uniqueEmailArray = Array.from(uniqueEmailMap.values());
+
+  return uniqueEmailArray;
 };
+
 exports.GetAllStudenteListServices = async () => {
   const StudentsList = await CreateStudent.find({});
   return StudentsList;
@@ -37,4 +52,10 @@ exports.addEmployee = async (employeeData, files) => {
   });
   await newEmployee.save();
   return newEmployee;
+};
+exports.addNewRoleEmployee = async (employeeData) => {
+  const registeredInfo = await CreateEmployee.create(employeeData);
+  console.log("addNewRoleEmployee", registeredInfo);
+  
+  return registeredInfo;
 };

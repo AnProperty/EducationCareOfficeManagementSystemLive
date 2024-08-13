@@ -173,33 +173,33 @@ const StudentsDocuments = () => {
       )}
       {state.app.length > 1
         ? user.role === 'Super Admin' && (
-            <section className="d-flex">
-              <button className="btn btn2 m-auto">
-                <Link
-                  to={`/super-admin/update-application-status/${studentId}/${counselorId}/${state.app[1].applicantId}`}
-                  state={state.stdId}
-                >
-                  {' '}
-                  Start Processing{' '}
-                </Link>
-              </button>
-            </section>
-          )
+          <section className="d-flex">
+            <button className="btn btn2 m-auto">
+              <Link
+                to={`/super-admin/update-application-status/${studentId}/${counselorId}/${state.app[1].applicantId}`}
+                state={state.stdId}
+              >
+                {' '}
+                Start Processing{' '}
+              </Link>
+            </button>
+          </section>
+        )
         : ''}
       {state.app.length > 1
         ? user.role === 'Admin Office Visa Section' && (
-            <section className="d-flex">
-              <button className="btn btn2 m-auto">
-                <Link
-                  to={`/visa-process/all-university-documents/${studentId}/${counselorId}/${state.app[1].applicantId}`}
-                  state={state.stdId}
-                >
-                  {' '}
-                  Get Documents{' '}
-                </Link>
-              </button>
-            </section>
-          )
+          <section className="d-flex">
+            <button className="btn btn2 m-auto">
+              <Link
+                to={`/visa-process/all-university-documents/${studentId}/${counselorId}/${state.app[1].applicantId}`}
+                state={state.stdId}
+              >
+                {' '}
+                Get Documents{' '}
+              </Link>
+            </button>
+          </section>
+        )
         : ''}
     </section>
   )

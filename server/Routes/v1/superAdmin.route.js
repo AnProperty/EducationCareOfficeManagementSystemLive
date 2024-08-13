@@ -8,7 +8,7 @@ const {
   GetAllEmployeeListController,
   GetAllStudentListController,
   DownloadEmployeeFiles,
-  GetAllCommissionListController,filterLeadsController
+  GetAllCommissionListController, filterLeadsController, addNewRoleController
 } = require("../../controller/SuperAdminController/superAdmin.controller");
 
 
@@ -22,6 +22,7 @@ router.post('/add-employee', upload.fields([
 
 router.route("/get-student-list").get(GetAllStudentListController);
 router.route("/get-employee-list").get(GetAllEmployeeListController);
+router.route("/add-new-role").post(addNewRoleController);
 router.route("/get-commission-list").get(GetAllCommissionListController);
 router.route("/filter-leads/:status").get(filterLeadsController);
 router.route("/download-employee-docs/:employee_id").get(DownloadEmployeeFiles);

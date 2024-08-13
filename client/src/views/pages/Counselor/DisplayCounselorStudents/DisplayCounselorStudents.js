@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     CTable,
     CTableBody,
@@ -7,6 +7,7 @@ import {
     CTableHeaderCell,
     CTableRow,
 } from '@coreui/react';
+import ReactPaginate from 'react-paginate';
 import CIcon from '@coreui/icons-react';
 import {
     cilPeople,
@@ -15,15 +16,19 @@ import { Link } from 'react-router-dom';
 // import DisplayCounselorStudents from '../DisplayCounselorStudents/DisplayCounselorStudents';
 
 const DisplayCounselorStudents = ({ counselorStudent, forceUpdate }) => {
-    // console.log("displayStudents",displayStudents);
     const counselor = JSON.parse(localStorage.getItem('user'))
-    // const [counselorStudent, setCounselorStudent] = useState([]);
-    // useEffect(() => {
-    //     fetch(`${process.env.REACT_APP_API_BASE_URL}/counselor/${counselor.employee_id}`)
-    //         .then((res) => res.json())
-    //         .then((data) => setCounselorStudent(data.data[0].students))
 
-    // }, [])
+    const [pageNumber, setPageNumber] = useState(0);
+    const papersPerPage = 10;
+    const paperVisited = pageNumber * papersPerPage;
+    const paginatePaper = counselorStudent.slice(paperVisited, paperVisited + papersPerPage);
+
+
+    const pageCount = Math.ceil(counselorStudent.length / papersPerPage);
+    const handlePageClick = ({ selected }) => {
+        setPageNumber(selected);
+    }
+
     return (
         <div>
             <CTable align="middle" className="mb-0 border" hover responsive>
@@ -44,7 +49,7 @@ const DisplayCounselorStudents = ({ counselorStudent, forceUpdate }) => {
                 </CTableHead>
                 <CTableBody>
 
-                    {counselorStudent?.map((item, index) => {
+                    {paginatePaper?.map((item, index) => {
                         return (
 
                             <CTableRow v-for="item in tableItems" key={index} className='text-center'>
@@ -73,6 +78,22 @@ const DisplayCounselorStudents = ({ counselorStudent, forceUpdate }) => {
                     })}
                 </CTableBody>
             </CTable >
+
+            <div className='ul-center my-3'>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="NEXT >>"
+                    onPageChange={handlePageClick}
+                    pageCount={pageCount}
+                    previousLabel="<< previous"
+                    containerClassName={"paginationBtn"}
+                    previousLinkClassName={"PreviousBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+
+                />
+            </div>
         </div>
     );
 };

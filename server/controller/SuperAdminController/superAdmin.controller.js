@@ -4,11 +4,11 @@ const JSZip = require('jszip');
 const axios = require('axios');
 
 const {
-  createEmployeeServices,
   GetAllEmployeeListServices,
   GetAllStudenteListServices,
   addEmployee,
-  GetAllCommissionListServices
+  GetAllCommissionListServices,
+  addNewRoleEmployee
 } = require("../../services/superAdminServices/superAdmin.services");
 const { downloadFullFolder } = require("../../services/cloudinaryService");
 const CreateEmployee = require("../../model/CreateEmployee.model");
@@ -70,6 +70,21 @@ exports.CreateEmployeeController = async (req, res, next) => {
     const employeeData = req.body;
     const files = req.files;
     const newEmployee = await addEmployee(employeeData, files)
+    res.status(200).json({
+      status: "success",
+      message: "Employee Registration completed successfully",
+      data: newEmployee,
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+exports.addNewRoleController = async (req, res, next) => {
+  try {
+    const employeeData = req.body;
+console.log("8974122222222223",employeeData);
+
+    const newEmployee = await addNewRoleEmployee(employeeData)
     res.status(200).json({
       status: "success",
       message: "Employee Registration completed successfully",

@@ -67,6 +67,53 @@ const _nav = [
     to: '/super-admin/b2b/commission-list',
     icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
   },
+  {
+    component: CNavGroup,
+    name: 'WebSite',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Website-Leads',
+        to: '/super-admin/web-students',
+      },
+      {
+        component: CNavItem,
+        name: 'Select',
+        to: '/forms/select',
+      },
+      {
+        component: CNavItem,
+        name: 'Checks & Radios',
+        to: '/forms/checks-radios',
+      },
+      {
+        component: CNavItem,
+        name: 'Range',
+        to: '/forms/range',
+      },
+      {
+        component: CNavItem,
+        name: 'Input Group',
+        to: '/forms/input-group',
+      },
+      {
+        component: CNavItem,
+        name: 'Floating Labels',
+        to: '/forms/floating-labels',
+      },
+      {
+        component: CNavItem,
+        name: 'Layout',
+        to: '/forms/layout',
+      },
+      {
+        component: CNavItem,
+        name: 'Validation',
+        to: '/forms/validation',
+      },
+    ],
+  },
   // {
   //   component: CNavGroup,
   //   name: 'Base',

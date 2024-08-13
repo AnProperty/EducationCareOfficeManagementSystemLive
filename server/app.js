@@ -14,6 +14,7 @@ const ApplicantRouteForUploadAllDocuments = require("./Routes/v1/applicant.route
 const StudentRoute = require("./Routes/v1/students.route");
 const VisaTeamRoute = require("./Routes/v1/visa.route");
 const UtilitiesRoute = require("./Routes/v1/utilities.route");
+const EmployeeRoleRoute = require("./Routes/v1/EmployeeRole.route.js");
 
 
 app.use(express.json());
@@ -38,6 +39,7 @@ app.use("/api/v1/login", logInRoute);
 app.use("/api/v1/counselor", CounselorRoute);
 app.use("/api/v1/visa", VisaTeamRoute);
 app.use("/api/v1/utilities", UtilitiesRoute);
+app.use("/api/v1/role", EmployeeRoleRoute);
 
 
 

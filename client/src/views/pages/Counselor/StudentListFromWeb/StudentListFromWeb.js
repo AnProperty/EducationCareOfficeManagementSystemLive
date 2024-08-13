@@ -12,15 +12,40 @@ import {
     cilPeople,
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
+import Pagination from '../../../../utilities/Pagination';
+import axios from 'axios';
 
 const StudentListFromWeb = () => {
     const [counselorStudent, setCounselorStudent] = useState([]);
-    const counselor = JSON.parse(localStorage.getItem('user'))
-    useEffect(() => {
-        fetch(`https://api.gecare.co.uk/admin/counselor-student-profile-list/${counselor.employee_id}`)
-            .then((res) => res.json())
-            .then((data) => setCounselorStudent(data))
-    }, [])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user.role === 'Counselor') {
+        useEffect(() => {
+            fetch(`https://api.gecare.co.uk/admin/counselor-student-profile-list/${user.employee_id}`)
+                .then((res) => res.json())
+                .then((data) => setCounselorStudent(data))
+
+
+        }, [])
+    } else {
+
+        useEffect(() => {
+            const fetchItems = async (page) => {
+                const response = await axios.get(`https://api.gecare.co.uk/admin/enrolled-profile-list?page=${page}`);
+
+                console.log(response);
+                setCounselorStudent(response.data.profiles);
+                setTotalPages(response.data.totalProfiles);
+            };
+
+            fetchItems(currentPage);
+        }, [currentPage]);
+
+    }
     return (
         <div>
             <CTable align="middle" className="mb-0 border" hover responsive>
@@ -70,6 +95,12 @@ const StudentListFromWeb = () => {
                     })}
                 </CTableBody>
             </CTable >
+
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };

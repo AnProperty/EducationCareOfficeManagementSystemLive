@@ -232,6 +232,12 @@ const App = () => {
               <Route path="/super-admin/b2b/commission-list"
                 element={<SuperAdminPrivet><Commission /></SuperAdminPrivet>}
               />
+              <Route path="/super-admin/web-students"
+                element={<StudentListFromWeb />}
+              />
+              <Route path="/super-admin/web-student-details/:studentId"
+                element={<WebStudentsDetailsPage />}
+              />
 
             </Route>
           </Route>
