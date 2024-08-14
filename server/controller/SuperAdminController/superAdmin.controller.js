@@ -137,43 +137,100 @@ exports.DownloadEmployeeFiles = async (req, res) => {
   }
 };
 
+// exports.filterLeadsController = async (req, res) => {
+//   try {
+//     const { startDate, endDate } = req.query;
+//     console.log(req.params);
+
+//     const query = {};
+//     if (startDate && endDate) {
+//       query.createdAt = {
+//         $gte: new Date(startDate),
+//         $lte: new Date(endDate)
+//       };
+//     } else if (startDate) {
+//       query.createdAt = {
+//         $gte: new Date(startDate)
+//       };
+//     } else if (endDate) {
+//       query.createdAt = {
+//         $lte: new Date(endDate)
+//       };
+//     }
+//     console.log("object", query);
+//     const data = await CreateStudent.find({
+//       $and: [
+//         { createdAt: query.createdAt },
+//         req.params,
+//       ],
+
+//     }).lean();
+//     console.log("Filtereddddddddddddddddd", data);
+
+
+
+//     res.send(data);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
+
 exports.filterLeadsController = async (req, res) => {
   try {
-    const { startDate, endDate } = req.query;
-    console.log(req.params);
+    const { startDate, endDate, fullName, status } = req.query;
+    console.log("Received Query Params:", req.query);
 
     const query = {};
-    if (startDate && endDate) {
-      query.createdAt = {
-        $gte: new Date(startDate),
-        $lte: new Date(endDate)
-      };
-    } else if (startDate) {
-      query.createdAt = {
-        $gte: new Date(startDate)
-      };
-    } else if (endDate) {
-      query.createdAt = {
-        $lte: new Date(endDate)
-      };
+
+    // Filter by startDate and endDate
+    if (startDate) {
+      query.createdAt = { ...query.createdAt, $gte: new Date(startDate) };
     }
-    console.log("object", query);
-    const data = await CreateStudent.find({
-      $and: [
-        { createdAt: query.createdAt },
-        req.params,
-      ],
+    if (endDate) {
+      query.createdAt = { ...query.createdAt, $lte: new Date(endDate) };
+    }
 
-    }).lean();
-    console.log("Filtereddddddddddddddddd", data);
+    // Filter by fullName
+    if (fullName) {
+      query.fullName = new RegExp(fullName, 'i'); // Case-insensitive search
+    }
 
-
+    // Filter by status (only if status is not an empty string)
+    if (status !== undefined) {
+      query.status = status;
+    }
+    console.log(query);
+    // Fetch data based on the constructed query
+    const data = await CreateStudent.find(query).lean();
+    console.log("Filtered Data:", data);
 
     res.send(data);
   } catch (error) {
+    console.error('Error in filterLeadsController:', error);
     res.status(500).send(error);
   }
 };
+
+
+exports.getStudentNameSuggestions = async (req, res) => {
+  try {
+      const { fullName } = req.query;
+
+      // Simple regex search to find students whose names match the input
+      const suggestions = await CreateStudent.find({
+          fullName: { $regex: fullName, $options: 'i' } // 'i' for case-insensitive
+      }).limit(10).select('fullName'); // Limit the results and only select fullName field
+
+      // Send back an array of fullName strings as suggestions
+      res.json(suggestions.map(student => student.fullName));
+  } catch (error) {
+      console.error('Error fetching student name suggestions:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 
 
 
