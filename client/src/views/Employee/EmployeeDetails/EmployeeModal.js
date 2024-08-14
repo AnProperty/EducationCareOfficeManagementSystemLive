@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) => {
-    
 
 
-    const [employeeId, setEmployeeId] = useState('');
-    const [password, setPassword] = useState('');
+
+    // const [employeeId, setEmployeeId] = useState('');
+    // const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
 
 
 
-    
+
 
 
     const handleSubmit = () => {
-        updateEmployee(employeeId, password, role);
+        updateEmployee(role);
         closeModal();
     };
 
@@ -30,7 +30,7 @@ const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) =
                         </button>
                     </div>
                     <div className="modal-body">
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Employee ID</label>
                             <input
                                 type="text"
@@ -47,7 +47,7 @@ const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) =
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <label>Assign New Role</label>
                             <select

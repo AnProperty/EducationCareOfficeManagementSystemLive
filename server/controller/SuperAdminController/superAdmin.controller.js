@@ -79,12 +79,21 @@ exports.CreateEmployeeController = async (req, res, next) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
 exports.addNewRoleController = async (req, res, next) => {
   try {
-    const employeeData = req.body;
-console.log("8974122222222223",employeeData);
+    let employeeData = req.body;
 
-    const newEmployee = await addNewRoleEmployee(employeeData)
+
+    const total = await CreateEmployee.countDocuments();
+    
+    // Replace the employee_id
+    employeeData.employee_id = `gec-${total}`;
+
+    console.log("8974122222222223", employeeData);
+
+    const newEmployee = await addNewRoleEmployee(employeeData);
     res.status(200).json({
       status: "success",
       message: "Employee Registration completed successfully",
@@ -94,6 +103,7 @@ console.log("8974122222222223",employeeData);
     res.status(400).json({ error: error.message });
   }
 };
+
 
 
 exports.DownloadEmployeeFiles = async (req, res) => {

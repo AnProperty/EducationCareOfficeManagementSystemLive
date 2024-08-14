@@ -38,7 +38,7 @@ const VisaTeamDashBoard = () => {
 
     return (
         <div>
-            <h1 className='text-center'>Visa Team Dashboard</h1>
+            <h4 className='text-center'>Visa Team Dashboard</h4>
             <>
                 <CTable align="middle" className="mb-0 border" hover responsive>
                     <CTableHead className="text-nowrap">

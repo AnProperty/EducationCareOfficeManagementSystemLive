@@ -63,13 +63,13 @@ const EmployeeDetails = () => {
     const CreateNewRoleEmployee = async (Data) => {
 
 
-        console.log(Data);
+        // console.log(Data);
         try {
             const res = await axios.post(
                 `${process.env.REACT_APP_API_BASE_URL}/super-admin/add-new-role`,
                 Data,
             )
-            console.log(res.data)
+            // console.log(res.data)
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -118,9 +118,9 @@ const EmployeeDetails = () => {
         })
     }
 
-    const updateEmployee = (employeeId, password, role) => {
-        state.item.employee_id = employeeId;
-        state.item.password = password;
+    const updateEmployee = (role) => {
+        // state.item.employee_id = employeeId;
+        // state.item.password = password;
         state.item.role = role;
         state.item.students = [];
 
@@ -134,7 +134,6 @@ const EmployeeDetails = () => {
 
         CreateNewRoleEmployee(state.item)
 
-        console.log(state);
     };
 
     return (

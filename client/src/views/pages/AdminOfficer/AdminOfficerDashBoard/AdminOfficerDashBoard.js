@@ -16,60 +16,17 @@ const AdminOfficerDashBoard = () => {
 
 
 console.log("applicantStudent",applicantStudent);
-    // let followUp = []
-    // let enrolled = []
-
-    // for (let index = 0; index < applicantStudent.length; index++) {
-
-    //     const element = applicantStudent[index];
-    //     if (element.status === 'Enrolled') {
-    //         enrolled.push(element)
-    //     } else {
-    //         followUp.push(element)
-    //     }
-
-    // }
-
-
-    // const handleDrawer = (e, item) => {
-    //     const elementList = document.getElementsByClassName("drawer-content");
-    //     const drawerItemList = document.getElementsByClassName("drawerItem");
-    //     // elementList.forEach(element => {
-    //     //     element.classList.remove("active-drawer");
-    //     // });
-    //     for (let element of elementList) {
-    //         element.classList.remove("active-drawer");
-    //     }
-    //     for (let element of drawerItemList) {
-    //         element.classList.remove("active-link");
-    //     }
-    //     document.getElementById(item).classList.add("active-drawer");
-    //     e.currentTarget.classList.add("active-link")
-
-    // }
+    
 
     return (
         <section className='container'>
             <div className='about'>
-                {/* <div className='drawer'>
-                    <p className='drawerItem active-link' onClick={(e) => handleDrawer(e, "Edu")}>All Students</p>
-                    <p className='drawerItem' onClick={(e) => handleDrawer(e, "ANP")}>Follow Up</p>
-                    <p className='drawerItem' onClick={(e) => handleDrawer(e, "Gym")}>Enrolled Students</p>
-                </div> */}
+                
 
 
                 <section className='right drawer-content active-drawer' id='Edu'>
                     <DisplayAdminOfficerStudents applicantStudent={applicantStudent} />
                 </section>
-                {/* <section className='right drawer-content' id='ANP'>
-                    <DisplayCounselorStudents counselorStudent={followUp} />
-                </section>
-                <section className='right drawer-content' id='Gym'>
-                    <DisplayCounselorStudents counselorStudent={enrolled} />
-                </section>
-                {
-                    console.log("counselorStudent", counselorStudent)
-                } */}
             </div>
 
         </section>

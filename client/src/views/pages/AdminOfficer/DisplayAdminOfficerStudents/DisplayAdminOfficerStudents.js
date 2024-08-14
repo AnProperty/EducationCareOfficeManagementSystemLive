@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     CTable,
     CTableBody,
@@ -12,18 +12,22 @@ import {
     cilPeople,
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 // import DisplayCounselorStudents from '../DisplayCounselorStudents/DisplayCounselorStudents';
 
-const DisplayAdminOfficerStudents = ({applicantStudent}) => {
-    // console.log("displayStudents",displayStudents);
-    const counselor = JSON.parse(localStorage.getItem('user'))
-    // const [counselorStudent, setCounselorStudent] = useState([]);
-    // useEffect(() => {
-    //     fetch(`${process.env.REACT_APP_API_BASE_URL}/counselor/${counselor.employee_id}`)
-    //         .then((res) => res.json())
-    //         .then((data) => setCounselorStudent(data.data[0].students))
-            
-    // }, [])
+const DisplayAdminOfficerStudents = ({ applicantStudent }) => {
+
+    const [pageNumber, setPageNumber] = useState(0);
+    const papersPerPage = 10;
+    const paperVisited = pageNumber * papersPerPage;
+    const paginatePaper = applicantStudent.slice(paperVisited, paperVisited + papersPerPage);
+
+
+    const pageCount = Math.ceil(applicantStudent.length / papersPerPage);
+    const handlePageClick = ({ selected }) => {
+        setPageNumber(selected);
+    }
+
     return (
         <div>
             <CTable align="middle" className="mb-0 border" hover responsive>
@@ -44,12 +48,11 @@ const DisplayAdminOfficerStudents = ({applicantStudent}) => {
                 </CTableHead>
                 <CTableBody>
 
-                    {applicantStudent?.map((item, index) => {
+                    {paginatePaper?.map((item, index) => {
                         return (
 
                             <CTableRow v-for="item in tableItems" key={index} className='text-center'>
                                 <CTableDataCell className="text-center">
-                                    {console.log(item)}
                                     <div>{index + 1}</div>
                                 </CTableDataCell>
                                 <CTableDataCell>
@@ -61,9 +64,6 @@ const DisplayAdminOfficerStudents = ({applicantStudent}) => {
                                 <CTableDataCell>
                                     <div>{item.phoneNumber}</div>
                                 </CTableDataCell>
-                                {/* <CTableDataCell>
-                                    <div>{item.status}</div>
-                                </CTableDataCell> */}
                                 <CTableDataCell>
                                     <Link to={`/admin-officer/student-details/${item.studentId}/${item.counselor.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
                                 </CTableDataCell>
@@ -73,6 +73,21 @@ const DisplayAdminOfficerStudents = ({applicantStudent}) => {
                     })}
                 </CTableBody>
             </CTable >
+            <div className='ul-center my-3'>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="NEXT >>"
+                    onPageChange={handlePageClick}
+                    pageCount={pageCount}
+                    previousLabel="<< previous"
+                    containerClassName={"paginationBtn"}
+                    previousLinkClassName={"PreviousBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+
+                />
+            </div>
         </div>
     );
 };

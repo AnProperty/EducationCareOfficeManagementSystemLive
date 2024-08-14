@@ -23,7 +23,7 @@ const EmployeeList = () => {
       .then((res) => res.json())
       .then((data) => setEmployees(data.data))
   }, [])
-  // const filteredArray = employees.filter(item => item.employee_id !== "1")
+  const filteredArray = employees.filter(item => item.employee_id !== "1")
   return (
     <>
       <CTable className="mb-0 border" hover responsive>
@@ -43,7 +43,7 @@ const EmployeeList = () => {
         </CTableHead>
         <CTableBody>
 
-          {employees.map((item, index) => {
+          {filteredArray.map((item, index) => {
             return (
               <CTableRow v-for="item in tableItems" key={index}>
                 <CTableDataCell className="text-center me-2">
