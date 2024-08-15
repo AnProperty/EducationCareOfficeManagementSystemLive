@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import {
     CTable,
@@ -87,7 +88,13 @@ const StudentListFromWeb = () => {
                                 </CTableDataCell>
 
                                 <CTableDataCell>
-                                    <Link to={`/counselor/web-student-details/${item._id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
+                                {
+                                    user.role === 'Counselor' && <Link to={`/counselor/web-student-details/${item._id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
+                                }
+                                {
+                                    user.role === 'Super Admin' && <Link to={`/super-admin/web-student-details/${item._id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
+                                }
+                                    
                                 </CTableDataCell>
                             </CTableRow>
 

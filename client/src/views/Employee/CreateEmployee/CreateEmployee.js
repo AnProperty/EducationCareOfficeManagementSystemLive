@@ -269,7 +269,7 @@ const CreateEmployee = () => {
             >
               {Designation.map((c, index) => {
                 return (
-                  <option key={index} value={c}>
+                  <option className='text-uppercase' key={index} value={c}>
                     {c}
                   </option>
                 )

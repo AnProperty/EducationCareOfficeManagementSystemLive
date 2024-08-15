@@ -238,6 +238,7 @@ const App = () => {
               <Route path="/super-admin/web-student-details/:studentId"
                 element={<WebStudentsDetailsPage />}
               />
+             
 
             </Route>
           </Route>
