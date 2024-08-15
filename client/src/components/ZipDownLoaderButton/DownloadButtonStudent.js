@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prettier/prettier */
+
 import React from 'react';
 import axios from 'axios';
 
 const DownloadButtonStudent = ({ studentId }) => {
-  console.log(studentId)
   const handleDownloadStudentDocs = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/utilities/download-docs/${studentId}`, {
@@ -22,7 +24,7 @@ const DownloadButtonStudent = ({ studentId }) => {
 
   return (
     <div className='d-flex'>
-      <button onClick={handleDownloadStudentDocs} className='btn btn3 ms-auto'>Download all</button>
+      <button onClick={handleDownloadStudentDocs} className='btn btn3 m-3'>Download all</button>
     </div>
   );
 };

@@ -1,4 +1,10 @@
 {
     "eslint.enable": false,
-    "prettier.disableLanguages": ["javascript", "javascriptreact"]
+    "prettier.disableLanguages": [
+      "javascript",
+      "javascriptreact"
+    ],
+    "cSpell.words": [
+      "ielts"
+    ]
   }

@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer, useState } from 'react'
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
-
 import './DocumentDisplay.css'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -23,7 +24,7 @@ const StudentsDocuments = () => {
         console.log(data.data);
         let applicantsList = data.data.filter((item) => item.role === 'admin Officer')
         setApplicants(applicantsList)
-        
+
       })
   }, [])
 
@@ -58,8 +59,6 @@ const StudentsDocuments = () => {
       .catch((error) => console.error(error))
   }
   const user = JSON.parse(localStorage.getItem('user'))
-  console.log(state)
-  const { ssc, hsc, hons, masters, utilities } = state.sudentsDocuments
 
   const renderDocumentStatus = (field, label) => {
     return field ? (
@@ -84,38 +83,35 @@ const StudentsDocuments = () => {
           <p>Counselor ID: {state.sudentsDocuments.counselorId}</p>
 
           <h2>SSC</h2>
-          {renderDocumentStatus(state.sudentsDocuments.ssc?.sscCertificate, 'SSC Certificate')}
-          {renderDocumentStatus(state.sudentsDocuments.ssc?.sscTranscript, 'SSC Transcript')}
+          {renderDocumentStatus(state.sudentsDocuments?.sscCertificate, 'SSC Certificate')}
+          {renderDocumentStatus(state.sudentsDocuments?.sscTranscript, 'SSC Transcript')}
 
           <h2>HSC</h2>
-          {renderDocumentStatus(state.sudentsDocuments.hsc?.hscCertificate, 'HSC Certificate')}
-          {renderDocumentStatus(state.sudentsDocuments.hsc?.hscTranscript, 'HSC Transcript')}
-          {renderDocumentStatus(state.sudentsDocuments.hsc?.hscRecommendation, 'HSC Recommendation')}
+          {renderDocumentStatus(state.sudentsDocuments?.hscCertificate, 'HSC Certificate')}
+          {renderDocumentStatus(state.sudentsDocuments?.hscTranscript, 'HSC Transcript')}
+          {renderDocumentStatus(state.sudentsDocuments?.hscRecommendation, 'HSC Recommendation')}
 
           <h2>Hons</h2>
-          {renderDocumentStatus(state.sudentsDocuments.hons?.honsCertificate, 'Hons Certificate')}
-          {renderDocumentStatus(state.sudentsDocuments.hons?.honsTranscript, 'Hons Transcript')}
-          {renderDocumentStatus(state.sudentsDocuments.hons?.honsRecommendation, 'Hons Recommendation')}
+          {renderDocumentStatus(state.sudentsDocuments?.honsCertificate, 'Hons Certificate')}
+          {renderDocumentStatus(state.sudentsDocuments?.honsTranscript, 'Hons Transcript')}
+          {renderDocumentStatus(state.sudentsDocuments?.honsRecommendation, 'Hons Recommendation')}
 
           <h2>Masters</h2>
-          {renderDocumentStatus(state.sudentsDocuments.masters?.mscCertificate, 'Masters Certificate')}
-          {renderDocumentStatus(state.sudentsDocuments.masters?.mscTranscript, 'Masters Transcript')}
+          {renderDocumentStatus(state.sudentsDocuments?.mscCertificate, 'Masters Certificate')}
+          {renderDocumentStatus(state.sudentsDocuments?.mscTranscript, 'Masters Transcript')}
           {renderDocumentStatus(
-            state.sudentsDocuments.masters?.mscRecommendation,
+            state.sudentsDocuments?.mscRecommendation,
             'Masters Recommendation',
           )}
 
           <h2>Utilities</h2>
-          {renderDocumentStatus(state.sudentsDocuments.utilities?.ielts, 'IELTS')}
-          {renderDocumentStatus(state.sudentsDocuments.utilities?.cv, 'CV')}
-          {renderDocumentStatus(state.sudentsDocuments.utilities?.passport, 'Passport')}
-          {renderDocumentStatus(state.sudentsDocuments.utilities?.extraCA, 'Extra Curricular Activities')}
-          {renderDocumentStatus(state.sudentsDocuments.utilities?.bankSolvency, 'Bank Solvency')}
+          {renderDocumentStatus(state.sudentsDocuments?.ielts, 'IELTS')}
+          {renderDocumentStatus(state.sudentsDocuments?.cv, 'CV')}
+          {renderDocumentStatus(state.sudentsDocuments?.passport, 'Passport')}
+          {renderDocumentStatus(state.sudentsDocuments?.extraCA, 'Extra Curricular Activities')}
+          {renderDocumentStatus(state.sudentsDocuments?.bankSolvency, 'Bank Solvency')}
         </div>
         <div>
-          {
-            console.log(state.sudentsDocuments.studentId)
-          }
           <DownloadButtonStudent studentId={state.sudentsDocuments.studentId}></DownloadButtonStudent>
         </div>
       </section>
@@ -124,8 +120,8 @@ const StudentsDocuments = () => {
       {applicantList?.length > 1 && (
         <h3 className="text-center p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
           This Student is Assigned to{' '}
-          {applicantList?.map((element) => (
-            <p className="text-danger">{element.applicant_name}</p>
+          {applicantList?.map((element, index) => (
+            <p key={index} className="text-danger">{element.applicant_name}</p>
           ))}{' '}
           For Application
         </h3>
@@ -150,9 +146,6 @@ const StudentsDocuments = () => {
                   </option>
                 ))}
               </select>
-              {
-                console.log("111111111111111111111",applicants)
-              }
             </div>
           </div>
           <button type="submit" className="btn btn2" disabled={isSubmitted}>
