@@ -5,7 +5,7 @@ const XLSX = require('xlsx');
 
 
 exports.getStudentsByStatusServices = async (query) => {
-  const requestedInfo = await CreateStudent.find(query)
+  const requestedInfo = await CreateStudent.find(query).sort({ createdAt: -1 })
     // .select("students")
 
   return requestedInfo;

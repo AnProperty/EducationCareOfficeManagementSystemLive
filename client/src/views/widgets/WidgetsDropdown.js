@@ -1,174 +1,122 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-
-import {
-  CRow,
-  CCol,
-  CWidgetStatsA,
-} from '@coreui/react'
-import { getStyle } from '@coreui/utils'
-import { CChartLine } from '@coreui/react-chartjs'
+import { CRow, CCol } from '@coreui/react'
 import { Link } from 'react-router-dom'
 
 const WidgetsDropdown = (props) => {
-  const widgetChartRef1 = useRef(null)
-  const widgetChartRef2 = useRef(null)
-
-  useEffect(() => {
-    document.documentElement.addEventListener('ColorSchemeChange', () => {
-      if (widgetChartRef1.current) {
-        setTimeout(() => {
-          widgetChartRef1.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-primary')
-          widgetChartRef1.current.update()
-        })
-      }
-
-      if (widgetChartRef2.current) {
-        setTimeout(() => {
-          widgetChartRef2.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-info')
-          widgetChartRef2.current.update()
-        })
-      }
-    })
-  }, [widgetChartRef1, widgetChartRef2])
-  // console.log(props.allStudentsSize);
-
+  const widgetData = [
+    {
+      title: 'Total Students',
+      count: props.allStudents.length,
+      color: 'bg-info',
+      link: '/super-admin/student/student-list',
+    },
+    {
+      title: 'Enrolled Students',
+      count: props.enrolledStudents.length,
+      color: 'bg-primary',
+      link: '/super-admin/student/enrolled-student-list',
+      state: props.enrolledStudents,
+    },
+    {
+      title: 'Follow Up',
+      count: props.FollowUpStudents.length,
+      color: 'bg-danger',
+      link: '/super-admin/student/follow-up-student-list',
+      state: props.FollowUpStudents,
+    },
+    {
+      title: 'Application Processing',
+      count: props.ApplicationProcessingStudents.length,
+      color: 'bg-secondary',
+      link: '/super-admin/student/application-processing-list',
+      state: props.ApplicationProcessingStudents,
+    },
+    {
+      title: 'Visa Processing',
+      count: props.VisaProcessingStudents.length,
+      color: 'bg-warning',
+      link: '/super-admin/student/visa-processing-list',
+      state: props.VisaProcessingStudents,
+    },
+    {
+      title: 'Success',
+      count: props.SuccessStudents.length,
+      color: 'bg-success',
+      link: '/super-admin/student/success',
+      state: props.SuccessStudents,
+    },
+  ]
 
   return (
     <CRow className={props.className} xs={{ gutter: 4 }}>
-
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={"/super-admin/student/student-list"}>
-          <CWidgetStatsA
-            color="info"
-            value={
-              <>
-                <h2 className="m-auto">Total Students</h2>
-                <h3 className="m-auto">{props.allStudents.length}</h3>
-              </>
-            }
-
-            chart={
-              <CChartLine
-                ref={widgetChartRef1}
-                className="mt-3 mx-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-      </CCol>
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={'/super-admin/student/enrolled-student-list'} state={props.enrolledStudents}>
-          <CWidgetStatsA
-            color="primary"
-            value={
-              <>
-                <h2 className="m-auto">Enrolled Student</h2>
-                <h3 className="m-auto">{props.enrolledStudents.length}</h3>
-              </>
-            }
-            chart={
-              <CChartLine
-                ref={widgetChartRef2}
-                className="mt-3 mx-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-
-      </CCol>
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={'/super-admin/student/follow-up-student-list'} state={props.FollowUpStudents}>
-          <CWidgetStatsA
-            color="danger"
-            value={
-              <>
-                <h2 className="m-auto">Follow Up</h2>
-                <h3 className="m-auto">{props.FollowUpStudents.length}</h3>
-              </>
-            }
-            chart={
-              <CChartLine
-                className="mt-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-
-      </CCol>
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={'/super-admin/student/application-processing-list'} state={props.ApplicationProcessingStudents}>
-          <CWidgetStatsA
-            color="secondary"
-            value={
-              <>
-                <h2 className="m-auto">Application Processing</h2>
-                <h3 className="m-auto">{props.ApplicationProcessingStudents.length}</h3>
-              </>
-            }
-            chart={
-              <CChartLine
-                ref={widgetChartRef2}
-                className="mt-3 mx-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-
-      </CCol>
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={'/super-admin/student/visa-processing-list'} state={props.VisaProcessingStudents}>
-          <CWidgetStatsA
-            color="warning"
-            value={
-              <>
-                <h2 className="m-auto">Visa Processing</h2>
-                <h3 className="m-auto">{props.VisaProcessingStudents.length}</h3>
-              </>
-            }
-            chart={
-              <CChartLine
-                ref={widgetChartRef2}
-                className="mt-3 mx-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-
-      </CCol>
-      <CCol sm={12} xl={3} xxl={4}>
-        <Link to={'/super-admin/student/success'} state={props.SuccessStudents}>
-          <CWidgetStatsA
-            color="success"
-            value={
-              <>
-                <h2 className="m-auto">Success</h2>
-                <h3 className="m-auto">{props.SuccessStudents.length}</h3>
-              </>
-            }
-            chart={
-              <CChartLine
-                ref={widgetChartRef2}
-                className="mt-3 mx-3"
-                style={{ height: '70px' }}
-              />
-            }
-          />
-        </Link>
-
-      </CCol>
+      {widgetData.map((widget, index) => (
+        <CCol sm={12} xl={3} xxl={4} key={index}>
+          <Link to={widget.link} state={widget.state} className="widget-link">
+            <div className={`widget-card ${widget.color} text-white`}>
+              <div className="widget-card-body">
+                <h3 className="widget-title" style={{"textDecorationColor":"white"}}>{widget.title}</h3>
+                <h3 className="widget-count">{widget.count}</h3>
+              </div>
+            </div>
+          </Link>
+        </CCol>
+      ))}
     </CRow>
   )
 }
 
 WidgetsDropdown.propTypes = {
   className: PropTypes.string,
-  withCharts: PropTypes.bool,
+  allStudents: PropTypes.array.isRequired,
+  enrolledStudents: PropTypes.array.isRequired,
+  FollowUpStudents: PropTypes.array.isRequired,
+  ApplicationProcessingStudents: PropTypes.array.isRequired,
+  VisaProcessingStudents: PropTypes.array.isRequired,
+  SuccessStudents: PropTypes.array.isRequired,
 }
 
 export default WidgetsDropdown
+
+// Add some custom CSS
+const styles = `
+.widget-card {
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.widget-card:hover {
+  transform: translateY(-5px);
+}
+.widget-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+.widget-title {
+  font-size: 24px; /* Larger text for the title */
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none; /* Ensure no underline */
+}
+.widget-count {
+  font-size: 40px; /* Smaller size for the number */
+  font-weight: bold;
+  color: white;
+}
+.widget-link {
+  text-decoration: none; /* Remove underline from the entire link */
+  color: inherit; /* Inherit color from parent */
+}
+.widget-link:hover .widget-title {
+  text-decoration: none; /* Ensure title remains without underline on hover */
+}
+`
+
+// Adding the styles to the document
+const styleSheet = document.createElement("style")
+styleSheet.type = "text/css"
+styleSheet.innerText = styles
+document.head.appendChild(styleSheet)

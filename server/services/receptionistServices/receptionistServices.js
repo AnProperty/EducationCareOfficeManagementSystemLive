@@ -21,7 +21,7 @@ exports.createStudentServices = async (studentInfo) => {
 
 
 exports.GetAllStudentListServices = async () => {
-  const submitInfo = await CreateStudent.find({});
+  const submitInfo = await CreateStudent.find({}).sort({ createdAt: -1 });
   return submitInfo;
 };
 

@@ -49,7 +49,7 @@ exports.GetAllEmployeeListServices = async () => {
 };
 
 exports.GetAllStudenteListServices = async () => {
-  const StudentsList = await CreateStudent.find({});
+  const StudentsList = await CreateStudent.find({}).sort({ createdAt: -1 });
   return StudentsList;
 };
 exports.GetAllCommissionListServices = async () => {
