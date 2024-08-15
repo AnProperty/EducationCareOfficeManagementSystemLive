@@ -191,7 +191,7 @@ exports.downloadData = async (req, res) => {
     }
     console.log(query);
     // Fetch data based on the constructed query
-    const data = await CreateStudent.find(query).lean();
+    const data = await CreateStudent.find(query).lean().sort({ createdAt: -1 });
 
     const buffer = generateExcelFile(data);
 
