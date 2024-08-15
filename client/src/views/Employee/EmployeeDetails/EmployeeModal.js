@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 
 const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) => {
@@ -25,29 +26,12 @@ const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) =
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">Update Employee Details</h5>
-                        <button type="button" className="close" onClick={closeModal}>
+                        <button type="button" className="close ms-auto" onClick={closeModal}>
                             <span>&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        {/* <div className="form-group">
-                            <label>Employee ID</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={employeeId}
-                                onChange={(e) => setEmployeeId(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div> */}
+                        
                         <div className="form-group">
                             <label>Assign New Role</label>
                             <select
@@ -66,7 +50,6 @@ const EmployeeModal = ({ showModal, closeModal, updateEmployee, Designation }) =
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn2" onClick={closeModal}>Close</button>
                         <button type="button" className="btn3" onClick={handleSubmit}>Save changes</button>
                     </div>
                 </div>
