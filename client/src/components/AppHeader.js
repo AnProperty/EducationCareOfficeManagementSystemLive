@@ -100,7 +100,7 @@ const AppHeader = () => {
               <select onChange={handleDashboard}>
                 <option value="" disabled selected>{user ? user.role : "Select your role"}</option>
                 {role.map((item) => (
-                  <option key={item.role} value={item.role}>
+                  <option className='text-uppercase' key={item.role} value={item.role}>
                     {item.role}
                   </option>
                 ))}
