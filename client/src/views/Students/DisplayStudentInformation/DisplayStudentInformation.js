@@ -16,8 +16,8 @@ const DisplayStudentInformation = () => {
     const [counselorStudentCourses, setCounselorStudentCourses] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const urlToCopy = `https://antgec.com/file-upload/${studentId}/${counselorId}`;
     const copyToClipboard = () => {
-        const urlToCopy = `https://antgec.com/file-upload/${studentId}/${counselorId}`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard
@@ -135,8 +135,8 @@ const DisplayStudentInformation = () => {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <label class="form-label">Provide Your Listed Advices</label>
-                            <textarea class="form-control" value={advicesList.advices} name="advices" id="advices" rows="10" onChange={handleChange}></textarea>
+                            <label className="form-label">Provide Your Listed Advices</label>
+                            <textarea className="form-control" value={advicesList.advices} name="advices" id="advices" rows="10" onChange={handleChange}></textarea>
                         </div>
 
                         <div className="modal-footer">
@@ -281,8 +281,8 @@ const DisplayStudentInformation = () => {
 
 
             <section className="d-flex justify-content-between">
-                <button onClick={copyToClipboard} className='btn btn3'>Generate and Copy Link</button>
-                <button onClick={copyToClipboard} className='btn btn3'>Generate and Copy Link</button>
+                <button onClick={copyToClipboard} className='btn btn3'>Copy File Upload Link</button>
+                <Link to={urlToCopy} target='_blank'><button className='btn btn2'>Upload File</button></Link>
                 {user.role === "Counselor" && !state.item.advise &&
                     <div>
                         <button className='btn btn4' onClick={handleShow}>Make Advices</button>
@@ -290,7 +290,7 @@ const DisplayStudentInformation = () => {
                 }
                 {studentDocuments.length ? (
                     <>
-                        {user.employee_id === "1" && (
+                        {user.role === "Super Admin" && (
                             <Link to={`/super-admin/student-documents/${studentId}/${counselorId}`} state={{
                                 sudentsDocuments:
                                     studentDocuments[0], stdId: state.item._id, app: state.item.applicant

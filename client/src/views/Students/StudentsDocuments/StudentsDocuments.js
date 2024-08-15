@@ -118,13 +118,13 @@ const StudentsDocuments = () => {
 
       {console.log('applicantList', applicantList)}
       {applicantList?.length > 1 && (
-        <h3 className="text-center p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
+        <p className="text-center p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
           This Student is Assigned to{' '}
           {applicantList?.map((element, index) => (
-            <p key={index} className="text-danger">{element.applicant_name}</p>
+            <h6 key={index} className="text-danger">{element.applicant_name}</h6>
           ))}{' '}
           For Application
-        </h3>
+        </p>
       )}
       {user.role == 'Super Admin' || user.role == 'Counselor' ? (
         <form onSubmit={handleSubmit}>
