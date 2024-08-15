@@ -167,34 +167,34 @@ exports.downloadUniDocsController = async (req, res) => {
 
 
 exports.downloadData = async (req, res) => {
+
   try {
-    const { startDate, endDate } = req.query;
-    console.log(req.params);
+    const { startDate, endDate, fullName, status } = req.query;
+    console.log("Received Query Params:", req.query);
 
     const query = {};
-    if (startDate && endDate) {
-      query.createdAt = {
-        $gte: new Date(startDate),
-        $lte: new Date(endDate)
-      };
-    } else if (startDate) {
-      query.createdAt = {
-        $gte: new Date(startDate)
-      };
-    } else if (endDate) {
-      query.createdAt = {
-        $lte: new Date(endDate)
-      };
-    }
-    console.log("object", query);
-    const data = await CreateStudent.find({
-      $and: [
-        { createdAt: query.createdAt },
-        req.params,
-      ],
 
-    }).lean();
-    console.log("data", data);
+    // Filter by startDate and endDate
+    if (startDate) {
+      query.createdAt = { ...query.createdAt, $gte: new Date(startDate) };
+    }
+    if (endDate) {
+      query.createdAt = { ...query.createdAt, $lte: new Date(endDate) };
+    }
+
+    // Filter by fullName
+    if (fullName) {
+      query.fullName = new RegExp(fullName, 'i'); // Case-insensitive search
+    }
+
+    // Filter by status (only if status is not an empty string)
+    if (status !== undefined) {
+      query.status = status;
+    }
+    console.log(query);
+    // Fetch data based on the constructed query
+    const data = await CreateStudent.find(query).lean();
+
     const buffer = generateExcelFile(data);
 
     res.setHeader('Content-Disposition', 'attachment; filename=data.xlsx');

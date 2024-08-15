@@ -20,8 +20,10 @@ const StudentsDocuments = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-employee-list`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data);
         let applicantsList = data.data.filter((item) => item.role === 'admin Officer')
         setApplicants(applicantsList)
+        
       })
   }, [])
 
@@ -148,6 +150,9 @@ const StudentsDocuments = () => {
                   </option>
                 ))}
               </select>
+              {
+                console.log("111111111111111111111",applicants)
+              }
             </div>
           </div>
           <button type="submit" className="btn btn2" disabled={isSubmitted}>

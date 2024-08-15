@@ -35,7 +35,7 @@ const AppHeader = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
   const [role, setRole] = useState([])
-
+  const user = JSON.parse(localStorage.getItem('user'))
   useEffect(() => {
     document.addEventListener('scroll', () => {
       headerRef.current &&
@@ -43,7 +43,7 @@ const AppHeader = () => {
     })
 
     // Fetch user role
-    const user = JSON.parse(localStorage.getItem('user'))
+    
     if (user?.email) {
       fetch(`${process.env.REACT_APP_API_BASE_URL}/role/${user.email}`)
         .then((res) => res.json())
@@ -60,6 +60,7 @@ const AppHeader = () => {
     if (selectedRole) {
       localStorage.removeItem("user")
       localStorage.setItem("user", JSON.stringify(selectedRole))
+
 
       if (selectedRole.role === 'admin Officer') {
         navigate('/admin-officer/dashboard')
@@ -81,6 +82,7 @@ const AppHeader = () => {
 
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
+
       <CContainer className="border-bottom px-4" fluid>
         <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
@@ -96,7 +98,7 @@ const AppHeader = () => {
             <div className='d-flex align-items-center'>
               <label className='me-2'>Role: </label>
               <select onChange={handleDashboard}>
-                <option value="" disabled selected>Select your role</option>
+                <option value="" disabled selected>{user ? user.role : "Select your role"}</option>
                 {role.map((item) => (
                   <option key={item.role} value={item.role}>
                     {item.role}
@@ -111,6 +113,7 @@ const AppHeader = () => {
         </CHeaderNav>
 
         <CHeaderNav>
+
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>

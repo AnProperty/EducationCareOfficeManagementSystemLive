@@ -11,7 +11,7 @@ router
 router
   .route("/download-docs/:applicantId/:studentId")
   .get(downloadUniDocsController);
-router.route("/download-leads/:status").get(downloadData);
+router.route("/download-leads").get(downloadData);
 router.route("/download-specific-date").post(downloadDateData);
 
 module.exports = router;

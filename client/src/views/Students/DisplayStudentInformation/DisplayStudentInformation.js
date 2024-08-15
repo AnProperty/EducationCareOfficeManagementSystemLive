@@ -282,6 +282,7 @@ const DisplayStudentInformation = () => {
 
             <section className="d-flex justify-content-between">
                 <button onClick={copyToClipboard} className='btn btn3'>Generate and Copy Link</button>
+                <button onClick={copyToClipboard} className='btn btn3'>Generate and Copy Link</button>
                 {user.role === "Counselor" && !state.item.advise &&
                     <div>
                         <button className='btn btn4' onClick={handleShow}>Make Advices</button>

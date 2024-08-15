@@ -9,23 +9,43 @@ const cloudinaryService = require('../cloudinaryService')
 //   return employeesInfo;
 // };
 
+// exports.GetAllEmployeeListServices = async () => {
+//   const employeesInfo = await CreateEmployee.find({}).select("-students");
+
+//   // Create a Map to store unique emails and their corresponding objects
+//   const uniqueEmailMap = new Map();
+
+//   employeesInfo.forEach(employee => {
+//     // Check if the email already exists in the map
+//     if (!uniqueEmailMap.has(employee.email)) {
+//       uniqueEmailMap.set(employee.email, employee);
+//     }
+//   });
+
+//   // Convert the Map values to an array
+//   const uniqueEmailArray = Array.from(uniqueEmailMap.values());
+
+//   return uniqueEmailArray;
+// };
+
+
 exports.GetAllEmployeeListServices = async () => {
   const employeesInfo = await CreateEmployee.find({}).select("-students");
 
   // Create a Map to store unique emails and their corresponding objects
-  const uniqueEmailMap = new Map();
+  // const uniqueEmailMap = new Map();
 
-  employeesInfo.forEach(employee => {
-    // Check if the email already exists in the map
-    if (!uniqueEmailMap.has(employee.email)) {
-      uniqueEmailMap.set(employee.email, employee);
-    }
-  });
+  // employeesInfo.forEach(employee => {
+  //   // Check if the email already exists in the map
+  //   if (!uniqueEmailMap.has(employee.email)) {
+  //     uniqueEmailMap.set(employee.email, employee);
+  //   }
+  // });
 
   // Convert the Map values to an array
-  const uniqueEmailArray = Array.from(uniqueEmailMap.values());
+  // const uniqueEmailArray = Array.from(uniqueEmailMap.values());
 
-  return uniqueEmailArray;
+  return employeesInfo;
 };
 
 exports.GetAllStudenteListServices = async () => {

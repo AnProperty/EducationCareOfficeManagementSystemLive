@@ -21,8 +21,27 @@ const EmployeeList = () => {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-employee-list`)
       .then((res) => res.json())
-      .then((data) => setEmployees(data.data))
-  }, [])
+      .then((data) => {
+        // Create a Map to store unique emails and their corresponding objects
+        const uniqueEmailMap = new Map();
+
+        data.data.forEach((employee) => {
+          // Check if the email already exists in the map
+          if (!uniqueEmailMap.has(employee.email)) {
+            uniqueEmailMap.set(employee.email, employee);
+          }
+        });
+
+        // Convert the Map values to an array
+        const uniqueEmailArray = Array.from(uniqueEmailMap.values());
+
+        // Set the employees state with the unique email array
+        setEmployees(uniqueEmailArray);
+      })
+      .catch((error) => {
+        console.error("Error fetching employee list:", error);
+      });
+  }, []);
   const filteredArray = employees.filter(item => item.employee_id !== "1")
   return (
     <>

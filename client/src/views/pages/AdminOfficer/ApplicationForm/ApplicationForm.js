@@ -115,7 +115,7 @@ const ApplicationForm = () => {
   }
   return (
     <div>
-      <h1 className="text-center">Applied University List</h1>
+      <h4 className="text-center">Applied University List</h4>
       <>
         <CTable align="middle" className="mb-0 border" hover responsive>
           <CTableHead className="text-nowrap">
@@ -198,7 +198,7 @@ const ApplicationForm = () => {
 
       <div className="authorForm">
         <div className="authorContainer border border-secondary pb-5">
-          <h4 className=" text-center my-3">Add University</h4>
+          <h4 className=" text-center my-3">Add New Applied University</h4>
           <form>
             <div className="d-flex justify-content-around">
               <div>

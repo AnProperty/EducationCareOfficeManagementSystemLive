@@ -1,5 +1,3 @@
-const Employee = require("../../model/Employee.model");
-const archiver = require('archiver');
 const JSZip = require('jszip');
 const axios = require('axios');
 
@@ -10,7 +8,6 @@ const {
   GetAllCommissionListServices,
   addNewRoleEmployee
 } = require("../../services/superAdminServices/superAdmin.services");
-const { downloadFullFolder } = require("../../services/cloudinaryService");
 const CreateEmployee = require("../../model/CreateEmployee.model");
 const CreateStudent = require("../../model/CreateStudent.model");
 
@@ -87,8 +84,6 @@ exports.addNewRoleController = async (req, res, next) => {
 
 
     const total = await CreateEmployee.countDocuments();
-    
-    // Replace the employee_id
     employeeData.employee_id = `gec-${total}`;
 
     console.log("8974122222222223", employeeData);
@@ -147,43 +142,7 @@ exports.DownloadEmployeeFiles = async (req, res) => {
   }
 };
 
-// exports.filterLeadsController = async (req, res) => {
-//   try {
-//     const { startDate, endDate } = req.query;
-//     console.log(req.params);
 
-//     const query = {};
-//     if (startDate && endDate) {
-//       query.createdAt = {
-//         $gte: new Date(startDate),
-//         $lte: new Date(endDate)
-//       };
-//     } else if (startDate) {
-//       query.createdAt = {
-//         $gte: new Date(startDate)
-//       };
-//     } else if (endDate) {
-//       query.createdAt = {
-//         $lte: new Date(endDate)
-//       };
-//     }
-//     console.log("object", query);
-//     const data = await CreateStudent.find({
-//       $and: [
-//         { createdAt: query.createdAt },
-//         req.params,
-//       ],
-
-//     }).lean();
-//     console.log("Filtereddddddddddddddddd", data);
-
-
-
-//     res.send(data);
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// };
 
 exports.filterLeadsController = async (req, res) => {
   try {
