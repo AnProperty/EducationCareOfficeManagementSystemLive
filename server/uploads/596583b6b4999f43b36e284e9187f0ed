@@ -1,0 +1,31 @@
+{
+   "subject": "Business Administration",
+    "level": "phD",
+    "destination": "USA",
+    "university": "University of Pennsylvania",
+    "ieltsScore": 7.5,
+    "location": "Pennsylvania",
+    "campusCity": "Philadelphia",
+    "tuitionFees": "$60,042 per year",
+    "applicationFees": "$75",
+    "duration": "4 years",
+    "intake": "Fall",
+    "worldRank": "6",
+    "internationalStudent": "19%",
+    "courseDetailLink": "https://undergrad.wharton.upenn.edu/",
+    "universityDetailLink": "https://www.upenn.edu/"
+}
+
+
+{
+	"email":"demo1@gmail.com,
+	"password":"12345"
+}
+	
+
+{
+    "name":"plabon chowdhury",
+    "phone":"09876543211",
+	"email":"demo1@gmail.com",
+	"password":"12345"
+}

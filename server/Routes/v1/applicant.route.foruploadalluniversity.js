@@ -21,12 +21,4 @@ router.post('/:studentId/:counselorId/:applicantId/:studentObjectId', upload.fie
 
 
 
-// router
-//   .route("/university-upload/:studentId/:counselorId/:applicantId")
-//   .post(universityUploadByApplicantController)
-//   .patch(universityUpdateByApplicantController);
-// router
-//   .route("/university-upload/:studentId/:counselorId")
-//   .get(getStudentAppliedUniversity);
-
 module.exports = router;

@@ -4,33 +4,23 @@ const StudentDetailsSchema = mongoose.Schema(
   {
     studentId: { type: String, required: true },
     counselorId: { type: String, required: true },
-    ssc: {
-      sscCertificate: String,
-      sscTranscript: String,
-    },
-    hsc: {
-      hscCertificate: String,
-      hscTranscript: String,
-      hscRecommendation: String,
-    },
-    hons: {
-      honsCertificate: String,
-      honsTranscript: String,
-      honsRecommendation: String,
-    },
-    masters: {
-      mscCertificate: String,
-      mscTranscript: String,
-      mscRecommendation: String,
-    },
-
-    utilities: {
-      ielts: String,
-      cv: String,
-      passport: String,
-      extraCA: String,
-      bankSolvency: String,
-    },
+    
+    sscCertificate: { type: String },
+    sscTranscript: { type: String },
+    hscCertificate: { type: String },
+    hscTranscript: { type: String },
+    hscRecommendation: { type: String },
+    honsCertificate: { type: String },
+    honsTranscript: { type: String },
+    honsRecommendation: { type: String },
+    mscCertificate: { type: String },
+    mscTranscript: { type: String },
+    mscRecommendation: { type: String },
+    ielts: { type: String },
+    cv: { type: String },
+    passport: { type: String },
+    extraCA: { type: String },
+    bankSolvency: { type: String },
   },
   {
     timestamps: true,

@@ -20,58 +20,56 @@ exports.downloadStudentDocumentController = async (req, res) => {
     }
 
     let fileUrls = [];
-    studentDocs.ssc &
-      studentDocs.ssc.sscCertificate &
-      fileUrls.push(studentDocs.ssc.sscCertificate);
-    studentDocs.ssc &
-      studentDocs.ssc.sscTranscript &
-      fileUrls.push(studentDocs.ssc.sscTranscript);
+      studentDocs.sscCertificate &
+      fileUrls.push(studentDocs.sscCertificate);
 
-    studentDocs.hsc &
-      studentDocs.hsc.hscCertificate &
-      fileUrls.push(studentDocs.hsc.hscCertificate);
-    studentDocs.hsc &
-      studentDocs.hsc.hscTranscript &
-      fileUrls.push(studentDocs.hsc.hscTranscript);
-    studentDocs.hsc &
-      studentDocs.hsc.hscRecommendation &
-      fileUrls.push(studentDocs.hsc.hscRecommendation);
+      studentDocs.sscTranscript &
+      fileUrls.push(studentDocs.sscTranscript);
 
-    studentDocs.hons &
-      studentDocs.hons.honsCertificate &
-      fileUrls.push(studentDocs.hons.honsCertificate);
-    studentDocs.hons &
-      studentDocs.hons.honsTranscript &
-      fileUrls.push(studentDocs.hons.honsTranscript);
-    studentDocs.hons &
-      studentDocs.hons.honsRecommendation &
-      fileUrls.push(studentDocs.hons.honsRecommendation);
+      studentDocs.hscCertificate &
+      fileUrls.push(studentDocs.hscCertificate);
+    
+      studentDocs.hscTranscript &
+      fileUrls.push(studentDocs.hscTranscript);
+ 
+      studentDocs.hscRecommendation &
+      fileUrls.push(studentDocs.hscRecommendation);
 
-    studentDocs.masters &
-      studentDocs.masters.mscCertificate &
-      fileUrls.push(studentDocs.masters.mscCertificate);
-    studentDocs.masters &
-      studentDocs.masters.mscTranscript &
-      fileUrls.push(studentDocs.masters.mscTranscript);
-    studentDocs.masters &
-      studentDocs.masters.mscRecommendation &
-      fileUrls.push(studentDocs.masters.mscRecommendation);
+    
+      studentDocs.honsCertificate &
+      fileUrls.push(studentDocs.honsCertificate);
+    
+      studentDocs.honsTranscript &
+      fileUrls.push(studentDocs.honsTranscript);
+   
+      studentDocs.honsRecommendation &
+      fileUrls.push(studentDocs.honsRecommendation);
 
-    studentDocs.utilities &
-      studentDocs.utilities.ielts &
-      fileUrls.push(studentDocs.utilities.ielts);
-    studentDocs.utilities &
-      studentDocs.utilities.cv &
-      fileUrls.push(studentDocs.utilities.cv);
-    studentDocs.utilities &
-      studentDocs.utilities.passport &
-      fileUrls.push(studentDocs.utilities.passport);
-    studentDocs.utilities &
-      studentDocs.utilities.extraCA &
-      fileUrls.push(studentDocs.utilities.extraCA);
-    studentDocs.utilities &
-      studentDocs.utilities.bankSolvency &
-      fileUrls.push(studentDocs.utilities.bankSolvency);
+    
+      studentDocs.mscCertificate &
+      fileUrls.push(studentDocs.mscCertificate);
+    
+      studentDocs.mscTranscript &
+      fileUrls.push(studentDocs.mscTranscript);
+    
+      studentDocs.mscRecommendation &
+      fileUrls.push(studentDocs.mscRecommendation);
+
+    
+      studentDocs.ielts &
+      fileUrls.push(studentDocs.ielts);
+
+      studentDocs.cv &
+      fileUrls.push(studentDocs.cv);
+    
+      studentDocs.passport &
+      fileUrls.push(studentDocs.passport);
+
+      studentDocs.extraCA &
+      fileUrls.push(studentDocs.extraCA);
+
+      studentDocs.bankSolvency &
+      fileUrls.push(studentDocs.bankSolvency);
 
     fileUrls = fileUrls.filter((url) => url !== undefined);
 
