@@ -1,16 +1,12 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
-  cilBell,
-  cilCalculator,
-  cilChartPie,
-  cilCursor,
   cilDrop,
   cilNotes,
-  cilPencil,
-  cilPuzzle,
+  cilPlus,
   cilSpeedometer,
   cilStar,
+  cilUser,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -20,10 +16,6 @@ const _nav = [
     name: 'Dashboard',
     to: '/super-admin/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    // badge: {
-    //   color: 'info',
-    //   text: 'NEW',
-    // },
   },
   {
     component: CNavTitle,
@@ -33,13 +25,13 @@ const _nav = [
     component: CNavItem,
     name: 'Employee List',
     to: '/super-admin/employee/employee-list',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Create Employee',
     to: '/super-admin/employee/create-employee',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -49,13 +41,13 @@ const _nav = [
     component: CNavItem,
     name: 'Create Student',
     to: '/super-admin/student/create-student',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Student List',
     to: '/super-admin/student/student-list',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -77,41 +69,41 @@ const _nav = [
         name: 'Website-Leads',
         to: '/super-admin/web-students',
       },
-      {
-        component: CNavItem,
-        name: 'Select',
-        to: '/forms/select',
-      },
-      {
-        component: CNavItem,
-        name: 'Checks & Radios',
-        to: '/forms/checks-radios',
-      },
-      {
-        component: CNavItem,
-        name: 'Range',
-        to: '/forms/range',
-      },
-      {
-        component: CNavItem,
-        name: 'Input Group',
-        to: '/forms/input-group',
-      },
-      {
-        component: CNavItem,
-        name: 'Floating Labels',
-        to: '/forms/floating-labels',
-      },
-      {
-        component: CNavItem,
-        name: 'Layout',
-        to: '/forms/layout',
-      },
-      {
-        component: CNavItem,
-        name: 'Validation',
-        to: '/forms/validation',
-      },
+      // {
+      //   component: CNavItem,
+      //   name: 'Select',
+      //   to: '/forms/select',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Checks & Radios',
+      //   to: '/forms/checks-radios',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Range',
+      //   to: '/forms/range',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Input Group',
+      //   to: '/forms/input-group',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Floating Labels',
+      //   to: '/forms/floating-labels',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Layout',
+      //   to: '/forms/layout',
+      // },
+      // {
+      //   component: CNavItem,
+      //   name: 'Validation',
+      //   to: '/forms/validation',
+      // },
     ],
   },
   // {
@@ -332,33 +324,33 @@ const _nav = [
   //   },
   // },
 
-  {
-    component: CNavGroup,
-    name: 'Pages',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Login',
-        to: '/login',
-      },
-      {
-        component: CNavItem,
-        name: 'Register',
-        to: '/register',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 404',
-        to: '/404',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 500',
-        to: '/500',
-      },
-    ],
-  },
+  // {
+  //   component: CNavGroup,
+  //   name: 'Pages',
+  //   icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+  //   items: [
+  //     {
+  //       component: CNavItem,
+  //       name: 'Login',
+  //       to: '/login',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Register',
+  //       to: '/register',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Error 404',
+  //       to: '/404',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Error 500',
+  //       to: '/500',
+  //     },
+  //   ],
+  // },
 ]
 
 export default _nav
