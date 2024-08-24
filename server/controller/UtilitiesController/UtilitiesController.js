@@ -11,12 +11,10 @@ const CreateEmployee = require("../../model/CreateEmployee.model");
 
 exports.downloadStudentDocumentController = async (req, res) => {
   try {
-    console.log("Request received:", req.params);
     const studentDocs = await StudentDetailsModel.findOne(req.params);
-    console.log("student docs found:", studentDocs);
+    
 
     if (!studentDocs) {
-      console.log("studentDocs not found");
       return res.status(404).json({ error: "studentDocs not found" });
     }
 
@@ -108,12 +106,10 @@ exports.downloadStudentDocumentController = async (req, res) => {
 };
 exports.downloadUniDocsController = async (req, res) => {
   try {
-    console.log("Request received:", req.params);
     const uniDocs = await UniversityDocsModel.findOne(req.params);
-    console.log("University docs found:", uniDocs);
+    
 
     if (!uniDocs) {
-      console.log("UniDocs not found");
       return res.status(404).json({ error: "studentDocs not found" });
     }
 
@@ -129,7 +125,6 @@ exports.downloadUniDocsController = async (req, res) => {
 
 
     fileUrls = fileUrls.filter((url) => (url !== '' && url != undefined));
-    console.log('fileUrlsssssssssss', fileUrls);
 
     const zip = new JSZip();
 
@@ -169,7 +164,6 @@ exports.downloadData = async (req, res) => {
 
   try {
     const { startDate, endDate, fullName, status } = req.query;
-    console.log("Received Query Params:", req.query);
 
     const query = {};
 
@@ -190,7 +184,7 @@ exports.downloadData = async (req, res) => {
     if (status !== undefined) {
       query.status = status;
     }
-    console.log(query);
+    
     // Fetch data based on the constructed query
     const data = await CreateStudent.find(query).lean().sort({ createdAt: -1 });
 
@@ -210,7 +204,6 @@ exports.downloadDataForSpecificEmployeeController = async (req, res) => {
     const { startDate, endDate, fullName, status } = req.query;
 
     // Log query params for debugging
-    console.log("Received Query Params:", req.query);
 
     // Find the employee and populate students
     const employee = await CreateEmployee.findOne({ employee_id })
@@ -298,7 +291,7 @@ exports.filterApplicantController = async (req, res, next) => {
     const { startDate, endDate, fullName, status } = req.query;
 
     // Log query params for debugging
-    console.log("Received Query Params:", req.query);
+   
 
     // Find the employee and populate students
     const employee = await CreateEmployee.findOne({ employee_id })

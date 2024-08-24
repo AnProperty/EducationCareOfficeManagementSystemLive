@@ -53,7 +53,6 @@ exports.GetAllStudenteListServices = async () => {
   return StudentsList;
 };
 exports.GetAllCommissionListServices = async () => {
-  console.log("Clicked");
   const StudentsList = await UniversityDocsModel.find({
     status:
       "success"
@@ -75,7 +74,6 @@ exports.addEmployee = async (employeeData, files) => {
 };
 exports.addNewRoleEmployee = async (employeeData) => {
   const registeredInfo = await CreateEmployee.create(employeeData);
-  console.log("addNewRoleEmployee", registeredInfo);
   
   return registeredInfo;
 };

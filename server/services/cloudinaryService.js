@@ -124,7 +124,7 @@ async function downloadFolderAsZip(folderName, zipFileName) {
     // Write the ZIP file to disk
     fs.writeFileSync(zipFileName, zipData);
 
-    console.log(`ZIP file '${zipFileName}' created successfully.`);
+    
   } catch (error) {
     console.error("Error downloading folder:", error);
   }

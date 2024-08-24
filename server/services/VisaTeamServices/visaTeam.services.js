@@ -20,7 +20,6 @@ exports.getUniversityDocsServices = async (query) => {
 };
 
 exports.updateStudentStatusService = async (query,status) => {
-  console.log(query,status)
   const res=await UniversityDocsModel.updateOne(
     {
       createdAt:new Date(query.createdAt),
@@ -31,7 +30,6 @@ exports.updateStudentStatusService = async (query,status) => {
       },
     }
   );
-  console.log(res)
 
   await CreateStudent.updateOne(
     {

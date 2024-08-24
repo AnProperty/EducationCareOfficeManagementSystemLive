@@ -21,7 +21,6 @@ exports.getCounselorStudentByIdController = async (req, res, next) => {
 };
 exports.AssignStudentToApplicantController = async (req, res, next) => {
     try {
-        console.log("AssignStudentToApplicantController", req.body);
         const query = req.params;
         const request = await AssignStudentToApplicantServices(query,req.body);
         res.status(200).json({
@@ -39,7 +38,6 @@ exports.AssignStudentToApplicantController = async (req, res, next) => {
 };
 exports.makeAdvicesController = async (req, res, next) => {
     try {
-        console.log("AssignStudentToApplicantController", req.body.advices);
         const query = req.params;
         const request = await makeAdvicesServices(query,req.body.advices);
         res.status(200).json({

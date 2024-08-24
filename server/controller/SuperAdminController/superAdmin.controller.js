@@ -86,8 +86,6 @@ exports.addNewRoleController = async (req, res, next) => {
     const total = await CreateEmployee.countDocuments();
     employeeData.employee_id = `gec-${total}`;
 
-    console.log("8974122222222223", employeeData);
-
     const newEmployee = await addNewRoleEmployee(employeeData);
     res.status(200).json({
       status: "success",
@@ -103,12 +101,11 @@ exports.addNewRoleController = async (req, res, next) => {
 
 exports.DownloadEmployeeFiles = async (req, res) => {
   try {
-    console.log('Request received:', req.params);
     const employee = await CreateEmployee.findOne(req.params);
-    console.log('Employee found:', employee);
+    
 
     if (!employee) {
-      console.log('Employee not found');
+      
       return res.status(404).json({ error: 'Employee not found' });
     }
 
@@ -117,7 +114,7 @@ exports.DownloadEmployeeFiles = async (req, res) => {
     employee.cv & fileUrls.push(employee.cv)
     employee.resume & fileUrls.push(employee.resume)
 
-    console.log(fileUrls)
+  
 
     const zip = new JSZip();
 
@@ -147,7 +144,6 @@ exports.DownloadEmployeeFiles = async (req, res) => {
 exports.filterLeadsController = async (req, res) => {
   try {
     const { startDate, endDate, fullName, status } = req.query;
-    console.log("Received Query Params:", req.query);
 
     const query = {};
 
@@ -168,10 +164,9 @@ exports.filterLeadsController = async (req, res) => {
     if (status !== undefined) {
       query.status = status;
     }
-    console.log(query);
     // Fetch data based on the constructed query
     const data = await CreateStudent.find(query).lean().sort({ createdAt: -1 });
-    console.log("Filtered Data:", data);
+    
 
     res.send(data);
   } catch (error) {

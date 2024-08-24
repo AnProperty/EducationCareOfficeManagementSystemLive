@@ -59,7 +59,6 @@ exports.GetAStudentByNameAndEmailController = async (req, res, next) => {
 //------------------------??
 exports.GetLastStudentIdController = async (req, res, next) => {
     try {
-        console.log('hittttttttttttttttttt')
         const total = await CreateStudent.countDocuments({});
         res.json({ data:total});
       } catch (error) {

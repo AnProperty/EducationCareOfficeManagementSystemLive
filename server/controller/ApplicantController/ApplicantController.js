@@ -33,7 +33,6 @@ exports.getApplicantStudentByApplicantIdController = async (req, res, next) => {
 
 exports.getStudentAppliedUniversity = async (req, res, next) => {
   try {
-    console.log("getStudentAppliedUniversity Clicked");
     const query = req.params;
     const request = await getStudentApplicationServices(query);
     res.status(200).json({
@@ -59,9 +58,7 @@ exports.universityUploadByApplicantController = async (req, res, next) => {
       applicantId: applicantId,
       universities: [req.body],
     };
-    console.log("document", document);
     const request = await universityUploadByApplicantService(document);
-    console.log('requesttttttttttttttttttttttttttttttttttttt:',request)
     res.status(200).json({
       status: "success",
       message: "Applied University Updated successfully",
@@ -102,8 +99,6 @@ exports.postUniversityDocsController = async (req, res) => {
     const applicantId = req.params.applicantId;
     const files = req.files;
     const data = req.body;
-    console.log("OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",data)
-    //console.log(studentId,studentObjectId,counselorId,applicantId,files)
     const uniData = await addUniversityDocsService(
       studentId,
       studentObjectId,
@@ -112,7 +107,6 @@ exports.postUniversityDocsController = async (req, res) => {
       files,
       data
     );
-    console.log('aaaaaaaaaaaaaaaaaa:',uniData)
     res.status(200).json({
       status: "success",
       message: "University data added successfully",
@@ -124,7 +118,6 @@ exports.postUniversityDocsController = async (req, res) => {
 };
 
 exports.getAssignedVisaTeam = async (req, res, next) => {
-  console.log("uffffffffffffff", req.params);
   try {
     const request = await assignedVisaTeamService(req.params);
     res.status(200).json({
@@ -141,10 +134,8 @@ exports.getAssignedVisaTeam = async (req, res, next) => {
   }
 };
 exports.getUploadedDocuments = async (req, res, next) => {
-  console.log("uffffffffffffffAhhhhh", req.params);
   try {
     const request = await getUploadedDocumentsService(req.params);
-    console.log('requestttttttt: ',request)
     res.status(200).json({
       status: "success",
       message: "Applied University Updated successfully",
@@ -159,9 +150,7 @@ exports.getUploadedDocuments = async (req, res, next) => {
   }
 };
 exports.universityDocUpdateController = async (req, res, next) => {
-  // console.log("uffffffffffffffAhhhhh", req.params);
-  // console.log("AHHHHHHHHHHHHHHHHHHHHHHHH:",req.files);
-  console.log("bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyy:",req.body)
+
   try {
     const request = await universityDocumentUpdateService(req.params,req.files,req.body);
     res.status(200).json({

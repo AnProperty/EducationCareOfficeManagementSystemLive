@@ -44,7 +44,7 @@ exports.updateStudentStatusByIdController = async (req, res, next) => {
     try {
         const query = req.params;
         const body = req.body;
-        console.log('queryyyyyy: ', query, body)
+        
         const request = await updateStudentStatusService(query,body.status);
         res.status(200).json({
             status: "success",

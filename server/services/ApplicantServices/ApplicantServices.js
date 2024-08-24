@@ -6,7 +6,7 @@ const AppliedUniversity = require("../../model/UniversityApplication");
 const cloudinaryService = require('../cloudinaryService')
 
 exports.getApplicantStudentByApplicantId = async (query) => {
-  console.log("object", query);
+  
   const requestedInfo = await CreateEmployee.find(query)
     .select("students")
     .populate({
@@ -15,16 +15,7 @@ exports.getApplicantStudentByApplicantId = async (query) => {
 
   return requestedInfo;
 };
-// exports.getApplicantStudentSuggestion = async (query) => {
-//   console.log("object", query);
-//   const requestedInfo = await CreateEmployee.find(query)
-//     .select("students")
-//     .populate({
-//       path: "students",
-//     });
 
-//   return requestedInfo;
-// };
 exports.getStudentApplicationServices = async (query) => {
   const { studentId, counselorId } = query;
   const requestedInfo = await AppliedUniversity.find({
@@ -34,7 +25,7 @@ exports.getStudentApplicationServices = async (query) => {
   return requestedInfo;
 };
 exports.universityUploadByApplicantService = async (document) => {
-  console.log("universityUploadByApplicantService", document);
+  
   await CreateStudent.updateOne(
     {
       studentId: document.stdId,
@@ -52,8 +43,7 @@ exports.universityUploadByApplicantService = async (document) => {
 
 exports.universityUpdateByApplicantService = async (query, body) => {
   const { studentId, counselorId, applicantId } = query;
-  console.log("query", query);
-  console.log("lyuiyiytu", body);
+
 
   const registeredInfo = await AppliedUniversity.updateOne(
     {
@@ -68,7 +58,6 @@ exports.universityUpdateByApplicantService = async (query, body) => {
       },
     }
   );
-  console.log("..............", registeredInfo);
   return registeredInfo;
 };
 
@@ -90,7 +79,6 @@ exports.addUniversityDocsService = async (studentId, studentObjectId, counselorI
     pal: uploadedFiles.pal,
     ...data
   });
-  console.log("NAIIIIIIIIIIIII", data.visaTeamId)
 
   if (data.visaTeamId) {
     await CreateEmployee.updateOne(

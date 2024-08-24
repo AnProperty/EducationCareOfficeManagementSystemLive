@@ -6,7 +6,6 @@ const {
 
 exports.getAllRoleByEmailController = async (req, res, next) => {
     try {
-        console.log("clickkkkkkkkkkkkkkkkkkkkkkkk", req.params);
         const details = await getAllRoleByEmailService(req.params);
         res.status(200).json({
             status: "success",
@@ -24,7 +23,6 @@ exports.getAllRoleByEmailController = async (req, res, next) => {
 
 exports.deleteRole = async (req, res, next) => {
 
-    console.log("delete Params", req.params);
     try {
         const request = await deleteRoleServices(req.params);
 
@@ -37,7 +35,6 @@ exports.deleteRole = async (req, res, next) => {
         }
 
     } catch (err) {
-        console.log("requestsssssssssssssssssssss44444444", err);
         next(err);
     }
 };
