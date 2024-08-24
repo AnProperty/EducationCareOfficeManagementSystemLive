@@ -37,6 +37,12 @@ import UniversityList from './views/University/UniversityList/UniversityList'
 import Commission from './views/B2B/Commission/Commission'
 import StudentListFromWeb from './views/pages/Counselor/StudentListFromWeb/StudentListFromWeb'
 import WebStudentsDetailsPage from './views/pages/Counselor/WebStudentsDetailsPage/WebStudentsDetailsPage'
+import DisplayCounselorEnrolledStudents from './views/pages/Counselor/DisplayCounselorEnrolledStudents/DisplayCounselorEnrolledStudents'
+import DisplayCounselorFollowUpStudents from './views/pages/Counselor/DisplayCounselorFollowUpStudents/DisplayCounselorFollowUpStudents'
+import DisplayAdminOfficerOngoingList from './views/pages/AdminOfficer/DisplayAdminOfficerOngoingList/DisplayAdminOfficerOngoingList'
+import DisplayAdminOfficerCompletedList from './views/pages/AdminOfficer/DisplayAdminOfficerCompletedList/DisplayAdminOfficerCompletedList'
+import DisplayVisaStudentsOngoingList from './views/pages/VisaTeam/DisplayVisaStudentsOngoingList/DisplayVisaStudentsOngoingList'
+import DisplayVisaStudentsCompletedList from './views/pages/VisaTeam/DisplayVisaStudentsCompletedList/DisplayVisaStudentsCompletedList'
 
 
 
@@ -96,6 +102,12 @@ const App = () => {
               <Route path="/admin-officer/dashboard"
                 element={<AdminOfficerPrivet> <AdminOfficerDashBoard /> </AdminOfficerPrivet>}
               />
+              <Route path="/admin-officer/dashboard/application-processing"
+                element={<AdminOfficerPrivet> <DisplayAdminOfficerOngoingList /> </AdminOfficerPrivet>}
+              />
+              <Route path="/admin-officer/dashboard/visa-processing"
+                element={<AdminOfficerPrivet> <DisplayAdminOfficerCompletedList /> </AdminOfficerPrivet>}
+              />
               <Route path="/admin-officer/student-details/:studentId/:counselorId"
                 element={<AdminOfficerPrivet><DisplayStudentInformation /></AdminOfficerPrivet>}
               />
@@ -116,6 +128,12 @@ const App = () => {
               <Route path="/visa-process/dashboard"
                 element={<VisaTeamPrivet> <VisaTeamDashBoard /> </VisaTeamPrivet>}
               />
+              <Route path="/visa-process/dashboard/visa-processing"
+                element={<VisaTeamPrivet> <DisplayVisaStudentsOngoingList /> </VisaTeamPrivet>}
+              />
+              <Route path="/visa-process/dashboard/visa-processing"
+                element={<VisaTeamPrivet> <DisplayVisaStudentsCompletedList /> </VisaTeamPrivet>}
+              />
               <Route path="/visa-process/student-details/:studentId/:counselorId"
                 element={<VisaTeamPrivet> <DisplayStudentInformation /> </VisaTeamPrivet>}
               />
@@ -133,6 +151,12 @@ const App = () => {
             <Route path="/counselor" element={<CounselorLayout />}>
               <Route path="/counselor/dashboard"
                 element={<CounselorPrivet> <CounselorHomePage /> </CounselorPrivet>}
+              />
+              <Route path="/counselor/dashboard/enrolled"
+                element={<CounselorPrivet> <DisplayCounselorEnrolledStudents /> </CounselorPrivet>}
+              />
+              <Route path="/counselor/dashboard/follow-up"
+                element={<CounselorPrivet> <DisplayCounselorFollowUpStudents /> </CounselorPrivet>}
               />
               <Route path="/counselor/student-details/:studentId/:counselorId"
                 element={<CounselorPrivet><DisplayStudentInformation /></CounselorPrivet>}

@@ -18,6 +18,10 @@ const upload = multer({ storage: multer.memoryStorage() });
 router
   .route("/:employee_id")
   .get(getApplicantStudentByApplicantIdController);
+// router
+//   .route("/get-student-suggestion/:employee_id")
+//   .get(filterApplicantController);
+
   
 router
   .route("/university-upload/:studentId/:counselorId/:applicantId")

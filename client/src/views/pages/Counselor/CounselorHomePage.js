@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './CounselorHomePage.css'
 import DisplayCounselorStudents from './DisplayCounselorStudents/DisplayCounselorStudents';
+import DisplayCounselorFollowUpStudents from './DisplayCounselorFollowUpStudents/DisplayCounselorFollowUpStudents';
 import DisplayCounselorEnrolledStudents from './DisplayCounselorEnrolledStudents/DisplayCounselorEnrolledStudents';
 
 
@@ -19,19 +20,19 @@ const CounselorHomePage = () => {
 
 
 
-    let followUp = []
-    let enrolled = []
+    // let followUp = []
+    // let enrolled = []
 
-    for (let index = 0; index < counselorStudent.length; index++) {
+    // for (let index = 0; index < counselorStudent.length; index++) {
 
-        const element = counselorStudent[index];
-        if (element.status === 'enrolled') {
-            enrolled.push(element)
-        } else if (element.status === 'follow-up'){
-            followUp.push(element)
-        }
+    //     const element = counselorStudent[index];
+    //     if (element.status === 'enrolled') {
+    //         enrolled.push(element)
+    //     } else if (element.status === 'follow-up') {
+    //         followUp.push(element)
+    //     }
 
-    }
+    // }
 
 
     const handleDrawer = (e, item) => {
@@ -51,6 +52,28 @@ const CounselorHomePage = () => {
 
     }
 
+
+
+
+
+    // Filter Start
+
+
+
+    // Filter End
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <section className='container'>
             <div className='about'>
@@ -62,13 +85,13 @@ const CounselorHomePage = () => {
 
 
                 <section className='right drawer-content active-drawer' id='Edu'>
-                    <DisplayCounselorStudents counselorStudent={counselorStudent} />
+                    <DisplayCounselorStudents counselorStudent={counselorStudent} setCounselorStudent={setCounselorStudent} />
                 </section>
                 <section className='right drawer-content' id='ANP'>
-                    <DisplayCounselorStudents counselorStudent={followUp}/>
+                    <DisplayCounselorFollowUpStudents />
                 </section>
                 <section className='right drawer-content' id='Gym'>
-                    <DisplayCounselorStudents counselorStudent={enrolled}/>
+                    <DisplayCounselorEnrolledStudents />
                 </section>
                 {
                     console.log("counselorStudent", counselorStudent)

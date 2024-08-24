@@ -15,8 +15,17 @@ exports.getApplicantStudentByApplicantId = async (query) => {
 
   return requestedInfo;
 };
+// exports.getApplicantStudentSuggestion = async (query) => {
+//   console.log("object", query);
+//   const requestedInfo = await CreateEmployee.find(query)
+//     .select("students")
+//     .populate({
+//       path: "students",
+//     });
+
+//   return requestedInfo;
+// };
 exports.getStudentApplicationServices = async (query) => {
-  console.log("getStudentApplicationServices", query);
   const { studentId, counselorId } = query;
   const requestedInfo = await AppliedUniversity.find({
     $and: [{ stdId: studentId }, { counselorId: counselorId }],
@@ -64,8 +73,8 @@ exports.universityUpdateByApplicantService = async (query, body) => {
 };
 
 
-exports.addUniversityDocsService = async (studentId,studentObjectId,counselorId,applicantId,files,data) => {
-  const uploadedFiles = await cloudinaryService.uploadUniResFiles(files,studentId,applicantId);
+exports.addUniversityDocsService = async (studentId, studentObjectId, counselorId, applicantId, files, data) => {
+  const uploadedFiles = await cloudinaryService.uploadUniResFiles(files, studentId, applicantId);
 
   const newUniResponseData = new UniversityDocsModel({
 
@@ -75,33 +84,37 @@ exports.addUniversityDocsService = async (studentId,studentObjectId,counselorId,
     applicantId: applicantId,
     offerLetter: uploadedFiles.offerLetter,
     swiftCopy: uploadedFiles.swiftCopy,
-    universityPaymentRecept:uploadedFiles.universityPaymentRecept,
+    universityPaymentRecept: uploadedFiles.universityPaymentRecept,
     loa: uploadedFiles.loa,
     dol: uploadedFiles.dol,
     pal: uploadedFiles.pal,
     ...data
   });
-  console.log("NAIIIIIIIIIIIII",   data.visaTeamId)
-  await CreateEmployee.updateOne(
-    {
-      employee_id: data.visaTeamId,
-    },
-    {
-      $push: {
-        students: studentObjectId
+  console.log("NAIIIIIIIIIIIII", data.visaTeamId)
+
+  if (data.visaTeamId) {
+    await CreateEmployee.updateOne(
+      {
+        employee_id: data.visaTeamId,
       },
-    }
-  );
-  await CreateStudent.updateOne(
-    {
-      studentId: studentId,
-    },
-    {
-      $set: {
-        status: "visa-processing"
+      {
+        $push: {
+          students: studentObjectId
+        },
+      }
+    );
+    await CreateStudent.updateOne(
+      {
+        studentId: studentId,
       },
-    }
-  );
+      {
+        $set: {
+          status: "visa-processing"
+        },
+      }
+    );
+  }
+
 
   await newUniResponseData.save();
   return newUniResponseData;
@@ -109,24 +122,24 @@ exports.addUniversityDocsService = async (studentId,studentObjectId,counselorId,
 
 
 exports.assignedVisaTeamService = async (query) => {
-  
 
-  const expectedStudent= await UniversityDocsModel.find(query)
+
+  const expectedStudent = await UniversityDocsModel.find(query)
 
   return expectedStudent[0].visaTeamName;
-  
+
 };
 exports.getUploadedDocumentsService = async (query) => {
-  
 
-  const uploadedDocuments= await UniversityDocsModel.find(query)
+
+  const uploadedDocuments = await UniversityDocsModel.find(query)
 
   return uploadedDocuments;
-  
+
 };
-exports.universityDocumentUpdateService = async (query,files,body) => {
-  
-  const stdObj=query.studentObjectId;
+exports.universityDocumentUpdateService = async (query, files, body) => {
+
+  const stdObj = query.studentObjectId;
   await CreateEmployee.updateOne(
     {
       employee_id: body.visaTeamId,
@@ -138,9 +151,9 @@ exports.universityDocumentUpdateService = async (query,files,body) => {
     }
   );
   delete query.studentObjectId;
-  const existingDocument= await UniversityDocsModel.find(query)
+  const existingDocument = await UniversityDocsModel.find(query)
 
-  const uploadedFiles = await cloudinaryService.uploadUniResFiles(files,query.universityName,query.country);
+  const uploadedFiles = await cloudinaryService.uploadUniResFiles(files, query.universityName, query.country);
 
 
   Object.keys(uploadedFiles).forEach((key) => {
@@ -148,16 +161,16 @@ exports.universityDocumentUpdateService = async (query,files,body) => {
       existingDocument[0].set(key, uploadedFiles[key]);
     }
   });
-  body.visaTeamId && existingDocument[0].set('visaTeamId',body.visaTeamId)
-  body.visaTeamName && existingDocument[0].set('visaTeamName',body.visaTeamName)
+  body.visaTeamId && existingDocument[0].set('visaTeamId', body.visaTeamId)
+  body.visaTeamName && existingDocument[0].set('visaTeamName', body.visaTeamName)
 
-  const doc={...existingDocument[0]}
+  const doc = { ...existingDocument[0] }
 
 
   await UniversityDocsModel.updateOne(
     query,
     {
-      $set:doc
+      $set: doc
     }
   );
 

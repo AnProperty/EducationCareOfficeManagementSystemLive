@@ -13,12 +13,12 @@ import {
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
 
-const DisplayCounselorEnrolledStudents = () => {
+const DisplayCounselorFollowUpStudents = () => {
     const counselor = JSON.parse(localStorage.getItem('user'))
 
     const [counselorEnrolledStudent, setCounselorEnrolledStudent] = useState([]);
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/utilities/filter-student-list/${counselor.employee_id}?status=enrolled`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/utilities/filter-student-list/${counselor.employee_id}?status=follow-up`)
             .then((res) => res.json())
             .then((data) => setCounselorEnrolledStudent(data.data))
     }, [])
@@ -75,4 +75,4 @@ const DisplayCounselorEnrolledStudents = () => {
     );
 };
 
-export default DisplayCounselorEnrolledStudents;
+export default DisplayCounselorFollowUpStudents;

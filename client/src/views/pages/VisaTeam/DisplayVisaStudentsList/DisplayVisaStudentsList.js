@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react'
-import './StudentList.css'
+import React, { useEffect, useState } from 'react';
 import {
     CTable,
     CTableBody,
@@ -8,45 +6,36 @@ import {
     CTableHead,
     CTableHeaderCell,
     CTableRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilPeople } from '@coreui/icons'
-import { Link } from 'react-router-dom'
-import ReactPaginate from 'react-paginate'
-import axios from 'axios'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import {
+    cilPeople,
+} from '@coreui/icons';
+import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
-const StudentList = () => {
-    const [studentList, setStudentList] = useState([])
-    const [suggestions, setSuggestions] = useState([]) // State to store suggestions
+const DisplayVisaStudentsList = ({VisaTeamStudent, setVisaTeamStudent}) => {
+    const visaempl = JSON.parse(localStorage.getItem('user'))
+    console.log("object", VisaTeamStudent);
+    const [pageNumber, setPageNumber] = useState(0);
+    const papersPerPage = 10;
+    const paperVisited = pageNumber * papersPerPage;
+    const paginatePaper = VisaTeamStudent.slice(paperVisited, paperVisited + papersPerPage);
 
-    const user = JSON.parse(localStorage.getItem('user'))
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/super-admin/get-student-list`)
-            .then((res) => res.json())
-            .then((data) => setStudentList(data.data))
-    }, [])
-
-    // Pagination
-    const [pageNumber, setPageNumber] = useState(0)
-    const papersPerPage = 10
-    const paperVisited = pageNumber * papersPerPage
-    const paginatePaper = studentList.slice(paperVisited, paperVisited + papersPerPage)
-
-    const pageCount = Math.ceil(studentList.length / papersPerPage)
+    const pageCount = Math.ceil(VisaTeamStudent.length / papersPerPage);
     const handlePageClick = ({ selected }) => {
-        setPageNumber(selected)
+        setPageNumber(selected);
     }
 
-    // Filter states
+    const [suggestions, setSuggestions] = useState([]) // State to store suggestions
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [status, setStatus] = useState('')
     const [fullName, setFullName] = useState('') // New state for full name
 
-    const handleStatus = (e) => {
-        setStatus(e.target.value)
-    }
+
 
     const getNextDayDate = () => {
         const date = new Date()
@@ -71,9 +60,11 @@ const StudentList = () => {
             if (status !== '') query.append('status', status)
 
             const response = await axios.get(
-                `${process.env.REACT_APP_API_BASE_URL}/super-admin/filter-leads?${query.toString()}`,
+                `${process.env.REACT_APP_API_BASE_URL}/utilities/filter-student-list/${visaempl.employee_id}?${query.toString()}`,
             )
-            setStudentList(response.data)
+
+            console.log("sdddddddddddddddddd",response)
+            setVisaTeamStudent(response.data.data)
         } catch (error) {
             console.error('Error filtering the student list:', error)
         }
@@ -93,7 +84,7 @@ const StudentList = () => {
             if (status !== '') query.append('status', status)
 
             const response = await axios.get(
-                `${process.env.REACT_APP_API_BASE_URL}/utilities/download-leads?${query.toString()}`,
+                `${process.env.REACT_APP_API_BASE_URL}/utilities/download-leads/${visaempl.employee_id}?${query.toString()}`,
                 {
                     responseType: 'blob',
                 },
@@ -105,6 +96,7 @@ const StudentList = () => {
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link)
+
         } catch (error) {
             console.error('Error downloading the file', error)
         }
@@ -117,7 +109,7 @@ const StudentList = () => {
         if (value) {
             try {
                 const response = await axios.get(
-                    `${process.env.REACT_APP_API_BASE_URL}/super-admin/get-student-suggestion?fullName=${value}`,
+                    `${process.env.REACT_APP_API_BASE_URL}/utilities/get-student-suggestion/${visaempl.employee_id}?fullName=${value}`,
                 )
                 setSuggestions(response.data) // Set the suggestions state with the response data
             } catch (error) {
@@ -132,24 +124,12 @@ const StudentList = () => {
         setFullName(suggestedName) // Set the input to the clicked suggestion
         setSuggestions([]) // Clear the suggestions
     }
-
     return (
-        <>
+        <div>
             <section>
                 <div className="d-flex justify-content-between align-items-end my-4">
-                    <div className="">
-                        <label>Status : </label>
-                        <select id="status" name="status" onChange={handleStatus}>
-                            <option value="">Choose a status</option>
-                            <option value="follow-up">Follow-Up</option>
-                            <option value="enrolled">Enrolled</option>
-                            <option value="application-processing">Application-processing</option>
-                            <option value="visa-processing">visa-processing</option>
-                            <option value="success">Success</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
-                    </div>
-                    <div className="">
+
+                    <div>
                         <label>Full Name:</label>
                         <div className='relative flex-1'>
 
@@ -160,7 +140,7 @@ const StudentList = () => {
                                 onChange={handleFullNameChange}
                             />
                             {suggestions.length > 0 && (
-                                <ul className="suggestions-list bg-white border border-gray-300 w-full rounded mt-1 max-h-40 overflow-y-auto z-20 position-absolute">
+                                <ul className="suggestions-list bg-white border border-gray-300 w-full rounded mt-1 max-h-40 overflow-y-auto z-2 position-absolute">
                                     {suggestions.map((suggestion, index) => (
                                         <li
                                             className="p-2 cursor-pointer hover:bg-gray-200"
@@ -198,27 +178,31 @@ const StudentList = () => {
             </section>
             <CTable align="middle" className="mb-0 border" hover responsive>
                 <CTableHead className="text-nowrap">
-                    <CTableRow className="text-center">
+                    <CTableRow className='text-center'>
                         <CTableHeaderCell className="bg-body-tertiary text-center">
                             <CIcon icon={cilPeople} />
                         </CTableHeaderCell>
-                        <CTableHeaderCell className="bg-body-tertiary">Name</CTableHeaderCell>
-                        <CTableHeaderCell className="bg-body-tertiary text-center">
-                            Phone Number
-                        </CTableHeaderCell>
-                        <CTableHeaderCell className="bg-body-tertiary">Address</CTableHeaderCell>
-                        <CTableHeaderCell className="bg-body-tertiary">Email</CTableHeaderCell>
-                        <CTableHeaderCell className="bg-body-tertiary">Status</CTableHeaderCell>
+                        <CTableHeaderCell className="bg-body-tertiary">StudentId</CTableHeaderCell>
+                        <CTableHeaderCell className="bg-body-tertiary text-center">Name</CTableHeaderCell>
+                        <CTableHeaderCell className="bg-body-tertiary">Phone No</CTableHeaderCell>
+                        {/* <CTableHeaderCell className="bg-body-tertiary">Status</CTableHeaderCell> */}
                         <CTableHeaderCell className="bg-body-tertiary">More info</CTableHeaderCell>
                     </CTableRow>
+                    {/* {
+                        console.log("000000000",applicantStudent.status)
+                    } */}
                 </CTableHead>
                 <CTableBody>
-                    {paginatePaper.map((item, index) => {
+
+                    {paginatePaper?.map((item, index) => {
                         return (
-                            <CTableRow v-for="item in tableItems" key={index} className="text-center">
+
+                            <CTableRow v-for="item in tableItems" key={index} className='text-center'>
                                 <CTableDataCell className="text-center">
                                     <div>{index + 1}</div>
-                                    {console.log(item)}
+                                </CTableDataCell>
+                                <CTableDataCell>
+                                    <div>{item.studentId}</div>
                                 </CTableDataCell>
                                 <CTableDataCell>
                                     <div>{item.fullName}</div>
@@ -227,55 +211,31 @@ const StudentList = () => {
                                     <div>{item.phoneNumber}</div>
                                 </CTableDataCell>
                                 <CTableDataCell>
-                                    <div>
-                                        {item.street},{item.city},{item.country}
-                                    </div>
-                                </CTableDataCell>
-                                <CTableDataCell>
-                                    <div>{item.email}</div>
-                                </CTableDataCell>
-                                <CTableDataCell>
-                                    <div>{item.status}</div>
-                                </CTableDataCell>
-                                <CTableDataCell>
-                                    {user.role === 'receptionist' ? (
-                                        <Link
-                                            to={`/receptionist/student-details/${item.studentId}/${item.counselor.employee_id}`}
-                                            state={{ item: item }}
-                                        >
-                                            <button className="btn  btn-info bg-danger">More Info</button>
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            to={`/super-admin/student-details/${item.studentId}/${item.counselor.employee_id}`}
-                                            state={{ item: item }}
-                                        >
-                                            <button className="btn  btn-info bg-danger">More Info</button>
-                                        </Link>
-                                    )}
+                                    <Link to={`/visa-process/student-details/${item.studentId}/${item.counselor.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
                                 </CTableDataCell>
                             </CTableRow>
+
                         )
                     })}
                 </CTableBody>
-            </CTable>
-
-            <div className="ul-center my-3">
+            </CTable >
+            <div className='ul-center my-3'>
                 <ReactPaginate
                     breakLabel="..."
                     nextLabel="NEXT >>"
                     onPageChange={handlePageClick}
                     pageCount={pageCount}
                     previousLabel="<< previous"
-                    containerClassName={'paginationBtn'}
-                    previousLinkClassName={'PreviousBtn'}
-                    nextLinkClassName={'nextBtn'}
-                    disabledClassName={'paginationDisabled'}
-                    activeClassName={'paginationActive'}
+                    containerClassName={"paginationBtn"}
+                    previousLinkClassName={"PreviousBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+
                 />
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
-export default StudentList
+export default DisplayVisaStudentsList;

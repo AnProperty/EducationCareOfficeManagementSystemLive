@@ -1,3 +1,4 @@
+const CreateEmployee = require("../../model/CreateEmployee.model");
 const {
   getApplicantStudentByApplicantId,
   universityUploadByApplicantService,
@@ -6,7 +7,8 @@ const {
   assignedVisaTeamService,
   addUniversityDocsService,
   getUploadedDocumentsService,
-  universityDocumentUpdateService
+  universityDocumentUpdateService,
+  getApplicantStudentSuggestion
 } = require("../../services/ApplicantServices/ApplicantServices");
 
 exports.getApplicantStudentByApplicantIdController = async (req, res, next) => {
@@ -27,6 +29,8 @@ exports.getApplicantStudentByApplicantIdController = async (req, res, next) => {
     });
   }
 };
+
+
 exports.getStudentAppliedUniversity = async (req, res, next) => {
   try {
     console.log("getStudentAppliedUniversity Clicked");

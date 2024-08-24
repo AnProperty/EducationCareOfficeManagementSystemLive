@@ -13,17 +13,20 @@ import {
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
 
-const DisplayCounselorEnrolledStudents = () => {
-    const counselor = JSON.parse(localStorage.getItem('user'))
+const DisplayVisaStudentsOngoingList = () => {
+    const applicant = JSON.parse(localStorage.getItem('user'))
 
-    const [counselorEnrolledStudent, setCounselorEnrolledStudent] = useState([]);
+    const [applicantOngoingStudent, setApplicantOngoingStudent] = useState([]);
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/utilities/filter-student-list/${counselor.employee_id}?status=enrolled`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/utilities/filter-student-list/${applicant.employee_id}?status=visa-processing`)
             .then((res) => res.json())
-            .then((data) => setCounselorEnrolledStudent(data.data))
+            .then((data) => setApplicantOngoingStudent(data.data))
     }, [])
 
+
     
+
+
     return (
         <div>
             <CTable align="middle" className="mb-0 border" hover responsive>
@@ -42,7 +45,7 @@ const DisplayCounselorEnrolledStudents = () => {
                 </CTableHead>
                 <CTableBody>
 
-                    {counselorEnrolledStudent?.map((item, index) => {
+                    {applicantOngoingStudent?.map((item, index) => {
                         return (
 
                             <CTableRow v-for="item in tableItems" key={index} className='text-center'>
@@ -63,7 +66,7 @@ const DisplayCounselorEnrolledStudents = () => {
                                     <div>{item.status}</div>
                                 </CTableDataCell>
                                 <CTableDataCell>
-                                    <Link to={`/counselor/student-details/${item.studentId}/${counselor.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
+                                    <Link to={`/visa-process/student-details/${item.studentId}/${applicant.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
                                 </CTableDataCell>
                             </CTableRow>
 
@@ -75,4 +78,4 @@ const DisplayCounselorEnrolledStudents = () => {
     );
 };
 
-export default DisplayCounselorEnrolledStudents;
+export default DisplayVisaStudentsOngoingList;
