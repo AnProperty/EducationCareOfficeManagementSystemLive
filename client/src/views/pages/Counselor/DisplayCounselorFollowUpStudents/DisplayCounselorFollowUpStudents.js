@@ -12,6 +12,7 @@ import {
     cilPeople,
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
+import PreviousButton from '../../../../utilities/PreviousPage';
 
 const DisplayCounselorFollowUpStudents = () => {
     const counselor = JSON.parse(localStorage.getItem('user'))
@@ -71,6 +72,7 @@ const DisplayCounselorFollowUpStudents = () => {
                     })}
                 </CTableBody>
             </CTable >
+            
         </div>
     );
 };

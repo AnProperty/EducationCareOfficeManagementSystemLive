@@ -115,7 +115,7 @@ const ApplicationForm = () => {
   }
   return (
     <div>
-      <h4 className="text-center">Applied University List</h4>
+      <h4 className="text-center mb-5">Applied University List</h4>
       <>
         <CTable align="middle" className="mb-0 border" hover responsive>
           <CTableHead className="text-nowrap">
@@ -198,9 +198,9 @@ const ApplicationForm = () => {
 
       <div className="authorForm">
         <div className="authorContainer border border-secondary pb-5">
-          <h4 className=" text-center my-3">Add New Applied University</h4>
+          <h4 className=" text-center my-4">Add New Applied University</h4>
           <form>
-            <div className="d-flex justify-content-around">
+            <div className="d-flex justify-content-around mb-3">
               <div>
                 <label className="mt-3 text-dark">
                   <strong>Country : </strong>{' '}
@@ -289,7 +289,7 @@ const ApplicationForm = () => {
               </div>
             </div>
             {universityInfo?.length ? (
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-end">
                 <button
                   type="submit"
                   onClick={handleUpdate}
@@ -303,7 +303,7 @@ const ApplicationForm = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="add btn btn3 d-flex align-items-center"
+                  className="add btn btn3 d-flex align-items-end"
                 >
                   <strong className="mx-auto">Add</strong>
                 </button>
@@ -311,11 +311,7 @@ const ApplicationForm = () => {
             )}
           </form>
         </div>
-        {/* <section className='d-flex justify-content-end'>
-                    <button className='btn btn3'>
-                        <Link to={`/admin-officer/assign-visa-team/${studentId}/${counselorId}/${applicantId}`}> Assign To Visa Team</Link>
-                    </button>
-                </section> */}
+        
       </div>
     </div>
   )

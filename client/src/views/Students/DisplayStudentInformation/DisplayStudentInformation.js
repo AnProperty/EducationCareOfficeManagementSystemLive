@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import EnrolledCoursesDetails from '../../pages/Counselor/WebStudentsDetailsPage/EnrolledCoursesDetails';
+import PreviousButton from '../../../utilities/PreviousPage';
+import StatusProgress from './StatusProgress';
 
 const DisplayStudentInformation = () => {
     let { state } = useLocation()
@@ -153,6 +155,8 @@ const DisplayStudentInformation = () => {
 
     return (
         <div className='container my-3'>
+            <StatusProgress currentStatus={state?.item.status} />
+
             <section className='d-flex my-5 justify-content-between'>
 
                 <section>
@@ -281,8 +285,9 @@ const DisplayStudentInformation = () => {
 
 
             <section className="d-flex justify-content-between">
-                <button onClick={copyToClipboard} className='btn btn3'>Copy File Upload Link</button>
-                <Link to={urlToCopy} target='_blank'><button className='btn btn2'>Upload File</button></Link>
+                <PreviousButton />
+                <button onClick={copyToClipboard} className='btn btn3'>Copy Link</button>
+                <Link to={urlToCopy} target='_blank'><button className='btn btn2'>Attestation</button></Link>
                 {user.role === "Counselor" && !state.item.advise &&
                     <div>
                         <button className='btn btn4' onClick={handleShow}>Make Advices</button>
@@ -295,7 +300,8 @@ const DisplayStudentInformation = () => {
                                 sudentsDocuments:
                                     studentDocuments[0], stdId: state.item._id, app: state.item.applicant
                             }}>
-                                <button className='btn btn2'>See Documents</button>
+                                <button className='btn btn5'>Next &gt;&gt;</button>
+
                             </Link>
                         )}
                         {user.role === "Counselor" && (
@@ -303,7 +309,7 @@ const DisplayStudentInformation = () => {
                                 sudentsDocuments:
                                     studentDocuments[0], stdId: state.item._id, app: state.item.applicant
                             }}>
-                                <button className='btn btn2'>See Documents</button>
+                                <button className='btn btn5'>Next &gt;&gt;</button>
                             </Link>
                         )}
                         {user.role === "admin Officer" && (
@@ -312,7 +318,7 @@ const DisplayStudentInformation = () => {
                                     studentDocuments[0], stdId: state.item._id, app: state.item.applicant
                             }}>
 
-                                <button className='btn btn2'>See Documents</button>
+                                <button className='btn btn5'>Next &gt;&gt;</button>
                             </Link>
                         )}
                         {user.role === "Admin Office Visa Section" && (
@@ -321,7 +327,7 @@ const DisplayStudentInformation = () => {
                                     studentDocuments[0], stdId: state.item._id, app: state.item.applicant
                             }}>
 
-                                <button className='btn btn2'>See Documents</button>
+                                <button className='btn btn5'>Next &gt;&gt;</button>
                             </Link>
                         )}
                     </>
