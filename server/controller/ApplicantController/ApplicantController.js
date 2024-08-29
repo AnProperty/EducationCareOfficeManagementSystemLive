@@ -1,4 +1,6 @@
 const CreateEmployee = require("../../model/CreateEmployee.model");
+const CreateStudent = require("../../model/CreateStudent.model");
+const Notification = require("../../model/Notification.model");
 const {
   getApplicantStudentByApplicantId,
   universityUploadByApplicantService,
@@ -107,6 +109,22 @@ exports.postUniversityDocsController = async (req, res) => {
       files,
       data
     );
+    console.log("xxxxxxxxxxxxxxxxxxxxx",data)
+    const student = await CreateStudent.findById(studentObjectId);
+    const visaTeam = await CreateEmployee.findOne({"employee_id":data.visaTeamId})
+    if (uniData) {
+      const notification = new Notification({
+        message: `A new student has been assigned to you for visa application: ${student.fullName}`,
+        employeeId: visaTeam.employee_id,
+        studentId: studentId,
+        counselorId: student.counselor.employee_id,
+        for: "visa application",
+      });
+      await notification.save();
+
+      const io = req.app.get("socketio");
+      io.emit("notification", notification);
+    }
     res.status(200).json({
       status: "success",
       message: "University data added successfully",

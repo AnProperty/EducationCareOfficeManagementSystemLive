@@ -16,13 +16,15 @@ const VisaTeamRoute = require("./Routes/v1/visa.route");
 const UtilitiesRoute = require("./Routes/v1/utilities.route");
 const EmployeeRoleRoute = require("./Routes/v1/EmployeeRole.route.js");
 
+const notificationsRoute = require("./Routes/v1/notification.route.js");
+
 
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ['http://antgec.com', 'http://www.antgec.com'],
+  origin: ['http://localhost:3000', 'http://www.antgec.com'],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Add PATCH and DELETE here
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -41,6 +43,7 @@ app.use("/api/v1/visa", VisaTeamRoute);
 app.use("/api/v1/utilities", UtilitiesRoute);
 app.use("/api/v1/role", EmployeeRoleRoute);
 
+app.use('/notifications', notificationsRoute)
 
 
 app.get("/", (req, res) => {
