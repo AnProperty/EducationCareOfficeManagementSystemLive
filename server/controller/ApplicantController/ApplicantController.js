@@ -115,8 +115,9 @@ exports.postUniversityDocsController = async (req, res) => {
     if (uniData) {
       const notification = new Notification({
         message: `A new student has been assigned to you for visa application: ${student.fullName}`,
-        employeeId: visaTeam._id,
-        studentId: studentObjectId,
+        employeeId: visaTeam.employee_id,
+        studentId: studentId,
+        counselorId: student.counselor.employee_id,
         for: "visa application",
       });
       await notification.save();

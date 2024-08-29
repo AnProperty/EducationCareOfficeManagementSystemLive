@@ -62,7 +62,7 @@ const AppHeader = () => {
 
     //fetch notifications
     const fetchNotifications = async () => {
-      const res = await fetch(`http://localhost:5004/notifications/${JSON.parse(localStorage.getItem('user'))._id}`)
+      const res = await fetch(`http://localhost:5004/notifications/${JSON.parse(localStorage.getItem('user')).employee_id}`)
       const data = await res.json()
       setNotifications(data.data)
     }
@@ -71,7 +71,7 @@ const AppHeader = () => {
 
   useEffect(() => {
     socket.on('notification', (data) => {
-      if((JSON.parse(localStorage.getItem('user'))._id) === data.employeeId){
+      if((JSON.parse(localStorage.getItem('user')).employee_id) === data.employeeId){
         setNotifications((prevNotifications) => [data, ...prevNotifications])
       }
     })

@@ -1,3 +1,4 @@
+const CreateEmployee = require("../../model/CreateEmployee.model");
 const CreateStudent = require("../../model/CreateStudent.model");
 const Notification = require("../../model/Notification.model");
 const {
@@ -29,11 +30,14 @@ exports.AssignStudentToApplicantController = async (req, res, next) => {
     const request = await AssignStudentToApplicantServices(query, req.body);
     console.log("reqqqqqqqqqqqqqqqqqqqqqq", query, request);
     const student = await CreateStudent.findById(req.params.studentId);
+    const employee = await CreateEmployee.findById(req.params.apllicantId);
+    console.log("reqqqqqqqqqqqqqqqqqqqqqq2", student, employee);
     if (request) {
       const notification = new Notification({
         message: `A new student has been assigned to you for application: ${student.fullName}`,
-        employeeId: req.params.apllicantId,
-        studentId: req.params.studentId,
+        employeeId: employee.employee_id,
+        studentId: student.studentId,
+        counselorId: student.counselor.employee_id,
         for: "application",
       });
       await notification.save();

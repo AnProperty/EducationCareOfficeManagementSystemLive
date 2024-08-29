@@ -10,10 +10,16 @@ import { useDispatch } from 'react-redux'
 const NotificationList = ({ notifications, markAsRead }) => {
   const navigate = useNavigate()
 
-  const handleRowClick = (studentId) => {
+  const handleRowClick = (studentId,employeeId,counselorId,task) => {
     // localStorage.setItem('studentId',studentId)
     // dispatch({ type: 'toggleElement', key: 'notificationClick' })
-    navigate(`/counselor/student-details/1/10130`)
+    if(task === "counseling"){
+        navigate(`/counselor/student-details/${studentId}/${employeeId}`)
+    }else if(task === "application"){
+        navigate(`/admin-officer/student-details/${studentId}/${counselorId}`)
+    }else{
+        navigate(`/visa-process/student-details/${studentId}/${counselorId}`)
+    }
   }
 
   return (
@@ -29,7 +35,7 @@ const NotificationList = ({ notifications, markAsRead }) => {
             <div
               key={notification._id}
               className={`d-flex justify-content-between align-items-center p-2 mb-2 rounded ${notification.isRead ? 'bg-light' : 'bg-warning-light'}`}
-              onClick={() => handleRowClick(notification.studentId)}
+              onClick={() => handleRowClick(notification.studentId,notification.employeeId,notification.counselorId,notification.for)}
               style={{"width":"30rem"}}
             >
               <CCardText className="m-0" style={{"color":"black"}}>{notification.message}</CCardText>
