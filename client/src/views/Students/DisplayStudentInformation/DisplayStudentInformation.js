@@ -11,7 +11,6 @@ import StatusProgress from './StatusProgress';
 
 const DisplayStudentInformation = () => {
     let { state } = useLocation()
-    console.log(state);
     const { studentId, counselorId } = useParams()
     console.log(studentId, counselorId);
     const [show, setShow] = useState(false);

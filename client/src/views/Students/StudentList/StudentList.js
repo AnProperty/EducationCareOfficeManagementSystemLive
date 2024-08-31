@@ -190,7 +190,7 @@ const StudentList = () => {
                         </div>
                         <div className="align-items-center">
                             <button className="btn btn4" onClick={handleDownload}>
-                                Download Leads
+                                Download
                             </button>
                         </div>
                     </div>
