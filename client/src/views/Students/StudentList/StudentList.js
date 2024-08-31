@@ -10,7 +10,7 @@ import {
     CTableRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilPeople } from '@coreui/icons'
+import { cilPeople, cilTrash } from '@coreui/icons'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import axios from 'axios'
@@ -133,6 +133,19 @@ const StudentList = () => {
         setSuggestions([]) // Clear the suggestions
     }
 
+    // Function to handle delete with confirmation
+    const handleDelete = async (studentId) => {
+        if (window.confirm('Are you sure you want to delete this student?')) {
+            try {
+                await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/super-admin/delete-student/${studentId}/${user._id}`)
+                setStudentList(studentList.filter((student) => student._id !== studentId)) // Update list
+            } catch (error) {
+                console.error('Error deleting the student:', error)
+            }
+        }
+    }
+
+
     return (
         <>
             <section>
@@ -210,6 +223,7 @@ const StudentList = () => {
                         <CTableHeaderCell className="bg-body-tertiary">Email</CTableHeaderCell>
                         <CTableHeaderCell className="bg-body-tertiary">Status</CTableHeaderCell>
                         <CTableHeaderCell className="bg-body-tertiary">More info</CTableHeaderCell>
+                        <CTableHeaderCell className="bg-body-tertiary">Delete</CTableHeaderCell> {/* New Delete Column */}
                     </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -218,7 +232,7 @@ const StudentList = () => {
                             <CTableRow v-for="item in tableItems" key={index} className="text-center">
                                 <CTableDataCell className="text-center">
                                     <div>{index + 1}</div>
-                                    {console.log(item)}
+                                    {console.log("uuuuuuuu",item)}
                                 </CTableDataCell>
                                 <CTableDataCell>
                                     <div>{item.fullName}</div>
@@ -253,6 +267,11 @@ const StudentList = () => {
                                             <button className="btn  btn-info bg-danger">More Info</button>
                                         </Link>
                                     )}
+                                </CTableDataCell>
+                                <CTableDataCell> {/* Delete Button Column */}
+                                    <button className="btn3 btn-danger" onClick={() => handleDelete(item._id)}>
+                                        <CIcon icon={cilTrash} />
+                                    </button>
                                 </CTableDataCell>
                             </CTableRow>
                         )

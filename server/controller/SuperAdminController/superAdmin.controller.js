@@ -6,7 +6,8 @@ const {
   GetAllStudenteListServices,
   addEmployee,
   GetAllCommissionListServices,
-  addNewRoleEmployee
+  addNewRoleEmployee,
+  DeleteStudent
 } = require("../../services/superAdminServices/superAdmin.services");
 const CreateEmployee = require("../../model/CreateEmployee.model");
 const CreateStudent = require("../../model/CreateStudent.model");
@@ -133,6 +134,21 @@ exports.DownloadEmployeeFiles = async (req, res) => {
     res.set('Content-Disposition', `attachment; filename="${employee.name}.zip"`);
     res.send(zipData);
 
+  } catch (error) {
+    console.error('Error downloading employee files:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.DeleteStudent = async (req, res) => {
+  try {
+    
+    const studentId = req.params.studentId;
+    const employeeId = req.params.employeeId;
+    const remove = await DeleteStudent(studentId, employeeId);
+
+    console.log("Move to archive done!")
+    res.status(201).json({ data: remove });
   } catch (error) {
     console.error('Error downloading employee files:', error);
     res.status(500).json({ error: 'Internal server error' });

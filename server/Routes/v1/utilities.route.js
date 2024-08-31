@@ -4,7 +4,8 @@ const {
   downloadStudentDocumentController,
   downloadUniDocsController, downloadData, downloadDateData, filterApplicantController,
   SuggestStudentsNameController,
-  downloadDataForSpecificEmployeeController
+  downloadDataForSpecificEmployeeController,
+  DeleteStudent,getArchiveStudents,restoreStudentFromArchive
 } = require("../../controller/UtilitiesController/UtilitiesController");
 
 router
@@ -22,5 +23,9 @@ router
 router.route("/download-leads").get(downloadData);
 router.route("/download-leads/:employee_id").get(downloadDataForSpecificEmployeeController);
 router.route("/download-specific-date").post(downloadDateData);
+
+router.route("/delete-student/:studentId/:employeeId").delete(DeleteStudent);
+router.route("/archived-students").get(getArchiveStudents);
+router.route("/restore-student").post(restoreStudentFromArchive);
 
 module.exports = router;

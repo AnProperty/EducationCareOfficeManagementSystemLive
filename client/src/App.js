@@ -35,6 +35,7 @@ import VisaTeamPrivet from './PrivetRoute/VisaTeamPrivet'
 import NessecaryStudentDocuments from './views/pages/VisaTeam/NessecaryStudentDocuments/NessecaryStudentDocuments'
 import UniversityList from './views/University/UniversityList/UniversityList'
 import Commission from './views/B2B/Commission/Commission'
+import ReCycleStudent from './views/ReCycleStudent/ReCycleStudent'
 import StudentListFromWeb from './views/pages/Counselor/StudentListFromWeb/StudentListFromWeb'
 import WebStudentsDetailsPage from './views/pages/Counselor/WebStudentsDetailsPage/WebStudentsDetailsPage'
 import DisplayCounselorEnrolledStudents from './views/pages/Counselor/DisplayCounselorEnrolledStudents/DisplayCounselorEnrolledStudents'
@@ -255,6 +256,9 @@ const App = () => {
               />
               <Route path="/super-admin/b2b/commission-list"
                 element={<SuperAdminPrivet><Commission /></SuperAdminPrivet>}
+              />
+              <Route path="/super-admin/recycle/student-list"
+                element={<SuperAdminPrivet><ReCycleStudent /></SuperAdminPrivet>}
               />
               <Route path="/super-admin/web-students"
                 element={<StudentListFromWeb />}

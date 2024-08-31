@@ -3,6 +3,7 @@ import CIcon from '@coreui/icons-react'
 import {
   cilDrop,
   cilNotes,
+  cilPeople,
   cilPlus,
   cilSpeedometer,
   cilStar,
@@ -58,6 +59,12 @@ const _nav = [
     name: 'B2B',
     to: '/super-admin/b2b/commission-list',
     icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'ReCycle Students',
+    to: '/super-admin/recycle/student-list',
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,

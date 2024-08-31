@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 import CIcon from '@coreui/icons-react';
 import {
     cilPeople,
+    cilTrash,
 } from '@coreui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -127,6 +128,17 @@ const DisplayCounselorStudents = ({ counselorStudent, setCounselorStudent }) => 
         setSuggestions([]) // Clear the suggestions
     }
 
+    const handleDelete = async (studentId) => {
+        if (window.confirm('Are you sure you want to delete this student?')) {
+            try {
+                await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/utilities/delete-student/${studentId}/${counselor._id}`)
+                setCounselorStudent(counselorStudent.filter((student) => student._id !== studentId)) // Update list
+            } catch (error) {
+                console.error('Error deleting the student:', error)
+            }
+        }
+    }
+
 
     return (
         <div>
@@ -191,6 +203,7 @@ const DisplayCounselorStudents = ({ counselorStudent, setCounselorStudent }) => 
                         <CTableHeaderCell className="bg-body-tertiary">Phone No</CTableHeaderCell>
                         <CTableHeaderCell className="bg-body-tertiary">Status</CTableHeaderCell>
                         <CTableHeaderCell className="bg-body-tertiary">More info</CTableHeaderCell>
+                        <CTableHeaderCell className="bg-body-tertiary">Delete</CTableHeaderCell>
                     </CTableRow>
                     {
                         console.log("000000000", counselorStudent.status)
@@ -220,6 +233,11 @@ const DisplayCounselorStudents = ({ counselorStudent, setCounselorStudent }) => 
                                 </CTableDataCell>
                                 <CTableDataCell>
                                     <Link to={`/counselor/student-details/${item.studentId}/${counselor.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
+                                </CTableDataCell>
+                                <CTableDataCell> {/* Delete Button Column */}
+                                    <button className="btn3 btn-danger" onClick={() => handleDelete(item._id)}>
+                                        <CIcon icon={cilTrash} />
+                                    </button>
                                 </CTableDataCell>
                             </CTableRow>
 

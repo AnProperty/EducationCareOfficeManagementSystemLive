@@ -8,6 +8,7 @@ const {
   GetAllEmployeeListController,
   GetAllStudentListController,
   DownloadEmployeeFiles,
+  DeleteStudent,
   GetAllCommissionListController, filterLeadsController, addNewRoleController,
   getStudentNameSuggestions
 } = require("../../controller/SuperAdminController/superAdmin.controller");
@@ -28,5 +29,6 @@ router.route("/get-commission-list").get(GetAllCommissionListController);
 router.route("/filter-leads").get(filterLeadsController);
 router.route("/get-student-suggestion").get(getStudentNameSuggestions);
 router.route("/download-employee-docs/:employee_id").get(DownloadEmployeeFiles);
+router.route("/delete-student/:studentId/:employeeId").delete(DeleteStudent);
 
 module.exports = router;

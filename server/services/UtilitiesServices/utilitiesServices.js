@@ -1,3 +1,4 @@
+const ArchivedStudent = require("../../model/ArchivedStudent.model");
 const CreateEmployee = require("../../model/CreateEmployee.model");
 const CreateStudent = require("../../model/CreateStudent.model");
 const UniversityDocsModel = require("../../model/UnivarsityDocsForVisa.model");
@@ -44,5 +45,33 @@ exports.generateExcelFile = (data) => {
   const ws = XLSX.utils.json_to_sheet(plainData);
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+};
+
+
+exports.MoveStudent = async (studentId,employeeId) => {
+  try {
+    // Step 1: Find the employee and remove the student from the students array
+    const employee = await CreateEmployee.findByIdAndUpdate(
+      employeeId,
+      { $pull: { students: studentId } }, // Remove the student reference from the array
+      { new: true } // Return the updated employee document
+    );
+
+    if (!employee) {
+      throw new Error("Employee not found");
+    }
+
+    // Step 2: Create a new archived student document in the ArchivedStudent collection
+    const archivedStudent = new ArchivedStudent({
+      student: studentId,
+      removedFromEmployee: employeeId,
+    });
+
+    await archivedStudent.save();
+
+    console.log("Student removed from employee and archived successfully.");
+  } catch (error) {
+    console.error("Error moving student:", error);
+  }
 };
 

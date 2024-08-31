@@ -2,7 +2,7 @@ const CreateEmployee = require("../../model/CreateEmployee.model");
 const CreateStudent = require("../../model/CreateStudent.model");
 const UniversityDocsModel = require("../../model/UnivarsityDocsForVisa.model");
 //const Employee = require("../../model/Employee.model");
-const cloudinaryService = require('../cloudinaryService')
+const cloudinaryService = require("../cloudinaryService");
 
 // exports.GetAllEmployeeListServices = async () => {
 //   const employeesInfo = await CreateEmployee.find({});
@@ -27,7 +27,6 @@ const cloudinaryService = require('../cloudinaryService')
 
 //   return uniqueEmailArray;
 // };
-
 
 exports.GetAllEmployeeListServices = async () => {
   const employeesInfo = await CreateEmployee.find({}).select("-students");
@@ -54,26 +53,36 @@ exports.GetAllStudenteListServices = async () => {
 };
 exports.GetAllCommissionListServices = async () => {
   const StudentsList = await UniversityDocsModel.find({
-    status:
-      "success"
+    status: "success",
   });
   return StudentsList;
 };
 
 exports.addEmployee = async (employeeData, files) => {
-  const uploadedFiles = await cloudinaryService.uploadEmployeeFiles(files, employeeData.name.trimEnd());
+  const uploadedFiles = await cloudinaryService.uploadEmployeeFiles(
+    files,
+    employeeData.name.trimEnd()
+  );
 
   const newEmployee = new CreateEmployee({
     ...employeeData,
     profilePic: uploadedFiles.profilePic,
     cv: uploadedFiles.cv,
-    resume: uploadedFiles.resume
+    resume: uploadedFiles.resume,
   });
   await newEmployee.save();
   return newEmployee;
 };
 exports.addNewRoleEmployee = async (employeeData) => {
   const registeredInfo = await CreateEmployee.create(employeeData);
-  
+
   return registeredInfo;
+};
+exports.DeleteStudent = async (studentId,employeeId) => {
+  try {
+    await CreateStudent.findByIdAndDelete(studentId)
+    console.log("Student removed from createStudent successfully.");
+  } catch (error) {
+    console.error("Error deleting student:", error);
+  }
 };
