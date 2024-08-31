@@ -42,3 +42,4 @@ const EnrolledStudent = mongoose.model(
 );
 
 module.exports = EnrolledStudent;
+
