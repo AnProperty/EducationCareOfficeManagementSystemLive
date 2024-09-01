@@ -85,26 +85,27 @@ exports.addNewRoleEmployee = async (employeeData) => {
 exports.DeleteStudent = async (studentId,employeeId) => {
   try {
     const student = await CreateStudent.findById(studentId);
-     // Step 3: Delete the student from EnrolledStudent collection
+     // Step 1: Delete the student from EnrolledStudent collection
      await EnrolledStudent.deleteMany({ studentId: student.studentId });
      console.log('Student removed from EnrolledStudent successfully.');
  
-     // Step 4: Delete notifications related to the student
+     // Step 2: Delete notifications related to the student
      await Notification.deleteMany({ studentId: student.studentId });
      console.log('Notifications related to the student removed successfully.');
  
-     // Step 5: Delete the student from StudentDetails collection
+     // Step 3: Delete the student from StudentDetails collection
      await StudentDetailsModel.deleteMany({ studentId: student.studentId });
      console.log('Student details removed from StudentDetails successfully.');
  
-     // Step 6: Delete the student from UniversityDocs collection
+     // Step 4: Delete the student from UniversityDocs collection
      await UniversityDocsModel.deleteMany({ studentId: student.studentId });
      console.log('Student removed from UniversityDocs successfully.');
  
-     // Step 7: Delete the student from AppliedUniversity collection
+     // Step 5: Delete the student from AppliedUniversity collection
      await AppliedUniversity.deleteMany({ stdId: student.studentId });
      console.log('Student removed from AppliedUniversity successfully.');
      
+     // Step 6: Delete the student from CreateEmployee's students
      await CreateEmployee.updateMany(
       { students: studentId },
       { $pull: { students: studentId } },

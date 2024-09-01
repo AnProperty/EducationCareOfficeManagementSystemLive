@@ -81,7 +81,7 @@ const DisplayCounselorEnrolledStudents = () => {
                                     <Link to={`/counselor/student-details/${item.studentId}/${counselor.employee_id}`} state={{ item: item }}><button className="button btn btn3">More Info</button></Link>
                                 </CTableDataCell>
                                 <CTableDataCell> {/* Delete Button Column */}
-                                    <button className="btn3 btn-danger" onClick={() => handleDelete(item._id)}>
+                                    <button className="btn4 btn-danger" onClick={() => handleDelete(item._id)}>
                                         <CIcon icon={cilTrash} />
                                     </button>
                                 </CTableDataCell>
