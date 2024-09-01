@@ -17,6 +17,10 @@ const DisplayStudentInformation = () => {
     const [counselorStudentCourses, setCounselorStudentCourses] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    function isValidObjectId(id) {
+        // Regular expression to check if a string is a 24-character hex string
+        return /^[a-fA-F0-9]{24}$/.test(id);
+    }
     const urlToCopy = `https://antgec.com/file-upload/${studentId}/${counselorId}`;
     const copyToClipboard = () => {
 
@@ -71,12 +75,13 @@ const DisplayStudentInformation = () => {
             try {
                 fetch(`https://api.gecare.co.uk/user/application-list/${studentId}`)
                     .then((res) => res.json())
-                    .then((data) => data && setCounselorStudentCourses(data.data))
+                    .then((data) => console.log(data))
             } catch (err) {
                 console.error("Error fetching profile info:", err);
             }
         }
-        fetchData();
+        isValidObjectId(studentId) && fetchData();
+
     }, [])
     const user = JSON.parse(localStorage.getItem("user"))
 
