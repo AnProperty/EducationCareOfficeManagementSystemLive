@@ -3,7 +3,7 @@ const Notification = require("../../model/Notification.model");
 
 exports.getNotificationServices = async (employeeId) => {
   try {
-    const notifications = await Notification.find({"employeeId":employeeId}).sort({ createdAt: -1 });
+    const notifications = await Notification.find({ "employeeId": employeeId }).sort({ createdAt: -1 });
     return notifications;
   } catch (error) {
     throw error;
@@ -12,8 +12,8 @@ exports.getNotificationServices = async (employeeId) => {
 exports.getStudentDetailsServices = async (params) => {
   try {
 
-    console.log('PARAMS',params);
-  
+    console.log('PARAMS', params);
+
 
     const StudentDetails = await CreateStudent.find(params);
     return StudentDetails;
@@ -23,7 +23,7 @@ exports.getStudentDetailsServices = async (params) => {
 };
 exports.markAsReadNotificationServices = async (query) => {
   try {
-    const notification = await Notification.findByIdAndUpdate(query,{ isRead: true },{ new: true });
+    const notification = await Notification.findByIdAndUpdate(query, { isRead: true }, { new: true });
     return notification;
   } catch (error) {
     throw error;

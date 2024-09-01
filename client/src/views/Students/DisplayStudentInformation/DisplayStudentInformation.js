@@ -60,17 +60,17 @@ const DisplayStudentInformation = () => {
 
     const [studentDocuments, setStudentDocuments] = useState([])
     useEffect(() => {
-        const getStudentDetails = async () => {
-            fetch(`${process.env.REACT_APP_API_BASE_URL}/student/${studentId}/${counselorId}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log('okkkkkkkkkk', data)
-                    const obj = data.data
-                    console.log(obj)
-                    setStudentDocuments(obj)
-                })
-        }
-        getStudentDetails();
+        // const getStudentDetails = async () => {
+        //     fetch(`${process.env.REACT_APP_API_BASE_URL}/student/${studentId}/${counselorId}`)
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             console.log('okkkkkkkkkk', data)
+        //             const obj = data.data
+        //             console.log(obj)
+        //             setStudentDocuments(obj)
+        //         })
+        // }
+        // getStudentDetails();
         const fetchData = async () => {
             try {
                 fetch(`https://api.gecare.co.uk/user/application-list/${studentId}`)
