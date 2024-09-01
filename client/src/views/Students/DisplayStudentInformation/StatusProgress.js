@@ -1,7 +1,8 @@
 // components/StatusProgress.js
 import React from 'react';
-import { CIcon } from '@coreui/icons-react';
+
 import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
 
 const StatusProgress = ({ currentStatus }) => {
   // Updated statuses array
