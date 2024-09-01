@@ -15,7 +15,7 @@ const NotificationList = ({ notifications, markAsRead }) => {
 
     console.log(studentId, employeeId, counselorId);
     const response = await axios.get(
-      `http://localhost:5004/notifications/studentInfo/${studentId}`,
+      `http://api.antgec.com/notifications/studentInfo/${studentId}`,
     )
 
     console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR', response.data.data[0]);
