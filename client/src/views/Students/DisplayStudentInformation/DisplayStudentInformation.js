@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import EnrolledCoursesDetails from '../../pages/Counselor/WebStudentsDetailsPage/EnrolledCoursesDetails';
 import PreviousButton from '../../../utilities/PreviousPage';
-import StatusProgress from './StatusProgress';
+// import StatusProgress from './StatusProgress';
 
 const DisplayStudentInformation = () => {
     let { state } = useLocation()
@@ -159,7 +159,7 @@ const DisplayStudentInformation = () => {
 
     return (
         <div className='container my-3'>
-            <StatusProgress currentStatus={state?.item?.status} />
+            {/* <StatusProgress currentStatus={state?.item?.status} /> */}
 
             <section className='d-flex my-5 justify-content-between'>
 
