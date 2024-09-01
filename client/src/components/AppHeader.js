@@ -29,7 +29,7 @@ import {
 import { AppHeaderDropdown } from './header/index'
 import NotificationList from './NotificationList'
 
-const socket = io(`http://localhost:5004`, {
+const socket = io(`https://api.antgec.com`, {
   transports: ['websocket', 'polling'],
 })
 
@@ -62,7 +62,7 @@ const AppHeader = () => {
 
     //fetch notifications
     const fetchNotifications = async () => {
-      const res = await fetch(`http://localhost:5004/notifications/${JSON.parse(localStorage.getItem('user')).employee_id}`)
+      const res = await fetch(`https://api.antgec.com/notifications/${JSON.parse(localStorage.getItem('user')).employee_id}`)
       const data = await res.json()
       setNotifications(data.data)
     }
@@ -85,7 +85,7 @@ const AppHeader = () => {
   }
 
   const markAsRead = async (id) => {
-    await fetch(`http://localhost:5004/notifications/${id}/read`, {
+    await fetch(`https://api.antgec.com/notifications/${id}/read`, {
       method: 'PUT',
     })
 
