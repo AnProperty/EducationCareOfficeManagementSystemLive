@@ -61,7 +61,7 @@ const DisplayStudentInformation = () => {
     const [studentDocuments, setStudentDocuments] = useState([])
     useEffect(() => {
         const getStudentDetails = async () => {
-            fetch(`${process.env.REACT_APP_API_BASE_URL}/student/${studentId}/${counselorId}`)
+            fetch(`https://api.antgec.com/student/${studentId}/${counselorId}`)
                 .then((res) => res.json())
                 .then((data) => {
                     console.log('okkkkkkkkkk', data)
@@ -112,7 +112,7 @@ const DisplayStudentInformation = () => {
 
             axios
                 .patch(
-                    `${process.env.REACT_APP_API_BASE_URL}/counselor/make-advices/${studentId}/${counselorId}`,
+                    `https://api.antgec.com/counselor/make-advices/${studentId}/${counselorId}`,
                     advicesList,
                 )
                 .then((response) => {
@@ -159,7 +159,7 @@ const DisplayStudentInformation = () => {
 
     return (
         <div className='container my-3'>
-            <StatusProgress currentStatus={state?.item.status} />
+            <StatusProgress currentStatus={state?.item?.status} />
 
             <section className='d-flex my-5 justify-content-between'>
 
