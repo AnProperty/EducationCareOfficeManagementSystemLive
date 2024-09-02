@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons';
-import {CIcon} from '@coreui/icons-react';
+import CIcon from '@coreui/icons-react'
 
 const StatusProgress = ({ currentStatus }) => {
   // Updated statuses array
@@ -24,21 +24,20 @@ const StatusProgress = ({ currentStatus }) => {
           <div className="d-flex flex-column align-items-center">
             {/* Circle */}
             <div
-              className={`d-flex justify-content-center align-items-center rounded-circle ${
-                index < currentIndex
-                  ? 'bg-success text-white' // Completed
-                  : index === currentIndex
+              className={`d-flex justify-content-center align-items-center rounded-circle ${index < currentIndex
+                ? 'bg-success text-white' // Completed
+                : index === currentIndex
                   ? 'bg-primary text-white' // Current
                   : 'bg-white text-muted border border-secondary' // Future
-              }`}
+                }`}
               style={{ width: '32px', height: '32px' }}
             >
               {index < currentIndex ? (
-                <CIcon content={cilCheckAlt} className="text-white" /> // Checkmark for completed
+                <CIcon icon={cilCheckAlt} customClassName="nav-icon" />
               ) : index === currentIndex ? (
-                <CIcon content={cilChevronDoubleRight} className="text-white" /> // Current step indicator
+                <CIcon icon={cilChevronDoubleRight} customClassName="nav-icon" />
               ) : (
-                <CIcon content={cilCircle} className="text-secondary" /> // Placeholder circle for future steps
+                <CIcon icon={cilCircle} customClassName="nav-icon" />
               )}
             </div>
 
