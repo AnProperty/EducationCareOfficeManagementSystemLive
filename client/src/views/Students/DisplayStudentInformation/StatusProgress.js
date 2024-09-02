@@ -19,7 +19,11 @@ const StatusProgress = ({ currentStatus }) => {
 
   return (
     <div className="d-flex align-items-center w-100">
-      <h1>Status</h1>
+      {statuses.map((status, index) => (
+        <div key={index}>
+          {status}
+        </div>
+      ))}
     </div>
   );
 };
