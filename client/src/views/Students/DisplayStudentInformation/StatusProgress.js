@@ -1,11 +1,9 @@
-// components/StatusProgress.js
 import React from 'react';
-
 import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons';
-import CIcon from '@coreui/icons-react';
+import { CIcon } from '@coreui/icons-react';
 
 const StatusProgress = ({ currentStatus }) => {
-  // Updated statuses array
+  // Statuses array
   const statuses = [
     'follow-up',
     'enrolled',
@@ -16,6 +14,17 @@ const StatusProgress = ({ currentStatus }) => {
 
   // Determine the index of the current status
   const currentIndex = statuses.indexOf(currentStatus);
+
+  // Helper function to render the icon based on the status
+  const renderIcon = (index) => {
+    if (index < currentIndex) {
+      return <CIcon icon={cilCheckAlt} className="text-white" />; // Checkmark for completed
+    } else if (index === currentIndex) {
+      return <CIcon icon={cilChevronDoubleRight} className="text-white" />; // Current step indicator
+    } else {
+      return <CIcon icon={cilCircle} className="text-secondary" />; // Placeholder circle for future steps
+    }
+  };
 
   return (
     <div className="d-flex align-items-center w-100">
@@ -33,22 +42,16 @@ const StatusProgress = ({ currentStatus }) => {
               }`}
               style={{ width: '32px', height: '32px' }}
             >
-              {index < currentIndex ? (
-                <CIcon content={cilCheckAlt} className="text-white" /> // Checkmark for completed
-              ) : index === currentIndex ? (
-                <CIcon content={cilChevronDoubleRight} className="text-white" /> // Current step indicator
-              ) : (
-                <CIcon content={cilCircle} className="text-secondary" /> // Placeholder circle for future steps
-              )}
+              {renderIcon(index)}
             </div>
 
             {/* Label */}
-            {/* <div className="text-center text-secondary mt-2 text-capitalize">
+            <div className="text-center text-secondary mt-2 text-capitalize">
               {status.replace('-', ' ')}
-            </div> */}
+            </div>
           </div>
 
-          {/* {index < statuses.length - 1 && (
+          {index < statuses.length - 1 && (
             <div
               className="flex-grow-1 position-relative"
               style={{
@@ -57,7 +60,7 @@ const StatusProgress = ({ currentStatus }) => {
                 margin: '0 8px',
               }}
             ></div>
-          )} */}
+          )}
         </React.Fragment>
       ))}
     </div>
