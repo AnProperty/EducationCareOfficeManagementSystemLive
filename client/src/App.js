@@ -5,45 +5,47 @@ import { useSelector } from 'react-redux'
 import './App.css'
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
-import AdminOfficerPrivet from './PrivetRoute/AdminOfficerPrivet'
-import CounselorPrivet from './PrivetRoute/CounselorPrivet'
-import CounselorHomePage from './views/pages/Counselor/CounselorHomePage'
-import Dashboard from './views/dashboard/Dashboard'
-import StudentList from './views/Students/StudentList/StudentList'
-import CreateStudent from './views/Students/CreateStudent/CreateStudent'
-import DisplayStudentInformation from './views/Students/DisplayStudentInformation/DisplayStudentInformation'
-import EmployeeList from './views/Employee/EmployeeList/EmployeeList'
-import CreateEmployee from './views/Employee/CreateEmployee/CreateEmployee'
-import EmployeeDetails from './views/Employee/EmployeeDetails/EmployeeDetails'
-import DocumentsUploadsForm from './views/Students/DocumentsUploads/DocumentsUploadsForm'
-import StudentsDocuments from './views/Students/StudentsDocuments/StudentsDocuments'
-import SuperAdminPrivet from './PrivetRoute/SuperAdminPrivet'
+const AdminOfficerPrivet = React.lazy(() => import('./PrivetRoute/AdminOfficerPrivet'));
+const CounselorPrivet = React.lazy(() => import('./PrivetRoute/CounselorPrivet'));
+const CounselorHomePage = React.lazy(() => import('./views/pages/Counselor/CounselorHomePage'));
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const StudentList = React.lazy(() => import('./views/Students/StudentList/StudentList'));
+const CreateStudent = React.lazy(() => import('./views/Students/CreateStudent/CreateStudent'));
+const DisplayStudentInformation = React.lazy(() => import('./views/Students/DisplayStudentInformation/DisplayStudentInformation'));
+const EmployeeList = React.lazy(() => import('./views/Employee/EmployeeList/EmployeeList'));
+const CreateEmployee = React.lazy(() => import('./views/Employee/CreateEmployee/CreateEmployee'));
+const EmployeeDetails = React.lazy(() => import('./views/Employee/EmployeeDetails/EmployeeDetails'));
+const DocumentsUploadsForm = React.lazy(() => import('./views/Students/DocumentsUploads/DocumentsUploadsForm'));
+const StudentsDocuments = React.lazy(() => import('./views/Students/StudentsDocuments/StudentsDocuments'));
+const SuperAdminPrivet = React.lazy(() => import('./PrivetRoute/SuperAdminPrivet'));
 //-----------//
-import EnrolledStudentList from './views/Students/EnrolledStudentList/EnrolledStudentList'
-import FollowUpStudentsList from './views/Students/FollowUpStudentsList/FollowUpStudentsList'
-import ApplicationProcessingStudentList from './views/Students/ApplicationProcessingStudentList/ApplicationProcessingStudentList'
-import VisaProcessingStudentList from './views/Students/VisaprocessingStudentList/VisaProcessingStudentList'
-import SuccessStudentList from './views/Students/SuccessStudentList/SuccessStudentList'
+const EnrolledStudentList = React.lazy(() => import('./views/Students/EnrolledStudentList/EnrolledStudentList'));
+const FollowUpStudentsList = React.lazy(() => import('./views/Students/FollowUpStudentsList/FollowUpStudentsList'));
+const ApplicationProcessingStudentList = React.lazy(() => import('./views/Students/ApplicationProcessingStudentList/ApplicationProcessingStudentList'));
+const VisaProcessingStudentList = React.lazy(() => import('./views/Students/VisaprocessingStudentList/VisaProcessingStudentList'));
+const SuccessStudentList = React.lazy(() => import('./views/Students/SuccessStudentList/SuccessStudentList'));
+
 //-----------//
-import Receptionist from './components/Receptionist/Receptionist'
-import ReceptionistPrivet from './PrivetRoute/ReceptionistPrivet'
-import ApplicationForm from './views/pages/AdminOfficer/ApplicationForm/ApplicationForm'
-import AssignVisaTeamWithAllDocuments from './views/pages/AdminOfficer/AssignVisaTeamWithAllDocuments/AssignVisaTeamWithAllDocuments'
-import VisaTeamLayOut from './layout/VisaTeamLayOut'
-import VisaTeamDashBoard from './views/pages/VisaTeam/VisaTeamDashBoard/VisaTeamDashBoard'
-import VisaTeamPrivet from './PrivetRoute/VisaTeamPrivet'
-import NessecaryStudentDocuments from './views/pages/VisaTeam/NessecaryStudentDocuments/NessecaryStudentDocuments'
-import UniversityList from './views/University/UniversityList/UniversityList'
-import Commission from './views/B2B/Commission/Commission'
-import ReCycleStudent from './views/ReCycleStudent/ReCycleStudent'
-import StudentListFromWeb from './views/pages/Counselor/StudentListFromWeb/StudentListFromWeb'
-import WebStudentsDetailsPage from './views/pages/Counselor/WebStudentsDetailsPage/WebStudentsDetailsPage'
-import DisplayCounselorEnrolledStudents from './views/pages/Counselor/DisplayCounselorEnrolledStudents/DisplayCounselorEnrolledStudents'
-import DisplayCounselorFollowUpStudents from './views/pages/Counselor/DisplayCounselorFollowUpStudents/DisplayCounselorFollowUpStudents'
-import DisplayAdminOfficerOngoingList from './views/pages/AdminOfficer/DisplayAdminOfficerOngoingList/DisplayAdminOfficerOngoingList'
-import DisplayAdminOfficerCompletedList from './views/pages/AdminOfficer/DisplayAdminOfficerCompletedList/DisplayAdminOfficerCompletedList'
-import DisplayVisaStudentsOngoingList from './views/pages/VisaTeam/DisplayVisaStudentsOngoingList/DisplayVisaStudentsOngoingList'
-import DisplayVisaStudentsCompletedList from './views/pages/VisaTeam/DisplayVisaStudentsCompletedList/DisplayVisaStudentsCompletedList'
+const Receptionist = React.lazy(() => import('./components/Receptionist/Receptionist'))
+const ReceptionistPrivet = React.lazy(() => import('./PrivetRoute/ReceptionistPrivet'))
+const ApplicationForm = React.lazy(() => import('./views/pages/AdminOfficer/ApplicationForm/ApplicationForm'))
+const AssignVisaTeamWithAllDocuments = React.lazy(() => import('./views/pages/AdminOfficer/AssignVisaTeamWithAllDocuments/AssignVisaTeamWithAllDocuments'))
+
+const VisaTeamLayOut = React.lazy(() => import('./layout/VisaTeamLayOut'));
+const VisaTeamDashBoard = React.lazy(() => import('./views/pages/VisaTeam/VisaTeamDashBoard/VisaTeamDashBoard'));
+const VisaTeamPrivet = React.lazy(() => import('./PrivetRoute/VisaTeamPrivet'));
+const NessecaryStudentDocuments = React.lazy(() => import('./views/pages/VisaTeam/NessecaryStudentDocuments/NessecaryStudentDocuments'));
+const UniversityList = React.lazy(() => import('./views/University/UniversityList/UniversityList'));
+const Commission = React.lazy(() => import('./views/B2B/Commission/Commission'));
+const ReCycleStudent = React.lazy(() => import('./views/ReCycleStudent/ReCycleStudent'));
+const StudentListFromWeb = React.lazy(() => import('./views/pages/Counselor/StudentListFromWeb/StudentListFromWeb'));
+const WebStudentsDetailsPage = React.lazy(() => import('./views/pages/Counselor/WebStudentsDetailsPage/WebStudentsDetailsPage'));
+const DisplayCounselorEnrolledStudents = React.lazy(() => import('./views/pages/Counselor/DisplayCounselorEnrolledStudents/DisplayCounselorEnrolledStudents'));
+const DisplayCounselorFollowUpStudents = React.lazy(() => import('./views/pages/Counselor/DisplayCounselorFollowUpStudents/DisplayCounselorFollowUpStudents'));
+const DisplayAdminOfficerOngoingList = React.lazy(() => import('./views/pages/AdminOfficer/DisplayAdminOfficerOngoingList/DisplayAdminOfficerOngoingList'));
+const DisplayAdminOfficerCompletedList = React.lazy(() => import('./views/pages/AdminOfficer/DisplayAdminOfficerCompletedList/DisplayAdminOfficerCompletedList'));
+const DisplayVisaStudentsOngoingList = React.lazy(() => import('./views/pages/VisaTeam/DisplayVisaStudentsOngoingList/DisplayVisaStudentsOngoingList'));
+const DisplayVisaStudentsCompletedList = React.lazy(() => import('./views/pages/VisaTeam/DisplayVisaStudentsCompletedList/DisplayVisaStudentsCompletedList'));
 
 
 
@@ -266,7 +268,7 @@ const App = () => {
               <Route path="/super-admin/web-student-details/:studentId"
                 element={<WebStudentsDetailsPage />}
               />
-             
+
 
             </Route>
           </Route>
