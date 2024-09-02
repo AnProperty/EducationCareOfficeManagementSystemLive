@@ -20,7 +20,7 @@ const StatusProgress = ({ currentStatus }) => {
   return (
     <div className="d-flex align-items-center w-100">
       {statuses.map((status, index) => (
-        <React.Fragment key={status}>
+        <div key={status}>
           <div className="d-flex flex-column align-items-center">
             {/* Circle */}
             <div
@@ -59,7 +59,7 @@ const StatusProgress = ({ currentStatus }) => {
               }}
             ></div>
           )}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
