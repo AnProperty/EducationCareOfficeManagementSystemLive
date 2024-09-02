@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons';
-import CIcon from '@coreui/icons-react';
+import {CIcon} from '@coreui/icons-react';
 
 const StatusProgress = ({ currentStatus }) => {
   // Updated statuses array
