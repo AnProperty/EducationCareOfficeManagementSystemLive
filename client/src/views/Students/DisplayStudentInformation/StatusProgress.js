@@ -1,5 +1,8 @@
+// components/StatusProgress.js
 import React from 'react';
-import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons'; // Import icon paths
+
+import { cilCheckAlt, cilChevronDoubleRight, cilCircle } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
 
 const StatusProgress = ({ currentStatus }) => {
   // Updated statuses array
@@ -13,26 +16,6 @@ const StatusProgress = ({ currentStatus }) => {
 
   // Determine the index of the current status
   const currentIndex = statuses.indexOf(currentStatus);
-
-  // Helper function to render the icon based on the status using SVG
-  const renderIcon = (icon, color = 'currentColor', size = 16) => {
-    // Ensure the icon has valid paths and viewBox data
-    if (!icon || !icon.svg || !icon.paths || icon.paths.length === 0) {
-      return null; // Return null if the icon is not valid
-    }
-
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox={icon.svg.viewBox} // Corrected viewBox usage
-        fill={color}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d={icon.paths[0]} /> {/* Render icon paths safely */}
-      </svg>
-    );
-  };
 
   return (
     <div className="d-flex align-items-center w-100">
@@ -50,11 +33,13 @@ const StatusProgress = ({ currentStatus }) => {
               }`}
               style={{ width: '32px', height: '32px' }}
             >
-              {index < currentIndex
-                ? renderIcon(cilCheckAlt, '#fff') // Completed step icon
-                : index === currentIndex
-                ? renderIcon(cilChevronDoubleRight, '#fff') // Current step icon
-                : renderIcon(cilCircle, '#6c757d')} // Future step icon
+              {index < currentIndex ? (
+                <CIcon content={cilCheckAlt} className="text-white" /> // Checkmark for completed
+              ) : index === currentIndex ? (
+                <CIcon content={cilChevronDoubleRight} className="text-white" /> // Current step indicator
+              ) : (
+                <CIcon content={cilCircle} className="text-secondary" /> // Placeholder circle for future steps
+              )}
             </div>
 
             {/* Label */}
@@ -63,6 +48,7 @@ const StatusProgress = ({ currentStatus }) => {
             </div>
           </div>
 
+          {/* Line */}
           {index < statuses.length - 1 && (
             <div
               className="flex-grow-1 position-relative"
