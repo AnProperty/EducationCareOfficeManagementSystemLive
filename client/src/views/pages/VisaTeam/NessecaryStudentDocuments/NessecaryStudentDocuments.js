@@ -5,13 +5,15 @@ import visaTeamServices from '../../../../components/httpservices/visaTeamServic
 import DownloadButtonUniDOcs from '../../../../components/ZipDownLoaderButton/DownloadButtonUniDocs'
 
 const NessecaryStudentDocuments = () => {
-  const { studentId, counselorId } = useParams()
+  const { studentId, counselorId, applicantId } = useParams()
+  const params = useParams()
+  console.log("9999999999999999999999",params);
   const [docs, setDocs] = useState([])
   const visaTeam = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/visa/get-all-visa-pros-docs/${visaTeam.employee_id}/${studentId}`,
+      `${process.env.REACT_APP_API_BASE_URL}/visa/get-all-visa-pros-docs/${applicantId}/${studentId}`,
     )
       .then((res) => res.json())
       .then((data) => {

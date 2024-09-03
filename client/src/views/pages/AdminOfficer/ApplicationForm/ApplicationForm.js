@@ -10,6 +10,7 @@ import axios from 'axios'
 import React, { useEffect, useReducer, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import PreviousButton from '../../../../utilities/PreviousPage'
 
 const ApplicationForm = () => {
   let { state } = useLocation()
@@ -311,7 +312,9 @@ const ApplicationForm = () => {
             )}
           </form>
         </div>
-        
+        <div className='my-3'>
+        <PreviousButton />
+        </div>
       </div>
     </div>
   )

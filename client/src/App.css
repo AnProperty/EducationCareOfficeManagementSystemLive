@@ -1,3 +1,6 @@
+.btn {
+    width: 200px !important;
+}
 .btn2 {
     background: rgb(64, 236, 6) !important;
 }
@@ -10,7 +13,7 @@
 }
 .btn5 {
     background: black !important;
-    color: white !important;;
+    color: white !important;
 
 }
 a{

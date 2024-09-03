@@ -6,7 +6,7 @@ const {
 } = require("../../controller/VisaController/visaTeadm.controller");
 
 router.route("/:employee_id").get(getStudentByVisaTeamIdController),
-router.route("/get-all-visa-pros-docs/:visaTeamId/:studentId").get(getDocsByStdIdController),
+router.route("/get-all-visa-pros-docs/:applicantId/:studentId").get(getDocsByStdIdController),
 router.route("/update-visa-status/:studentId/:createdAt").patch(updateStudentStatusByIdController),
 // router.route("/:visaTeamId").get(getUniversityDocsController),
 

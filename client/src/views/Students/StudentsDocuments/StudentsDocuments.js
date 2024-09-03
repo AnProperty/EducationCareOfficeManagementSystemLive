@@ -165,23 +165,23 @@ const StudentsDocuments = () => {
       )}
 
       <div className='d-flex justify-content-between'>
-        <PreviousButton />
+        <div className='mt-3'>
+          <PreviousButton />
+        </div>
         {user.role === 'admin Officer' && (
-          <section className="d-flex">
-            <button className="btn btn2 m-auto">
-              <Link
-                to={`/admin-officer/update-application-status/${studentId}/${counselorId}/${user.employee_id}`}
-                state={state.stdId}
-              >
-                {' '}
-                <button className='btn btn5'>Next &gt;&gt;</button>{' '}
-              </Link>
-            </button>
+          <section className="d-flex mt-3">
+            <Link
+              to={`/admin-officer/update-application-status/${studentId}/${counselorId}/${user.employee_id}`}
+              state={state.stdId}
+            >
+              {' '}
+              <button className='btn btn5'>Next &gt;&gt;</button>{' '}
+            </Link>
           </section>
         )}
         {state.app.length > 1
           ? user.role === 'Super Admin' && (
-            <section className="d-flex">
+            <section className="d-flex mt-3">
 
               <Link
                 to={`/super-admin/update-application-status/${studentId}/${counselorId}/${state.app[1].applicantId}`}
@@ -195,7 +195,7 @@ const StudentsDocuments = () => {
           : ''}
         {state.app.length > 1
           ? user.role === 'Admin Office Visa Section' && (
-            <section className="d-flex">
+            <section className="d-flex mt-3">
               <Link
                 to={`/visa-process/all-university-documents/${studentId}/${counselorId}/${state.app[1].applicantId}`}
                 state={state.stdId}
