@@ -2,7 +2,7 @@ const cloudinary = require('../../config/cloudinary');
 const {
   postStudentDetailsService,
   GetStudentDetailsService,
-  GetStudentDocsService
+  GetStudentDocsService,GetStudentInfoByIdService
 } = require("../../services/studentServices/studentServices");
 
 
@@ -35,6 +35,22 @@ exports.postStudentDetailsInfoController = async (req,res) => {
 exports.getStudentDetailsInfoController = async (req, res, next) => {
   try {
     const details = await GetStudentDetailsService(req.params);
+    res.status(200).json({
+      status: "success",
+      message: "Student Details showed Successfully",
+      data: details,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Fail",
+      message: "Fail to shown student detail",
+      error: err,
+    });
+  }
+};
+exports.getStudentInfoController = async (req, res, next) => {
+  try {
+    const details = await GetStudentInfoByIdService(req.params);
     res.status(200).json({
       status: "success",
       message: "Student Details showed Successfully",

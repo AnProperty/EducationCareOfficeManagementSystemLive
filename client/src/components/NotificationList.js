@@ -13,19 +13,22 @@ const NotificationList = ({ notifications, markAsRead }) => {
 
 
     console.log(studentId, employeeId, counselorId);
-    const response = await axios.get(
-      `https://api.antgec.com/notifications/studentInfo/${studentId}`,
+
+    const details = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/student/${studentId}`,
     )
 
-    console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR', response.data.data[0]);
+
+
+    console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR', details.data.data);
 
 
     if (task === "counseling") {
-      navigate(`/counselor/student-details/${studentId}/${employeeId}`, { state: { item: response.data.data[0] } });
+      navigate(`/counselor/student-details/${studentId}/${employeeId}`, { state: { item: details.data.data[0] } });
     } else if (task === "application") {
-      navigate(`/admin-officer/student-details/${studentId}/${counselorId}`, { state: { item: response.data.data[0] } });
+      navigate(`/admin-officer/student-details/${studentId}/${counselorId}`, { state: { item: details.data.data[0] } });
     } else {
-      navigate(`/visa-process/student-details/${studentId}/${counselorId}`, { state: { item: response.data.data[0] } });
+      navigate(`/visa-process/student-details/${studentId}/${counselorId}`, { state: { item: details.data.data[0] } });
 
     }
   }

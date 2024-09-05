@@ -44,6 +44,12 @@ exports.GetStudentDetailsService = async (query) => {
   const studentInfo = await StudentDetailsModel.find(query);
   return studentInfo;
 };
+exports.GetStudentInfoByIdService = async (query) => {
+  console.log(query);
+  const studentInfo = await CreateStudent.find(query);
+  console.log(studentInfo);
+  return studentInfo;
+};
 exports.GetStudentDocsService = async (query) => {
   
   const studentInfo = await StudentDetailsModel.find(query).select('-_id -studentId -counselorId -createdAt -updatedAt -__v');
