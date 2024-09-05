@@ -11,6 +11,9 @@ const MyModal = React.lazy(() => import('./MakeAdviseModal'));
 
 const DisplayStudentInformation = () => {
     let { item } = useLocation().state
+
+
+    console.log(item);
     const { studentId, counselorId } = useParams()
     console.log(studentId, counselorId);
     const [show, setShow] = useState(false);

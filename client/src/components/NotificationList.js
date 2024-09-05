@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CCard, CCardBody, CCardHeader, CCardText, CButton } from '@coreui/react'
 import { useNavigate } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import { cilCheckCircle } from '@coreui/icons'
-
 import './NotificationList.css'
 import axios from 'axios'
 
@@ -15,7 +14,7 @@ const NotificationList = ({ notifications, markAsRead }) => {
 
     console.log(studentId, employeeId, counselorId);
     const response = await axios.get(
-      `http://api.antgec.com/notifications/studentInfo/${studentId}`,
+      `https://api.antgec.com/notifications/studentInfo/${studentId}`,
     )
 
     console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR', response.data.data[0]);
