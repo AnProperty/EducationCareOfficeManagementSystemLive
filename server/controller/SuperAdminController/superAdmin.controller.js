@@ -103,10 +103,10 @@ exports.addNewRoleController = async (req, res, next) => {
 exports.DownloadEmployeeFiles = async (req, res) => {
   try {
     const employee = await CreateEmployee.findOne(req.params);
-    
+
 
     if (!employee) {
-      
+
       return res.status(404).json({ error: 'Employee not found' });
     }
 
@@ -115,7 +115,7 @@ exports.DownloadEmployeeFiles = async (req, res) => {
     employee.cv & fileUrls.push(employee.cv)
     employee.resume & fileUrls.push(employee.resume)
 
-  
+
 
     const zip = new JSZip();
 
@@ -142,7 +142,7 @@ exports.DownloadEmployeeFiles = async (req, res) => {
 
 exports.DeleteStudent = async (req, res) => {
   try {
-    
+
     const studentId = req.params.studentId;
     const employeeId = req.params.employeeId;
     const remove = await DeleteStudent(studentId, employeeId);
@@ -182,7 +182,7 @@ exports.filterLeadsController = async (req, res) => {
     }
     // Fetch data based on the constructed query
     const data = await CreateStudent.find(query).lean().sort({ createdAt: -1 });
-    
+
 
     res.send(data);
   } catch (error) {
@@ -194,18 +194,35 @@ exports.filterLeadsController = async (req, res) => {
 
 exports.getStudentNameSuggestions = async (req, res) => {
   try {
-      const { fullName } = req.query;
+    const { fullName } = req.query;
 
-      // Simple regex search to find students whose names match the input
-      const suggestions = await CreateStudent.find({
-          fullName: { $regex: fullName, $options: 'i' } // 'i' for case-insensitive
-      }).limit(10).select('fullName'); // Limit the results and only select fullName field
+    // Simple regex search to find students whose names match the input
+    const suggestions = await CreateStudent.find({
+      fullName: { $regex: fullName, $options: 'i' } // 'i' for case-insensitive
+    }).limit(10).select('fullName'); // Limit the results and only select fullName field
 
-      // Send back an array of fullName strings as suggestions
-      res.json(suggestions.map(student => student.fullName));
+    // Send back an array of fullName strings as suggestions
+    res.json(suggestions.map(student => student.fullName));
   } catch (error) {
-      console.error('Error fetching student name suggestions:', error);
-      res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching student name suggestions:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+exports.GetEmployeeStudentListBasedOnEmployeeId = async (req, res) => {
+  try {
+
+    console.log("hhhhhhhhhhhhhhhhhhhh", req.params);
+    // Simple regex search to find students whose names match the input
+    const Students = await CreateEmployee.find(req.params).select("students")
+      .populate({
+        path: "students",
+      });
+    console.log(Students);
+    // Send back an array of fullName strings as suggestions
+    res.send(Students);;
+  } catch (error) {
+    console.error('Error fetching student name suggestions:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 

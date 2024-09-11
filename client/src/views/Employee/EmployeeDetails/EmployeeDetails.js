@@ -6,9 +6,17 @@ import EmployeeModal from './EmployeeModal'; // Import the modal component
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import CIcon from '@coreui/icons-react'
+import { cilPeople, cilTrash, cilDelete } from '@coreui/icons'
+
+
 import {
-    cilDelete
-} from '@coreui/icons'
+    CTable,
+    CTableBody,
+    CTableDataCell,
+    CTableHead,
+    CTableHeaderCell,
+    CTableRow,
+} from '@coreui/react'
 
 
 const EmployeeDetails = () => {
@@ -16,6 +24,7 @@ const EmployeeDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [studentList, setStudentList] = useState([])
 
 
     const [roleList, setRoleList] = useState([])
@@ -135,13 +144,19 @@ const EmployeeDetails = () => {
         CreateNewRoleEmployee(state.item)
 
     };
+    const handleStudentList = async (item) => {
+        console.log(item);
+
+        const res = await axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/super-admin/get-specific-employee-students/${item.employee_id}`
+
+        )
+        setStudentList(res?.data[0]?.students)
+
+    }
 
     return (
         <div>
-            {
-                console.log(state)
-            }
-
             <div className="about-wrapper">
                 <div className="about-left">
                     <div className="about-left-content">
@@ -180,8 +195,8 @@ const EmployeeDetails = () => {
                 <div className="about-right">
                     <h3>Global Education Care<span>!</span></h3>
                     <div className="about-btns">
-                        <Link to={state.item.cv} target='_blank'><button type="button" className="btn btn-pink">resume / CV</button></Link>
-                        <button type="button" disabled={isSubmitted} className="btn btn-white" onClick={openModal}> {loading ? 'Adding.....' : 'Add Role'}</button>
+                        <Link to={state.item.cv} target='_blank'><button type="button" className="btn btn-white">resume / CV</button></Link>
+                        <button type="button" disabled={isSubmitted} className="btn btn-pink" onClick={openModal}> {loading ? 'Adding.....' : 'Add Role'}</button>
                         {loading && (
                             <div className="preloader">
                                 <h3>Loading</h3>
@@ -190,19 +205,98 @@ const EmployeeDetails = () => {
                     </div>
 
                     <div className="about-para">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus iure tempora alias laudantium sapiente impedit!</p>
+                        <p>Address : {state?.item?.address}</p>
+                        <p>Phone : {state?.item?.phone}</p>
+                        <p>Family Phone : {state?.item?.familyPhone}</p>
+                        <p>email : {state?.item?.email}</p>
                     </div>
-                    <div className="credit">Made with <span style={{ color: "tomato" }}>❤</span> by <a href="https://www.learningrobo.com/">Learning Robo</a></div>
+
+                    <div className='my-3 d-flex justify-content-end'>
+                        <DownloadButtonEmployee employee_id={state.item.employee_id} ></DownloadButtonEmployee>
+                    </div>
+
                 </div>
-                {
-                    console.log(state.item.employee_id)
-                }
-
             </div>
+            <div className='d-flex justify-content-around my-4'>
+                <section className='d-flex mt-4'>
+                    {
+                        roleList.map((item) => {
+                            return (
 
-            <div>
-                <DownloadButtonEmployee employee_id={state.item.employee_id} ></DownloadButtonEmployee>
+                                <div key={item._id}>
+                                    <button className='btn btn5' onClick={() => handleStudentList(item)}><strong style={{ margin: "-1rem" }}>{item.role}</strong></button>
+                                </div>
+                            )
+                        })
+                    }
+                </section>
             </div>
+            <section className='mb-5'>
+                <CTable align="middle" className="mb-0 border" hover responsive>
+                    <CTableHead className="text-nowrap">
+                        <CTableRow className="text-center">
+                            <CTableHeaderCell className="bg-body-tertiary text-center">
+                                <CIcon icon={cilPeople} />
+                            </CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">Name</CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary text-center">
+                                Phone Number
+                            </CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">Address</CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">Email</CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">Status</CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">More info</CTableHeaderCell>
+                            <CTableHeaderCell className="bg-body-tertiary">Delete</CTableHeaderCell>{' '}
+                            {/* New Delete Column */}
+                        </CTableRow>
+                    </CTableHead>
+                    <CTableBody>
+                        {studentList.map((item, index) => {
+                            return (
+                                <CTableRow v-for="item in tableItems" key={index} className="text-center">
+                                    <CTableDataCell className="text-center">
+                                        <div>{index + 1}</div>
+                                        {console.log('uuuuuuuu', item)}
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <div>{item.fullName}</div>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <div>{item.phoneNumber}</div>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <div>
+                                            {item.street},{item.city},{item.country}
+                                        </div>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <div>{item.email}</div>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <div>{item.status}</div>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        <Link
+                                            to={`/super-admin/student-details/${item.studentId}/${item.counselor.employee_id}`}
+                                            state={{ item: item }}
+                                        >
+                                            <button className="btn  btn-info bg-danger">More Info</button>
+                                        </Link>
+                                    </CTableDataCell>
+                                    <CTableDataCell>
+                                        {/* Delete Button Column */}
+                                        <CIcon
+                                            icon={cilTrash}
+                                            onClick={() => handleDelete(item._id)}
+                                            style={{ color: 'red', cursor: 'pointer' }}
+                                        />
+                                    </CTableDataCell>
+                                </CTableRow>
+                            )
+                        })}
+                    </CTableBody>
+                </CTable>
+            </section>
 
             {/* Render the modal and pass the necessary props */}
             {showModal && <EmployeeModal showModal={showModal} closeModal={closeModal} updateEmployee={updateEmployee} Designation={Designation} />}

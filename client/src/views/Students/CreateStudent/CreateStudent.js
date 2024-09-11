@@ -20,12 +20,17 @@ const CreateStudent = () => {
         let counselorList = data.data.filter((item) => item.role === 'Counselor')
         setCounselors(counselorList);
       });
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/receptionist/last-student-id`)
-      .then((res) => res.json())
-      .then((data) => {
-        setNewStudentId(data.data + 1)
-      })
-      .catch((err) => console.error('Error fetching last student ID:', err))
+    // fetch(`${process.env.REACT_APP_API_BASE_URL}/receptionist/last-student-id`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setNewStudentId(data.data + 1)
+    //   })
+    //   .catch((err) => console.error('Error fetching last student ID:', err))
+    const generateRandomNumber = () => {
+      const number = Math.floor(10000 + Math.random() * 90000); // Generates a 5-digit number
+      setNewStudentId(number);
+    };
+    generateRandomNumber()
   }, [])
 
   const [formData, setFormData] = useState({
