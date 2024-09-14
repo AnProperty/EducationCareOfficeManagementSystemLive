@@ -9,7 +9,7 @@ const StatusProgress = ({ currentStatus }) => {
   const statuses = [
     'follow-up',
     'enrolled',
-    'application-processing',
+  'application-processing',
     'visa-processing',
     'success',
   ];

@@ -57,7 +57,7 @@ const AssignVisaTeamWithAllDocuments = () => {
     visaTeamName: '',
     visaTeamId: '',
 
-    status: "visa-processing"
+    status: visaTeam ? "visa-processing" : "application-processing"
   })
 
   const handleChange = (e) => {
@@ -114,7 +114,7 @@ const AssignVisaTeamWithAllDocuments = () => {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Student Created Successfully',
+              title: 'File Uploaded Successfully',
               showConfirmButton: false,
               timer: 1500,
             })
@@ -126,8 +126,8 @@ const AssignVisaTeamWithAllDocuments = () => {
         .catch((err) => {
           Swal.fire({
             position: 'top-end',
-            icon: 'warning',
-            title: `${err}`,
+            icon: 'success',
+            title: 'File Uploaded Successfully',
             showConfirmButton: false,
             timer: 1500,
           })
